@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cline Termux</string>
+
+    <!-- Markdown renderer (Android) -->
+    <string name="markdown_copy_code">Copy code</string>
+    <string name="markdown_copy_code_language">Copy %1$s code</string>
+    <string name="markdown_copied">Copied</string>
+</resources>

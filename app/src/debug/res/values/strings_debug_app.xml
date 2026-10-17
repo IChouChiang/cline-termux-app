@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Debug builds (application id io.github.ichouchiang.clinetermux.debug) sit beside the owner's own app on the
+         phone; the launcher label tells the two icons apart. The application and both launcher
+         aliases use @string/app_name, so this one override covers all of them. -->
+    <string name="app_name">Cline Termux Debug</string>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Tool approval sheet + banner (composer-approvals.md C3) and ask-question sheet + banner (C4).
+  Desktop copy verbatim (including "..." versus "…"); strings marked (Android) in the spec are new.
+  Kernel text (tool names, error.message, question text and options) is shown untranslated.
+-->
+<resources>
+    <!-- C3.6 Tool approval -->
+    <string name="approval_title">Tool approval required</string>
+    <string name="approval_description">Review each tool call and approve or reject it before execution.</string>
+    <string name="approval_request_meta">Request %1$s · Iteration %2$d</string>
+    <string name="approval_request_meta_no_iteration">Request %1$s</string>
+    <string name="approval_pending_now">Pending now</string>
+    <string name="approval_approve">Approve</string>
+    <string name="approval_reject">Reject</string>
+    <string name="approval_approving">Approving...</string>
+    <string name="approval_rejecting">Rejecting...</string>
+    <string name="approval_stop">Stop agent</string>
+    <string name="approval_error_fallback">Could not submit decision.</string>
+    <string name="approval_banner_title">Tool approval required</string>
+    <string name="approval_banner_action">Review</string>
+    <!-- Exactly one pending request; ApprovalBanner picks this in code, not via quantity="one". -->
+    <string name="approval_banner_cd_single">Tool approval required, Review</string>
+    <plurals name="approval_banner_cd">
+        <item quantity="one">Tool approval required, %1$d request, Review</item>
+        <item quantity="other">Tool approval required, %1$d requests, Review</item>
+    </plurals>
+    <string name="approval_show_raw">Show raw input</string>
+    <string name="approval_hide_raw">Hide raw input</string>
+    <string name="approval_create_file">Create file</string>
+    <string name="approval_insert_at">Insert at line %1$d</string>
+    <string name="approval_preview_more">…</string>
+    <string name="approval_stop_failed">The agent did not stop. Try again.</string>
+    <string name="request_already_answered">This request was already answered.</string>
+    <string name="cd_approval_card">%1$s, approval required. %2$s</string>
+
+    <!-- C4.5 Ask question -->
+    <string name="question_pane_title">Follow-up question</string>
+    <string name="question_options_label">Answer options</string>
+    <string name="question_multiple_hint">Select all that apply.</string>
+    <string name="question_custom_placeholder">Or type your own answer…</string>
+    <string name="cd_question_custom">Custom answer</string>
+    <string name="question_submit">Submit</string>
+    <string name="question_sending">Sending…</string>
+    <string name="question_error_fallback">Could not submit answer.</string>
+    <string name="question_banner_title">Follow-up question</string>
+    <string name="question_banner_action">Answer</string>
+    <string name="question_banner_cd">Follow-up question, Answer</string>
+    <string name="question_cancelled">The question was cancelled.</string>
+    <string name="cd_question_option">Option %1$s: %2$s</string>
+</resources>

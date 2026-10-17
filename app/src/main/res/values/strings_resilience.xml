@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Resilience (batch 1 P3, decision A4): the stall notice docked above the composer.
+  "Restart kernel" reuses kernel_restart (strings_kernel.xml), so the notice, the Stop snackbars
+  and the Kernel status sheet name the action the same way.
+-->
+<resources>
+    <!-- A4: on the kernel's first silent run.heartbeat (HUB_RUN_HEARTBEAT_MS, 30 s). Decided text. -->
+    <string name="stall_notice">The kernel has been running for 30 s without responding</string>
+    <!-- A4: dismisses this stall; a new one after the kernel answered again shows the notice again. -->
+    <string name="stall_keep_waiting">Keep waiting</string>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The auto-approve control (decided A1; docs/research/auto-approve-control.md §2A, §3-§6):
+  the button before the title on Home and in every chat (ticked shield or bolt, A15), its menu, the approval sheet's
+  "Approve ▾" item and the Settings switch. All Android copy (the desktop has no control); the
+  state names follow the terminal ("Auto-approve all", "Ask each time").
+-->
+<resources>
+    <!-- §2A button: content description, click label, state descriptions, tooltips -->
+    <string name="approval_mode_cd">Tool approvals</string>
+    <string name="approval_mode_click_label">Change</string>
+    <string name="approval_mode_state_auto">Auto-approve all</string>
+    <string name="approval_mode_state_ask">Ask each time</string>
+    <string name="approval_mode_state_pending">Ask each time from the end of this run; this run keeps auto-approving</string>
+    <string name="approval_mode_tooltip">Tool approvals: %1$s</string>
+    <string name="approval_mode_disabled">Start kernel to change this.</string>
+
+    <!-- §2A menu -->
+    <string name="approval_mode_menu_header">Tool approvals</string>
+    <string name="approval_mode_auto_title">Auto-approve all</string>
+    <string name="approval_mode_auto_supporting">Every tool call runs</string>
+    <string name="approval_mode_ask_title">Ask each time</string>
+    <string name="approval_mode_ask_supporting">Read-only tools still run</string>
+    <string name="approval_mode_footer">Shared with Cline in the terminal.</string>
+    <string name="approval_mode_pending_note">This run keeps auto-approving until it ends. Stop to switch now.</string>
+    <string name="approval_mode_desktop_note">This session auto-approves: it was started in Cline Desktop.</string>
+
+    <!-- §5 announcements (polite live region) -->
+    <string name="approval_mode_announce_auto">Auto-approve all is on</string>
+    <string name="approval_mode_announce_ask">Ask each time is on</string>
+    <string name="approval_mode_announce_stopped">Run stopped. Ask each time is on.</string>
+
+    <!-- §6 the terminal changed the setting -->
+    <string name="approval_mode_external_on">Auto-approve all turned on outside the app</string>
+    <string name="approval_mode_external_off">Auto-approve all turned off outside the app</string>
+
+    <!-- Write failures: "Couldn't turn on Auto-approve all: <reason>" (§3) -->
+    <string name="approval_mode_turn_on_failed">Couldn\'t turn on Auto-approve all: %1$s</string>
+    <string name="approval_mode_turn_off_failed">Couldn\'t turn off Auto-approve all: %1$s</string>
+    <string name="approval_mode_error_unreadable">global-settings.json is not valid JSON, so it was left unchanged</string>
+    <string name="approval_mode_error_exit">exit code %1$d</string>
+    <string name="approval_mode_error_unavailable">Termux did not run the command</string>
+
+    <!-- §3 approval sheet split button -->
+    <string name="approval_approve_more_cd">More approve options</string>
+    <string name="approval_approve_and_auto">Approve and auto-approve from now on</string>
+    <string name="approval_approve_and_auto_supporting">Turns on Auto-approve all (shared with the terminal)</string>
+
+    <!-- §4 Settings, Kernel group -->
+    <string name="settings_auto_approve">Auto-approve all</string>
+    <string name="settings_auto_approve_supporting">Run every tool call without asking. When off, read-only tools still run and the rest ask first. This is the kernel\'s setting, shared with Cline in the terminal; Cline Desktop always auto-approves.</string>
+    <string name="settings_auto_approve_pending">The running session switches when its run ends.</string>
+</resources>

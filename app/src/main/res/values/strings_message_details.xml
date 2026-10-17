@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  A11.9 "Message details" (decided 2026-10-07): the terminal's Brief / Verbose setting applied to
+  the desktop's reveal row. Settings → App → Message details, and the Verbose stats line on a
+  revealed answer. All (Android): the desktop has no such setting; the terminal's is "Verbose".
+  The answer row has no fork (decided A16), so Brief names copy and time only.
+-->
+<resources>
+    <!-- Settings → App row and its single-choice dialog -->
+    <string name="message_details_title">Message details</string>
+    <string name="message_details_brief">Brief</string>
+    <string name="message_details_verbose">Verbose</string>
+    <string name="message_details_brief_supporting">Copy and time under each answer</string>
+    <string name="message_details_verbose_supporting">Also shows each turn\'s tokens, cost and duration</string>
+
+    <!-- Verbose stats on a revealed answer, e.g. "1.2k in · 340 out · $0.0040 · 8.1 s".
+         %1$s is a number already formatted for the device's locale. -->
+    <string name="message_details_stats_in">%1$s in</string>
+    <string name="message_details_stats_out">%1$s out</string>
+    <!-- A token count in thousands ("1.2k") and in millions ("1.3m") -->
+    <string name="message_details_stats_thousands">%1$sk</string>
+    <string name="message_details_stats_millions">%1$sm</string>
+    <!-- The run's duration under a minute ("8.1 s"), and from a minute on ("2 min 5 s") -->
+    <string name="message_details_stats_seconds">%1$s s</string>
+    <string name="message_details_stats_minutes">%1$s min %2$s s</string>
+    <string name="message_details_stats_join">%1$s · %2$s</string>
+
+    <!-- The same stats as TalkBack reads them, e.g. "1,234 input tokens, 340 output tokens,
+         cost $0.0040, 8 seconds". %1$s is a number already formatted for the device's locale. -->
+    <plurals name="message_details_spoken_input_tokens">
+        <item quantity="one">%1$s input token</item>
+        <item quantity="other">%1$s input tokens</item>
+    </plurals>
+    <plurals name="message_details_spoken_output_tokens">
+        <item quantity="one">%1$s output token</item>
+        <item quantity="other">%1$s output tokens</item>
+    </plurals>
+    <plurals name="message_details_spoken_minutes">
+        <item quantity="one">%1$s minute</item>
+        <item quantity="other">%1$s minutes</item>
+    </plurals>
+    <plurals name="message_details_spoken_seconds">
+        <item quantity="one">%1$s second</item>
+        <item quantity="other">%1$s seconds</item>
+    </plurals>
+    <!-- %1$s is the cost as the stats line shows it ("$0.0040") -->
+    <string name="message_details_spoken_cost">cost %1$s</string>
+    <!-- "2 minutes 5 seconds": %1$s the minutes, %2$s the seconds, each with its word -->
+    <string name="message_details_spoken_minutes_seconds">%1$s %2$s</string>
+    <string name="message_details_spoken_join">%1$s, %2$s</string>
+</resources>

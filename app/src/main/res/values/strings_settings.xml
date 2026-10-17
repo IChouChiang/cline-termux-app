@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Settings home and Appearance (design/screens/settings-providers.md S1, S2), owned by the
+      settings-core package. Prefixes: settings_ (S1), appearance_ (S2). The Notifications page
+      (S3) uses the notif_settings_* strings of strings_notifications.xml.
+      Desktop copy is verbatim; strings marked (Android) in the spec are new.
+    -->
+
+    <!-- S1 page -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_description">Manage preferences for this app and the Cline kernel in Termux.</string>
+    <string name="settings_group_app">App</string>
+    <string name="settings_group_kernel">Kernel</string>
+    <string name="settings_group_models">Models</string>
+    <string name="settings_group_customize">Customize</string>
+    <string name="settings_group_privacy">Privacy</string>
+    <string name="settings_group_support">Support</string>
+    <!-- Joins two summary parts: "System default · Dynamic colour". -->
+    <string name="settings_summary_join">%1$s · %2$s</string>
+    <!-- Joins a row headline and its spoken summary for TalkBack. -->
+    <string name="settings_cd_pair">%1$s, %2$s</string>
+    <string name="settings_saving">Saving</string>
+    <!-- (Android) Switch state spoken with a transient state such as "Saving": "On, Saving". -->
+    <string name="settings_switch_on">On</string>
+    <string name="settings_switch_off">Off</string>
+
+    <!-- S1 Appearance row -->
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_appearance_dynamic">Dynamic colour</string>
+    <string name="settings_appearance_font_size">Font size %1$d</string>
+
+    <!-- S1 Notifications row -->
+    <string name="settings_notifications">Notifications</string>
+    <plurals name="settings_notifications_on">
+        <item quantity="one">On for %1$d event</item>
+        <item quantity="other">On for %1$d events</item>
+    </plurals>
+    <string name="settings_notifications_off">Off</string>
+
+    <!-- S1 Kernel row -->
+    <string name="settings_kernel">Kernel</string>
+    <string name="settings_kernel_connected_a11y">Cline Hub at %1$s, connected</string>
+
+    <!-- S1 Providers row (desktop ProviderListContent subtitle) -->
+    <string name="settings_providers">Providers</string>
+    <string name="settings_providers_none">Connect a provider to start using models.</string>
+    <string name="settings_providers_counts">%1$d configured · %2$d available</string>
+    <string name="settings_providers_fallback">%1$d configured</string>
+
+    <!-- S1 Account row -->
+    <string name="settings_account">Account</string>
+    <string name="settings_account_personal">Personal</string>
+    <string name="settings_account_signed_in">Signed in to Cline</string>
+    <string name="settings_account_signed_out">Sign in to Cline</string>
+    <string name="settings_account_waiting">Waiting for browser...</string>
+
+    <!-- S1 Installed row -->
+    <string name="settings_installed">Installed</string>
+    <plurals name="settings_installed_skills">
+        <item quantity="one">%1$d skill</item>
+        <item quantity="other">%1$d skills</item>
+    </plurals>
+    <plurals name="settings_installed_mcp">
+        <item quantity="one">%1$d MCP server</item>
+        <item quantity="other">%1$d MCP servers</item>
+    </plurals>
+    <plurals name="settings_installed_plugins">
+        <item quantity="one">%1$d plugin</item>
+        <item quantity="other">%1$d plugins</item>
+    </plurals>
+    <plurals name="settings_installed_rules">
+        <item quantity="one">%1$d rule</item>
+        <item quantity="other">%1$d rules</item>
+    </plurals>
+    <string name="settings_installed_none">Nothing installed yet</string>
+
+    <!-- S1 Marketplace and Schedules rows -->
+    <string name="settings_marketplace">Marketplace</string>
+    <string name="settings_schedules">Schedules</string>
+    <plurals name="settings_schedules_count">
+        <item quantity="one">%1$d schedule</item>
+        <item quantity="other">%1$d schedules</item>
+    </plurals>
+    <plurals name="settings_schedules_active">
+        <item quantity="one">%1$d active</item>
+        <item quantity="other">%1$d active</item>
+    </plurals>
+    <string name="settings_schedules_none">No schedules yet</string>
+
+    <!-- S1 Telemetry row (desktop GeneralSettingsContent) -->
+    <string name="settings_telemetry">Telemetry</string>
+    <string name="settings_telemetry_supporting">Enable error and usage reports to help improve Cline.</string>
+    <string name="settings_telemetry_error">Failed to update telemetry setting: %1$s</string>
+    <string name="settings_telemetry_starting">Starting settings helper...</string>
+    <string name="settings_telemetry_read_only">Telemetry can be changed when the settings helper is available.</string>
+
+    <!-- S1 New user experience row -->
+    <string name="settings_nux">New user experience</string>
+    <string name="settings_nux_supporting">Replay the first-run experience new users see when they open Cline for the first time.</string>
+    <string name="settings_nux_dialog_title">Replay the first-run experience?</string>
+    <string name="settings_nux_dialog_text">Your settings, providers and sessions stay as they are.</string>
+    <string name="settings_nux_replay">Replay</string>
+
+    <!-- S1 Diagnostics row -->
+    <string name="settings_diagnostics">Diagnostics</string>
+    <string name="settings_diagnostics_supporting">Export app info, recent logs, and the metadata of sessions you choose as a file you can attach when reporting a problem.</string>
+    <string name="settings_diagnostics_action">Export…</string>
+
+    <!-- S1 About row -->
+    <string name="settings_about">About</string>
+    <string name="settings_about_versions">Cline Termux %1$s · kernel %2$s</string>
+    <string name="settings_about_version">Cline Termux %1$s</string>
+
+    <!-- S2 Appearance page -->
+    <string name="appearance_title">Appearance</string>
+    <string name="appearance_description">Choose how Cline looks on this device.</string>
+    <string name="appearance_dark_mode">Dark mode</string>
+    <string name="appearance_theme_system">System default</string>
+    <string name="appearance_theme_light">Light</string>
+    <string name="appearance_theme_dark">Dark</string>
+    <string name="appearance_dark_mode_help">Choose light or dark, or follow the system setting.</string>
+    <string name="appearance_dynamic">Dynamic colour</string>
+    <string name="appearance_dynamic_supporting">Use colours from your wallpaper. Turn off to use Cline\'s violet.</string>
+    <string name="appearance_font_size">Font size</string>
+    <string name="appearance_font_size_description">Adjust the size of text and interface elements throughout the app.</string>
+    <string name="appearance_font_decrease">Decrease font size</string>
+    <string name="appearance_font_increase">Increase font size</string>
+    <string name="appearance_font_selected">Selected font size</string>
+    <string name="appearance_font_value">%1$d</string>
+    <string name="appearance_preview">Preview</string>
+    <string name="appearance_preview_user">Fix the failing test</string>
+    <string name="appearance_preview_tool">Ran command %1$s</string>
+    <string name="appearance_preview_tool_code" translatable="false">bun test</string>
+    <string name="appearance_preview_assistant">The test now passes. 测试已通过。</string>
+    <string name="appearance_app_icon">App icon</string>
+    <string name="appearance_app_icon_description">Pick the icon Cline shows on your home screen.</string>
+    <string name="appearance_icon_midnight">Midnight</string>
+    <string name="appearance_icon_classic">Classic</string>
+    <string name="appearance_icon_switched">The launcher may take a moment to update the icon.</string>
+    <string name="appearance_icon_error">Failed to change app icon: %1$s</string>
+</resources>

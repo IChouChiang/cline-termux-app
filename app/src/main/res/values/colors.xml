@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only for XML that needs colour resources (adaptive launcher icons, splash theme). Compose code
+     reads ClineBrand in ui/theme/BrandScheme.kt; ClineBrandResourcesTest keeps the two equal. -->
+<resources>
+    <!-- Launcher tile: public/icon.svg fill colour (Midnight icon ground). -->
+    <color name="ic_launcher_background">#1C1C24</color>
+    <!-- Classic alternate (design-system.md §10.6): desktop accent-9. -->
+    <color name="ic_launcher_background_classic">#6E56CF</color>
+    <!-- Splash window ground = brand surface (values-night overrides). -->
+    <color name="splash_background">#F9F9FC</color>
+</resources>

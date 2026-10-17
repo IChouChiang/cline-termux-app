@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Transcript rows (work package transcript-rows): home-chat.md §3.4, §3.9, §3.10, §8; DS §4.1 #2-#5, §4.2.
+  Desktop copy verbatim; (Android) marks new strings. Ids follow HC §8 where only the transcript
+  uses them; tool-row strings that CT §D also defines for the Tool detail screen use the chat_tool_
+  prefix so the two packages never define the same name. Reused from other files (do not redefine):
+  run_failed_*, cred_*, msg_fork_empty, msg_fork_title_suffix (strings_session.xml),
+  tool_overline_output, tool_output_cd, tool_copy_output, diff_*_count (strings_terminal_diff.xml).
+-->
+<resources>
+    <!-- Message actions (desktop message-bubble.tsx) -->
+    <string name="msg_copy_user">Copy user message</string>
+    <string name="msg_copied_user">Copied user message</string>
+    <string name="msg_copy_tooltip">Copy message</string>
+    <string name="msg_copied_tooltip">Copied</string>
+    <string name="msg_edit_user">Edit user message</string>
+    <string name="msg_edit_tooltip">Edit message and restart from this point</string>
+    <string name="msg_restore">Restore checkpoint</string>
+    <string name="msg_copy_assistant">Copy assistant message</string>
+    <string name="msg_copied_assistant">Copied assistant message</string>
+    <string name="msg_copy_raw_tooltip">Copy raw assistant output</string>
+    <string name="msg_restore_error">Could not restore checkpoint.</string>
+    <string name="msg_edit_error">Could not restart from this message.</string>
+    <!-- The session menu's fork (header_fork, the drawer's row menu): the fallback failure sentence -->
+    <string name="msg_fork_error">Could not fork session.</string>
+    <string name="msg_copy_failed_title">Copy failed</string>
+    <string name="msg_copy_failed_body">The message could not be copied to the clipboard.</string>
+    <!-- (Android) DS §4.1 #17: a snackbar is "<title>. <description>" -->
+    <string name="msg_copy_failed_snackbar">%1$s. %2$s</string>
+    <!-- Long-press menu (HC §3.4.1, §3.4.2) -->
+    <string name="msg_menu_copy">Copy</string>
+    <!-- (Android) -->
+    <string name="msg_select_text">Select text</string>
+    <!-- (Android) snackbar after "Select text" on an assistant message: the markdown body only
+         becomes selectable, so the first selection needs its own long-press (HC §3.14, §3.16) -->
+    <string name="msg_select_text_hint">Long-press to start selecting</string>
+    <!-- (Android) onClickLabel of the bubble tap that reveals the action row -->
+    <string name="msg_show_actions">Show message actions</string>
+
+    <!-- Images -->
+    <string name="msg_attachment_expand">Expand attachment %1$d</string>
+    <string name="msg_attachment_alt">Attachment %1$d</string>
+    <string name="msg_generated_expand">Expand generated image %1$d</string>
+    <string name="msg_generated_alt">Generated result %1$d</string>
+    <string name="msg_generated_image_default">Generated image</string>
+    <string name="msg_generated_file">Generated file (%1$s)</string>
+
+    <!-- Generated media fallbacks (desktop generated-media.tsx) -->
+    <!-- (Android) -->
+    <string name="media_open">Open</string>
+    <!-- (Android) -->
+    <string name="media_no_app">No app can open this file.</string>
+    <!-- (Android) -->
+    <string name="media_open_failed">Couldn\'t open this file.</string>
+    <!-- One sentence per modality (DS §8.2.3: no translatable fragment is spliced in, so a
+         translation can inflect the noun); desktop copy verbatim with its lower-case word. -->
+    <string name="media_remote_image">Generated image requires a trusted remote-media resolver.</string>
+    <string name="media_remote_audio">Generated audio requires a trusted remote-media resolver.</string>
+    <string name="media_remote_video">Generated video requires a trusted remote-media resolver.</string>
+    <string name="media_remote_file">Generated file requires a trusted remote-media resolver.</string>
+    <!-- %1$s is the artifact id -->
+    <string name="media_artifact_image">Generated image is stored as an artifact (%1$s).</string>
+    <string name="media_artifact_audio">Generated audio is stored as an artifact (%1$s).</string>
+    <string name="media_artifact_video">Generated video is stored as an artifact (%1$s).</string>
+    <string name="media_artifact_file">Generated file is stored as an artifact (%1$s).</string>
+    <string name="media_unrenderable_image">Generated image could not be rendered.</string>
+    <string name="media_unrenderable_audio">Generated audio could not be rendered.</string>
+    <string name="media_unrenderable_video">Generated video could not be rendered.</string>
+    <string name="media_unrenderable_file">Generated file could not be rendered.</string>
+
+    <!-- Error rows (HC §3.4.7) -->
+    <!-- (Android) -->
+    <string name="run_interrupted">This run was interrupted because the Cline Hub restarted.</string>
+    <!-- (Android) -->
+    <string name="run_resend">Resend</string>
+
+    <!-- (Android, A17) Stop notice rows: why the app stopped a run at the mistake limit (G2). The
+         detail line under the first reuses mistake_limit_question_latest ("Latest: %1$s"). -->
+    <plurals name="chat_notice_mistake_stopped">
+        <item quantity="one">Stopped after %d mistake in a row</item>
+        <item quantity="other">Stopped after %d mistakes in a row</item>
+    </plurals>
+    <string name="chat_notice_mistake_stopped_repeated">Stopped after repeated mistakes</string>
+    <plurals name="chat_notice_mistake_timed_out">
+        <item quantity="one">Stopped: the question was not answered within %d minute</item>
+        <item quantity="other">Stopped: the question was not answered within %d minutes</item>
+    </plurals>
+
+    <!-- Reasoning (desktop formatThoughtLabel) -->
+    <string name="reasoning_thinking">Thinking</string>
+    <string name="reasoning_thought">Thought for %1$ds</string>
+    <string name="reasoning_redacted">[redacted]</string>
+
+    <!-- Work row (desktop formatWorkActivityLabel); %1$s is a duration such as "4m 12s" -->
+    <string name="work_label_both">Worked for %1$s and made %2$s</string>
+    <string name="work_label_duration">Worked for %1$s</string>
+    <string name="work_label_calls">Made %1$s</string>
+    <string name="work_label_none">Worked</string>
+    <plurals name="work_tool_calls">
+        <item quantity="one">%1$d tool call</item>
+        <item quantity="other">%1$d tool calls</item>
+    </plurals>
+
+    <!-- Tool rows (desktop tool-message-block.tsx) -->
+    <string name="chat_tool_overline_input">Input</string>
+    <string name="chat_tool_proceed">Proceed while running</string>
+    <string name="chat_tool_proceed_error">Could not detach the running command.</string>
+    <string name="chat_tool_proceed_finished">The command finished before it could be detached.</string>
+    <string name="chat_tool_submit_running">Completing scheduled task</string>
+    <string name="chat_tool_submit_failed">Scheduled task failed</string>
+    <string name="chat_tool_submit_done">Scheduled task completed</string>
+    <!-- (Android) CT DS-A5 entry points of the Tool detail screen -->
+    <string name="chat_tool_view_details">View details</string>
+    <!-- (Android) -->
+    <string name="chat_tool_copy_command">Copy command</string>
+    <!-- (Android) TalkBack status words appended to a tool row's label (HC §3.15) -->
+    <string name="chat_tool_status_running">running</string>
+    <string name="chat_tool_status_error">error</string>
+    <string name="chat_tool_status_done">completed</string>
+    <string name="chat_tool_status_interrupted">interrupted</string>
+
+    <!-- Tool-row labels (tool-summary/index.ts buildToolSummary, team.ts teamSummary). %1$s is
+         kernel data: a file name, command, query, URL, skill, task, question or tool name. -->
+    <string name="chat_tool_label_reading_file">Reading file</string>
+    <string name="chat_tool_label_read_file">Read file</string>
+    <string name="chat_tool_label_editing_file">Editing file</string>
+    <string name="chat_tool_label_edited_file">Edited file</string>
+    <string name="chat_tool_label_running_command">Running command</string>
+    <string name="chat_tool_label_ran_command">Ran command</string>
+    <string name="chat_tool_label_searching">Searching</string>
+    <string name="chat_tool_label_searched">Searched</string>
+    <string name="chat_tool_label_fetching_web_content">Fetching web content</string>
+    <string name="chat_tool_label_fetched_web_content">Fetched web content</string>
+    <string name="chat_tool_label_spawning_agent">Spawning agent</string>
+    <string name="chat_tool_label_spawned_agent">Spawned agent</string>
+    <string name="chat_tool_label_using_skill">Using skill</string>
+    <string name="chat_tool_label_used_skill">Used skill</string>
+    <string name="chat_tool_label_asking_a_question">Asking a question</string>
+    <string name="chat_tool_label_asked_a_question">Asked a question</string>
+    <string name="chat_tool_label_calling_mcp_tool">Calling MCP tool</string>
+    <string name="chat_tool_label_called_mcp_tool">Called MCP tool</string>
+    <string name="chat_tool_label_running_tool">Running %1$s</string>
+    <string name="chat_tool_label_reading_file_named">Reading file %1$s</string>
+    <string name="chat_tool_label_read_file_named">Read file %1$s</string>
+    <string name="chat_tool_label_running_command_named">Running command %1$s</string>
+    <string name="chat_tool_label_ran_command_named">Ran command %1$s</string>
+    <string name="chat_tool_label_searching_named">Searching %1$s</string>
+    <string name="chat_tool_label_searched_named">Searched %1$s</string>
+    <string name="chat_tool_label_fetching_named">Fetching %1$s</string>
+    <string name="chat_tool_label_fetched_named">Fetched %1$s</string>
+    <string name="chat_tool_label_applying_patch">Applying patch</string>
+    <string name="chat_tool_label_applied_patch">Applied patch</string>
+    <string name="chat_tool_label_creating_file_named">Creating file %1$s</string>
+    <string name="chat_tool_label_created_file_named">Created file %1$s</string>
+    <string name="chat_tool_label_deleting_file_named">Deleting file %1$s</string>
+    <string name="chat_tool_label_deleted_file_named">Deleted file %1$s</string>
+    <string name="chat_tool_label_editing_file_named">Editing file %1$s</string>
+    <string name="chat_tool_label_edited_file_named">Edited file %1$s</string>
+    <string name="chat_tool_label_inserting_into_named">Inserting into %1$s</string>
+    <string name="chat_tool_label_inserted_into_named">Inserted into %1$s</string>
+    <string name="chat_tool_label_spawning_agent_task">Spawning agent: %1$s</string>
+    <string name="chat_tool_label_spawned_agent_task">Spawned agent: %1$s</string>
+    <string name="chat_tool_label_using_skill_named">Using skill %1$s</string>
+    <string name="chat_tool_label_used_skill_named">Used skill %1$s</string>
+    <string name="chat_tool_label_asking_question_text">Asking \"%1$s\"</string>
+    <string name="chat_tool_label_asked_question_text">Asked \"%1$s\"</string>
+    <string name="chat_tool_label_waiting_for_teammates">Waiting for teammates</string>
+    <string name="chat_tool_label_waited_for_teammates">Waited for teammates</string>
+    <string name="chat_tool_label_checking_team_status">Checking team status</string>
+    <string name="chat_tool_label_checked_team_status">Checked team status</string>
+    <string name="chat_tool_label_listing_teammate_runs">Listing teammate runs</string>
+    <string name="chat_tool_label_cancelling_teammate_run">Cancelling teammate run</string>
+    <string name="chat_tool_label_cancelled_teammate_run">Cancelled teammate run</string>
+    <string name="chat_tool_label_broadcasting_to_teammates">Broadcasting message to teammates</string>
+    <string name="chat_tool_label_reading_team_mailbox">Reading team mailbox</string>
+    <string name="chat_tool_label_updating_mission_log">Updating mission log</string>
+    <string name="chat_tool_label_updated_mission_log">Updated mission log</string>
+    <string name="chat_tool_label_cleaning_up_team">Cleaning up team</string>
+    <string name="chat_tool_label_cleaned_up_team">Cleaned up team</string>
+    <string name="chat_tool_label_creating_team_outcome">Creating team outcome</string>
+    <string name="chat_tool_label_created_team_outcome">Created team outcome</string>
+    <string name="chat_tool_label_attaching_outcome_fragment">Attaching outcome fragment</string>
+    <string name="chat_tool_label_attached_outcome_fragment">Attached outcome fragment</string>
+    <string name="chat_tool_label_reviewing_outcome_fragment">Reviewing outcome fragment</string>
+    <string name="chat_tool_label_reviewed_outcome_fragment">Reviewed outcome fragment</string>
+    <string name="chat_tool_label_finalizing_team_outcome">Finalizing team outcome</string>
+    <string name="chat_tool_label_finalized_team_outcome">Finalized team outcome</string>
+    <string name="chat_tool_label_listing_team_outcomes">Listing team outcomes</string>
+    <string name="chat_tool_label_failed_attach_outcome_fragment">Failed to attach outcome fragment</string>
+    <string name="chat_tool_label_failed_await_runs">Failed while waiting for teammates</string>
+    <string name="chat_tool_label_failed_broadcast">Failed to broadcast message to teammates</string>
+    <string name="chat_tool_label_failed_cancel_run">Failed to cancel teammate run</string>
+    <string name="chat_tool_label_failed_cleanup">Failed to clean up team</string>
+    <string name="chat_tool_label_failed_create_outcome">Failed to create team outcome</string>
+    <string name="chat_tool_label_failed_finalize_outcome">Failed to finalize team outcome</string>
+    <string name="chat_tool_label_failed_list_outcomes">Failed to list team outcomes</string>
+    <string name="chat_tool_label_failed_list_runs">Failed to list teammate runs</string>
+    <string name="chat_tool_label_failed_mission_log">Failed to update mission log</string>
+    <string name="chat_tool_label_failed_read_mailbox">Failed to read team mailbox</string>
+    <string name="chat_tool_label_failed_review_outcome_fragment">Failed to review outcome fragment</string>
+    <string name="chat_tool_label_failed_run_task">Failed to assign team task</string>
+    <string name="chat_tool_label_failed_send_message">Failed to send message</string>
+    <string name="chat_tool_label_failed_shutdown_teammate">Failed to stop teammate</string>
+    <string name="chat_tool_label_failed_spawn_teammate">Failed to spawn teammate</string>
+    <string name="chat_tool_label_failed_team_status">Failed to check team status</string>
+    <string name="chat_tool_label_failed_team_task">Failed to update team task</string>
+    <string name="chat_tool_label_failed_tool">Failed %1$s</string>
+    <!-- buildGroupedToolLabel joins adjacent group segments with " · " -->
+    <string name="chat_tool_label_group">%1$s · %2$s</string>
+    <!-- (Android, A21) A call without a result in a finished turn (the desktop keeps it "Running").
+         %1$s is the call's command, file name, query, URL, skill, task, question or tool name. -->
+    <string name="chat_tool_label_interrupted">Interrupted</string>
+    <string name="chat_tool_label_interrupted_named">Interrupted: %1$s</string>
+    <!-- Aggregated tool counts (team.ts pluralize): completed and in-progress verbs -->
+    <plurals name="chat_tool_agg_read_files_done">
+        <item quantity="one">Read %1$d file</item>
+        <item quantity="other">Read %1$d files</item>
+    </plurals>
+    <plurals name="chat_tool_agg_read_files_running">
+        <item quantity="one">Reading %1$d file</item>
+        <item quantity="other">Reading %1$d files</item>
+    </plurals>
+    <plurals name="chat_tool_agg_edited_files_done">
+        <item quantity="one">Edited %1$d file</item>
+        <item quantity="other">Edited %1$d files</item>
+    </plurals>
+    <plurals name="chat_tool_agg_edited_files_running">
+        <item quantity="one">Editing %1$d file</item>
+        <item quantity="other">Editing %1$d files</item>
+    </plurals>
+    <plurals name="chat_tool_agg_commands_done">
+        <item quantity="one">Ran %1$d command</item>
+        <item quantity="other">Ran %1$d commands</item>
+    </plurals>
+    <plurals name="chat_tool_agg_commands_running">
+        <item quantity="one">Running %1$d command</item>
+        <item quantity="other">Running %1$d commands</item>
+    </plurals>
+    <plurals name="chat_tool_agg_searches_done">
+        <item quantity="one">Explored %1$d search</item>
+        <item quantity="other">Explored %1$d searches</item>
+    </plurals>
+    <plurals name="chat_tool_agg_searches_running">
+        <item quantity="one">Exploring %1$d search</item>
+        <item quantity="other">Exploring %1$d searches</item>
+    </plurals>
+    <plurals name="chat_tool_agg_links_done">
+        <item quantity="one">Explored %1$d link</item>
+        <item quantity="other">Explored %1$d links</item>
+    </plurals>
+    <plurals name="chat_tool_agg_links_running">
+        <item quantity="one">Exploring %1$d link</item>
+        <item quantity="other">Exploring %1$d links</item>
+    </plurals>
+    <plurals name="chat_tool_agg_spawned_agents_done">
+        <item quantity="one">Spawned %1$d agent</item>
+        <item quantity="other">Spawned %1$d agents</item>
+    </plurals>
+    <plurals name="chat_tool_agg_spawned_agents_running">
+        <item quantity="one">Spawning %1$d agent</item>
+        <item quantity="other">Spawning %1$d agents</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_spawn_done">
+        <item quantity="one">Spawned %1$d teammate</item>
+        <item quantity="other">Spawned %1$d teammates</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_spawn_running">
+        <item quantity="one">Spawning %1$d teammate</item>
+        <item quantity="other">Spawning %1$d teammates</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_run_task_done">
+        <item quantity="one">Assigned %1$d team task</item>
+        <item quantity="other">Assigned %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_run_task_running">
+        <item quantity="one">Assigning %1$d team task</item>
+        <item quantity="other">Assigning %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_shutdown_done">
+        <item quantity="one">Stopped %1$d teammate</item>
+        <item quantity="other">Stopped %1$d teammates</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_shutdown_running">
+        <item quantity="one">Stopping %1$d teammate</item>
+        <item quantity="other">Stopping %1$d teammates</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_create_done">
+        <item quantity="one">Created %1$d team task</item>
+        <item quantity="other">Created %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_create_running">
+        <item quantity="one">Creating %1$d team task</item>
+        <item quantity="other">Creating %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_list_done">
+        <item quantity="one">Listed %1$d team task</item>
+        <item quantity="other">Listed %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_list_running">
+        <item quantity="one">Listing %1$d team task</item>
+        <item quantity="other">Listing %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_claim_done">
+        <item quantity="one">Claimed %1$d team task</item>
+        <item quantity="other">Claimed %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_claim_running">
+        <item quantity="one">Claiming %1$d team task</item>
+        <item quantity="other">Claiming %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_complete_done">
+        <item quantity="one">Completed %1$d team task</item>
+        <item quantity="other">Completed %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_complete_running">
+        <item quantity="one">Completing %1$d team task</item>
+        <item quantity="other">Completing %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_block_done">
+        <item quantity="one">Blocked %1$d team task</item>
+        <item quantity="other">Blocked %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_block_running">
+        <item quantity="one">Blocking %1$d team task</item>
+        <item quantity="other">Blocking %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_update_done">
+        <item quantity="one">Updated %1$d team task</item>
+        <item quantity="other">Updated %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_task_update_running">
+        <item quantity="one">Updating %1$d team task</item>
+        <item quantity="other">Updating %1$d team tasks</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_send_message_done">
+        <item quantity="one">Sent %1$d message</item>
+        <item quantity="other">Sent %1$d messages</item>
+    </plurals>
+    <plurals name="chat_tool_agg_team_send_message_running">
+        <item quantity="one">Sending %1$d message</item>
+        <item quantity="other">Sending %1$d messages</item>
+    </plurals>
+    <!-- Counted team labels (team.ts) -->
+    <plurals name="chat_tool_count_listed_teammate_runs">
+        <item quantity="one">Listed %1$d teammate run</item>
+        <item quantity="other">Listed %1$d teammate runs</item>
+    </plurals>
+    <plurals name="chat_tool_count_broadcast_to_teammates">
+        <item quantity="one">Broadcast message to %1$d teammate</item>
+        <item quantity="other">Broadcast message to %1$d teammates</item>
+    </plurals>
+    <plurals name="chat_tool_count_read_team_messages">
+        <item quantity="one">Read %1$d team message</item>
+        <item quantity="other">Read %1$d team messages</item>
+    </plurals>
+    <plurals name="chat_tool_count_listed_team_outcomes">
+        <item quantity="one">Listed %1$d team outcome</item>
+        <item quantity="other">Listed %1$d team outcomes</item>
+    </plurals>
+
+    <!-- Disclosure rows (DS §8.1 #5) -->
+    <!-- (Android) -->
+    <string name="chat_row_expanded">Expanded</string>
+    <!-- (Android) -->
+    <string name="chat_row_collapsed">Collapsed</string>
+    <!-- (Android) label, status -->
+    <string name="chat_row_label_status">%1$s, %2$s</string>
+    <!-- (Android) label, status, additions (changes_additions_a11y), deletions (changes_deletions_a11y) -->
+    <string name="chat_row_label_status_diff">%1$s, %2$s, %3$s, %4$s</string>
+    <!-- (Android) label, status, one change count (additions or deletions) -->
+    <string name="chat_row_label_status_count">%1$s, %2$s, %3$s</string>
+
+    <!-- Transport line (HC §3.9) -->
+    <string name="chat_transport_connecting">Connecting chat...</string>
+    <string name="chat_transport_reconnecting">Reconnecting chat...</string>
+    <string name="chat_transport_unavailable">Chat backend unavailable</string>
+    <!-- (Android) -->
+    <string name="chat_transport_draining">Cline Hub is updating...</string>
+    <string name="chat_transport_start_kernel">Start kernel to continue.</string>
+
+    <!-- Error banner (HC §3.10) -->
+    <string name="chat_banner_retry">Retry</string>
+</resources>

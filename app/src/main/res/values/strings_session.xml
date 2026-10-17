@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copy owned by the session core (data/session, data/chat): the sentences its pure ports
+  produce. Ids follow design/screens/home-chat.md §8. Desktop verbatim
+  (webview/lib/run-error.ts, webview/hooks/chat-session/helpers.ts, CLI fork/title.ts).
+-->
+<resources>
+    <!-- formatRunError (home-chat.md §3.4.7) -->
+    <string name="run_failed_prefix">The run failed: %1$s</string>
+    <string name="run_failed_empty">The run failed before a response was produced.</string>
+
+    <!-- resolveCredentialFailureHint -->
+    <string name="cred_hint_cli">Sign in again with the `%1$s` CLI in a terminal, then try again.</string>
+    <string name="cred_hint_cline">Sign in to Cline again in Settings → Account, then try again.</string>
+    <string name="cred_hint_unknown">Sign in again using your provider\'s authentication method, then try again.</string>
+    <string name="cred_hint_provider">Check your model connection in Settings → Providers (or sign in with Cline), then try again.</string>
+
+    <!-- resolveCredentialFailureAction -->
+    <string name="cred_action_cline">Sign in to Cline</string>
+    <string name="cred_action_providers">Open API providers</string>
+
+    <!-- SessionError.Reason.MissingResumeConfig: the detail of "Couldn't resume this session: %1$s" (Android) -->
+    <string name="chat_resume_missing_config">this session has no saved workspace or model</string>
+
+    <!-- deriveForkSessionTitle (CLI fork/title.ts); the suffix is appended with its leading space -->
+    <string name="fork_title_untitled">Untitled</string>
+    <string name="msg_fork_title_suffix">\u0020(fork)</string>
+    <string name="msg_fork_empty">Cannot fork an empty session.</string>
+</resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Terminal and diff components (work package terminal-diff): CT §1.2, A.4, A.6, A.10, B.4, B.6.
+  Ids follow CT §D so the Changes and Tool detail screens reuse them; do not redefine them elsewhere.
+  Desktop copy is verbatim; (Android) marks new strings.
+-->
+<resources>
+    <!-- ChangedFileHeader (desktop agent-changes.tsx / diff-view.tsx) -->
+    <string name="changes_copy_path_cd">Copy file path for %1$s</string>
+    <string name="changes_copy_path_tooltip">Copy file path</string>
+    <!-- (Android) shown for 1600 ms after a copy -->
+    <string name="changes_copied_path_cd">Copied file path for %1$s</string>
+    <!-- (Android) -->
+    <string name="changes_file_actions_cd">File actions for %1$s</string>
+    <!-- (Android) header long-press menu and TalkBack custom actions -->
+    <string name="changes_expand">Expand</string>
+    <string name="changes_collapse">Collapse</string>
+    <!-- (Android) stateDescription of a file header -->
+    <string name="changes_state_expanded">Expanded</string>
+    <string name="changes_state_collapsed">Collapsed</string>
+    <!-- (Android) TalkBack for a file header: path, additions, deletions, state -->
+    <string name="changes_header_a11y">%1$s, %2$s, %3$s, %4$s</string>
+    <!-- (Android) TalkBack for a header that cannot collapse (Tool detail edit layout) -->
+    <string name="changes_header_static_a11y">%1$s, %2$s, %3$s</string>
+    <plurals name="changes_additions_a11y">
+        <item quantity="one">%1$d addition</item>
+        <item quantity="other">%1$d additions</item>
+    </plurals>
+    <plurals name="changes_deletions_a11y">
+        <item quantity="one">%1$d deletion</item>
+        <item quantity="other">%1$d deletions</item>
+    </plurals>
+    <!-- Desktop "+N" / "-N" counts, LTR-isolated (U+2066 … U+2069) so RTL keeps "+1", not "1+" (CT A.11 RTL) -->
+    <string name="diff_additions_count">\u2066+%1$d\u2069</string>
+    <string name="diff_deletions_count">\u2066-%1$d\u2069</string>
+    <string name="changes_no_hunks">No hunk details available.</string>
+
+    <!-- DiffHunkView -->
+    <!-- (Android) long hunks render 400 lines at a time -->
+    <plurals name="changes_show_more">
+        <item quantity="one">Show %1$d more line</item>
+        <item quantity="other">Show %1$d more lines</item>
+    </plurals>
+    <!-- Desktop (@pierre/diffs hunk separator) -->
+    <plurals name="diff_unmodified_lines">
+        <item quantity="one">%1$d unmodified line</item>
+        <item quantity="other">%1$d unmodified lines</item>
+    </plurals>
+    <!-- (Android) TalkBack -->
+    <string name="diff_line_added">Added line %1$d: %2$s</string>
+    <string name="diff_line_added_nonum">Added line: %1$s</string>
+    <string name="diff_line_removed">Removed line: %1$s</string>
+    <string name="diff_line_context">Unchanged line: %1$s</string>
+    <string name="diff_hunk_group">Change %1$d of %2$d in %3$s</string>
+
+    <!-- Terminal (desktop agent-command-output.tsx, command-output.ts) -->
+    <string name="tool_overline_output">Output</string>
+    <string name="tool_output_cd">Command output</string>
+    <string name="tool_output_truncated_head">[Earlier command output truncated]</string>
+    <!-- (Android) -->
+    <string name="tool_scroll_latest">Scroll to latest output</string>
+    <string name="tool_copy_output">Copy output</string>
+</resources>

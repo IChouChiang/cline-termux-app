@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Material Symbols Rounded "push_pin" (wght 400, grad 0, opsz 24, fill 1).
+     Source: google/material-design-icons, Apache License 2.0.
+     https://raw.githubusercontent.com/google/material-design-icons/master/symbols/android/push_pin/materialsymbolsrounded/push_pin_fill1_24px.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?android:attr/colorControlNormal">
+  <path
+      android:fillColor="@android:color/white"
+      android:pathData="M16,12 L18,14V16H13V22L12,23L11,22V16H6V14L8,12V5H7V3H17V5H16Z"/>
+</vector>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Customize (CR C1) and the MCP server editor (CR C2). Desktop copy verbatim
+  (customize-view.tsx, extensions-view.tsx, mcp-view.tsx, marketplace-view.tsx,
+  welcome-workspace-controls.tsx), including "..." versus "…"; strings marked (Android)
+  in the spec are new. Prefixes: customize_ (C1) and mcp_ (C2), docs/07 §13.
+-->
+<resources>
+    <!-- Page (CR §1.5) -->
+    <string name="customize_title">Customize</string>
+    <string name="customize_description">Extend what Cline can do and how it works. Explore the marketplace for more options.</string>
+    <string name="customize_marketplace">Marketplace</string>
+    <string name="customize_refresh">Refresh</string>
+    <string name="customize_workspace_cd">Project items from %1$s. Change workspace</string>
+    <string name="customize_no_workspace">No workspace</string>
+
+    <!-- Tabs -->
+    <string name="customize_tab_tools">Tools</string>
+    <string name="customize_tab_plugins">Plugins</string>
+    <string name="customize_tab_skills">Skills</string>
+    <string name="customize_tab_rules">Rules</string>
+    <string name="customize_tab_mcp">MCP</string>
+    <string name="customize_tab_hooks">Hooks</string>
+    <plurals name="customize_tab_cd">
+        <item quantity="one">%1$s, %2$d item</item>
+        <item quantity="other">%1$s, %2$d items</item>
+    </plurals>
+
+    <!-- Tab descriptions (desktop sectionDescriptions) -->
+    <string name="customize_description_tools">Inspect built-in tools and tools contributed by plugins.</string>
+    <string name="customize_description_plugins">Manage installed plugins and add new plugins from the marketplace.</string>
+    <string name="customize_description_skills">Manage installed skills and add new skills from the marketplace.</string>
+    <string name="customize_description_rules">Review project and global rule files that shape Cline behavior.</string>
+    <string name="customize_description_mcp">Editing this list updates cline_mcp_settings.json.</string>
+    <string name="customize_description_mcp_no_file">No MCP settings file found yet. Add a server to create it.</string>
+    <string name="customize_description_hooks">Inspect hook configuration.</string>
+    <string name="customize_plugins_running_note">Changes apply when a session is rebuilt or started.</string>
+
+    <!-- Search -->
+    <string name="customize_search_tools">Search tools</string>
+    <string name="customize_search_skills">Search skills</string>
+    <string name="customize_search_plugins">Search plugins</string>
+    <string name="customize_search_mcp">Search mcp servers</string>
+    <string name="customize_search_mcp_cd">Search MCP Servers</string>
+    <string name="customize_clear_search">Clear search</string>
+
+    <!-- Sections and bulk toggles -->
+    <string name="customize_installed">Installed</string>
+    <string name="customize_builtin_tools">BuiltIn Tools</string>
+    <string name="customize_plugin_tools">Plugin Tools</string>
+    <string name="customize_disable_all">Disable all</string>
+    <string name="customize_enable_all">Enable all</string>
+    <string name="customize_disable_all_builtin_cd">Disable all builtin tools</string>
+    <string name="customize_enable_all_builtin_cd">Enable all builtin tools</string>
+    <string name="customize_disable_all_plugin_cd">Disable all plugin tools</string>
+    <string name="customize_enable_all_plugin_cd">Enable all plugin tools</string>
+
+    <!-- Cards -->
+    <string name="customize_no_description">No description available.</string>
+    <string name="customize_toggle_cd">Toggle %1$s</string>
+    <string name="customize_mcp_enable_cd">Enable %1$s</string>
+    <string name="customize_rules_unsupported">Toggling rules isn\'t supported yet</string>
+    <string name="customize_workflows_unsupported">Toggling workflows isn\'t supported yet</string>
+    <string name="customize_switch_unavailable_cd">%1$s, unavailable. %2$s</string>
+    <string name="customize_scope_global">Global</string>
+    <string name="customize_scope_project">Project</string>
+    <string name="customize_type_skill">skill</string>
+    <string name="customize_type_workflow">workflow</string>
+    <string name="customize_agent_plugin">Agent Plugin</string>
+    <string name="customize_cline_plugin">Cline Plugin</string>
+    <string name="customize_marketplace_badge">Marketplace</string>
+    <string name="customize_transport_stdio">Local · stdio</string>
+    <string name="customize_transport_sse">Remote · SSE (legacy)</string>
+    <string name="customize_transport_http">Remote · Streamable HTTP</string>
+    <string name="customize_more_actions_cd">More actions for %1$s</string>
+    <string name="customize_more_actions_fallback">plugin</string>
+    <string name="customize_copy_path">Copy path</string>
+    <string name="customize_uninstall">Uninstall</string>
+    <string name="customize_uninstalling">Uninstalling...</string>
+    <string name="customize_uninstall_title">Uninstall %1$s?</string>
+    <string name="customize_uninstall_text">This removes %1$s from this Cline environment.</string>
+    <string name="customize_uninstalled">Uninstalled %1$s.</string>
+    <string name="customize_copied_path">Copied path</string>
+    <string name="customize_show_more">Show more</string>
+    <string name="customize_show_less">Show less</string>
+    <string name="customize_expanded">Expanded</string>
+    <string name="customize_collapsed">Collapsed</string>
+    <!-- Card expand chevron; same wording as the desktop marketplace expand button. -->
+    <string name="customize_expand_item">Expand %1$s</string>
+    <string name="customize_collapse_item">Collapse %1$s</string>
+    <string name="customize_saving">Saving</string>
+    <string name="customize_unavailable_reconnecting">Unavailable while reconnecting</string>
+    <!-- (Android) Switch state spoken with a transient state: "On, Saving". -->
+    <string name="customize_switch_on">On</string>
+    <string name="customize_switch_off">Off</string>
+    <string name="customize_switch_state_pair">%1$s, %2$s</string>
+
+    <!-- Plugin details -->
+    <string name="customize_plugin_enable_to_inspect">Enable this plugin to inspect its dynamic contributions.</string>
+    <string name="customize_contributions">Contributions</string>
+    <string name="customize_group_commands">Commands</string>
+    <string name="customize_group_mcp_servers">MCP servers</string>
+    <string name="customize_group_providers">Providers</string>
+    <string name="customize_group_capabilities">Capabilities</string>
+    <string name="customize_group_count">%1$s %2$d</string>
+    <string name="customize_no_contributions">No plugin contributions found.</string>
+
+    <!-- MCP cards -->
+    <string name="customize_mcp_command">Command: %1$s</string>
+    <string name="customize_mcp_args">Args: %1$s</string>
+    <string name="customize_mcp_cwd">CWD: %1$s</string>
+    <string name="customize_mcp_url">URL: %1$s</string>
+    <string name="customize_mcp_env">Env: %1$s</string>
+    <string name="customize_mcp_headers">Headers: %1$s</string>
+    <string name="customize_mcp_no_command">No launch command configured.</string>
+    <string name="customize_mcp_settings_path">MCP settings path:</string>
+    <string name="customize_copy_file_path">Copy file path</string>
+    <string name="customize_mcp_edit_cd">Edit %1$s</string>
+    <string name="customize_mcp_delete_cd">Delete %1$s</string>
+    <string name="customize_mcp_add">Add MCP Server</string>
+    <string name="customize_mcp_status_enabled">Enabled</string>
+    <string name="customize_mcp_status_disabled">Disabled</string>
+    <string name="customize_key_redacted_a11y">%1$s, redacted</string>
+
+    <!-- Marketplace setup disclosure (marketplace-view.tsx) -->
+    <string name="customize_setup_instructions">Marketplace setup instructions</string>
+    <string name="customize_setup_instructions_named">Marketplace setup instructions (%1$s)</string>
+    <string name="customize_env_setup_needed">Environment setup needed</string>
+    <string name="customize_env_setup_body">Add these values to your Cline/plugin environment after install.</string>
+    <string name="customize_env_required">Required</string>
+    <string name="customize_env_optional">Optional</string>
+    <string name="customize_get_value">Get value</string>
+
+    <!-- Empty and search-empty -->
+    <string name="customize_empty_builtin_tools">No builtin tools found.</string>
+    <string name="customize_empty_plugin_tools">No plugin tools found.</string>
+    <string name="customize_empty_plugins">No plugins installed. Browse the marketplace to add one.</string>
+    <string name="customize_empty_skills">No skills installed. Browse the marketplace to add one.</string>
+    <string name="customize_empty_rules">No rules found.</string>
+    <string name="customize_empty_mcp">No MCP servers installed. Browse the marketplace or add a server manually.</string>
+    <string name="customize_empty_hooks">No hooks found.</string>
+    <string name="customize_search_empty_tools">No tools match your search.</string>
+    <string name="customize_search_empty_skills">No skills match the current filters.</string>
+    <string name="customize_search_empty_plugins">No plugins match the current filters.</string>
+    <string name="customize_search_empty_mcp">No MCP servers match the current filters.</string>
+
+    <!-- Errors (CR §1.5, §0.5) -->
+    <string name="customize_load_error">Failed to load configuration lists: %1$s</string>
+    <string name="customize_partial_results">Partial results</string>
+    <string name="customize_warning_line">%1$s: %2$s</string>
+    <string name="customize_bullet">• %1$s</string>
+    <string name="customize_workspace_missing">That workspace folder no longer exists.</string>
+    <string name="customize_uninstall_check">Check the result: the uninstall may have finished in Termux.</string>
+    <string name="customize_helper_starting">Starting settings helper...</string>
+
+    <!-- Workspace scope sheet (SP S9 in scope mode) -->
+    <string name="customize_workspace_title">Choose workspace</string>
+    <string name="customize_workspace_search">Search workspaces, or type a folder path</string>
+    <string name="customize_workspace_open_folder">Open folder “%1$s”</string>
+    <string name="customize_workspace_section">Workspaces</string>
+    <string name="customize_workspace_home">Termux home</string>
+    <string name="customize_workspace_empty">No workspaces found — type a full folder path to add one</string>
+    <string name="customize_workspace_empty_path">Press the option above to open this folder</string>
+    <string name="customize_workspace_error">Couldn\'t open \"%1$s\". Check that the folder exists and try again.</string>
+
+    <!-- MCP server editor (CR §2.5) -->
+    <string name="mcp_title_add">Add MCP Server</string>
+    <string name="mcp_title_edit">Edit MCP Server</string>
+    <string name="mcp_description_create">The server is saved to %1$s.</string>
+    <string name="mcp_description_edit">Update the MCP server stored in %1$s.</string>
+    <string name="mcp_settings_file_fallback">cline_mcp_settings.json</string>
+    <string name="mcp_server_name">Server name</string>
+    <string name="mcp_server_name_placeholder">github</string>
+    <string name="mcp_server_type">Server type</string>
+    <string name="mcp_type_local">Local</string>
+    <string name="mcp_type_local_description">Runs a command on this machine (stdio). Recommended when available.</string>
+    <string name="mcp_type_remote">Remote</string>
+    <string name="mcp_type_remote_description">Connects to a hosted server over HTTP by URL.</string>
+    <string name="mcp_command">Command</string>
+    <string name="mcp_command_placeholder">npx</string>
+    <string name="mcp_args">Args</string>
+    <string name="mcp_args_placeholder">-y, @modelcontextprotocol/server-github</string>
+    <string name="mcp_args_supporting">Separate arguments with commas.</string>
+    <string name="mcp_env">Environment variables</string>
+    <string name="mcp_env_add_cd">Add environment variable</string>
+    <string name="mcp_env_key">KEY</string>
+    <string name="mcp_env_value">VALUE</string>
+    <string name="mcp_env_remove_cd">Remove env var %1$s</string>
+    <string name="mcp_env_remove_row_cd">Remove env var row</string>
+    <string name="mcp_env_show_value">Show value</string>
+    <string name="mcp_env_hide_value">Hide value</string>
+    <string name="mcp_env_reenter">Re-enter environment values.</string>
+    <string name="mcp_url">Server URL</string>
+    <string name="mcp_url_placeholder">https://example.com/mcp</string>
+    <string name="mcp_headers">Headers</string>
+    <string name="mcp_headers_placeholder">Authorization=Bearer token</string>
+    <string name="mcp_headers_supporting">Separate headers with commas.</string>
+    <string name="mcp_transport">Transport</string>
+    <string name="mcp_transport_http">Streamable HTTP (recommended)</string>
+    <string name="mcp_transport_sse">SSE (legacy)</string>
+    <string name="mcp_advanced">Advanced</string>
+    <string name="mcp_cwd">Working directory</string>
+    <string name="mcp_cwd_placeholder">/path/to/project</string>
+    <string name="mcp_enabled">Enabled</string>
+    <string name="mcp_enabled_description">Disable the server without removing it from settings.</string>
+    <string name="mcp_enabled_cd">Enable MCP server</string>
+    <string name="mcp_add_server">Add server</string>
+    <string name="mcp_save_changes">Save changes</string>
+    <string name="mcp_saving">Saving...</string>
+    <string name="mcp_more_actions">More actions</string>
+    <string name="mcp_error_name_required">Server name is required.</string>
+    <string name="mcp_error_command_required">Command is required for local servers.</string>
+    <string name="mcp_error_url_required">Server URL is required for remote servers.</string>
+    <string name="mcp_error_collision">A server named \"%1$s\" already exists.</string>
+    <string name="mcp_error_unconfirmed">Could not confirm that the server was saved.</string>
+    <string name="mcp_error_not_found">This server is no longer in cline_mcp_settings.json.</string>
+    <string name="mcp_discard_title">Discard changes?</string>
+    <string name="mcp_discard_text">Your changes to this server will be lost.</string>
+    <string name="mcp_keep_editing">Keep editing</string>
+    <string name="mcp_discard">Discard</string>
+    <string name="mcp_delete_title">Delete MCP Server</string>
+    <string name="mcp_delete_text">Delete MCP server \"%1$s\" from settings?</string>
+    <string name="mcp_delete_text_fallback">Delete this MCP server from settings?</string>
+    <string name="mcp_delete">Delete</string>
+    <string name="mcp_deleting">Deleting...</string>
+    <string name="mcp_delete_server">Delete server</string>
+    <string name="mcp_metadata_title">Metadata</string>
+    <string name="mcp_metadata_text">This server has extra settings in the file (%1$s). Saving here removes them.</string>
+    <string name="mcp_metadata_confirm_title">Save and remove metadata?</string>
+    <string name="mcp_metadata_confirm_text">Saving rewrites this server\'s entry and removes its metadata (%1$s). Edit cline_mcp_settings.json in Termux to keep it.</string>
+    <string name="mcp_metadata_confirm_save">Save</string>
+    <string name="mcp_fallback_note">Environment variables and the working directory need the settings helper.</string>
+    <string name="mcp_fallback_blocking_note">This server uses environment variables or a working directory. Editing it needs the settings helper.</string>
+    <string name="mcp_fallback_card_body">Cline could not start its settings helper in Termux, so servers are saved with the Cline command line instead.</string>
+    <string name="mcp_value_password_cd">VALUE, password field</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Client contributions (batch-1 brief §8): the mistake-limit prompt (G2) shown in the
+  ask-question sheet, and the switch_to_act_mode tool (A11 row 4).
+  Desktop copy verbatim (apps/examples/desktop-app/sidecar/chat-session.ts,
+  createDesktopMistakeLimitPrompt). The option labels are shown for the answers the decision
+  reads ("Try a different approach" / "Stop this run"); the detail after "Latest:" is kernel text,
+  shown at the top of the sheet's scrolling body (the heading holds the intro and the question).
+-->
+<resources>
+    <!-- G2 mistake limit: the question, three lines like the desktop's -->
+    <string name="mistake_limit_question_intro">Cline detected repeated mistakes or tool calls and needs your guidance.</string>
+    <string name="mistake_limit_question_latest">Latest: %1$s</string>
+    <string name="mistake_limit_question_ask">How should Cline continue?</string>
+    <string name="mistake_limit_option_continue">Try a different approach</string>
+    <string name="mistake_limit_option_stop">Stop this run</string>
+
+    <!-- A11 row 4: the switch_to_act_mode tool's label on its approval card and its transcript tool row -->
+    <string name="act_switch_tool_label">Switch to Act mode</string>
+</resources>

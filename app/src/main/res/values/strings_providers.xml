@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Providers list, provider detail, add provider and the Sign in with Cline sheet
+  (design/screens/settings-providers.md S4–S7). Desktop copy verbatim
+  (provider-list-view.tsx, add-provider.tsx, model-id-input.tsx, onboarding-view.tsx,
+  audio-model-badges.tsx); strings marked (Android) in the spec are new.
+-->
+<resources>
+    <!-- S4 Providers list -->
+    <string name="providers_title">Model Providers</string>
+    <string name="providers_subtitle_empty">Connect a provider to start using models.</string>
+    <string name="providers_subtitle_counts">%1$d configured · %2$d available</string>
+    <string name="providers_search_placeholder">Search providers</string>
+    <string name="providers_search_cd">Search model providers</string>
+    <string name="providers_search_clear">Clear provider search</string>
+    <string name="providers_section_configured">Configured</string>
+    <string name="providers_section_popular">Popular</string>
+    <string name="providers_section_all">All providers</string>
+    <string name="providers_popular_description">Sign in or add an API key to connect.</string>
+    <string name="providers_row_configured">Configured</string>
+    <string name="providers_auth_oauth">Sign in</string>
+    <string name="providers_auth_local">Local CLI</string>
+    <string name="providers_auth_api_key">API key</string>
+    <string name="providers_row_cd">%1$s, %2$s</string>
+    <string name="providers_no_match">No providers match \"%1$s\".</string>
+    <string name="providers_loading">Loading providers...</string>
+    <string name="providers_helper_starting">Starting settings helper...</string>
+    <string name="providers_load_failed">Failed to load providers: %1$s</string>
+    <string name="providers_add">Add provider</string>
+    <string name="providers_list_label">Model providers</string>
+    <string name="providers_section_cd">%1$s, %2$s</string>
+    <plurals name="providers_section_count">
+        <item quantity="one">%1$d provider</item>
+        <item quantity="other">%1$d providers</item>
+    </plurals>
+    <string name="providers_state_expanded">Expanded</string>
+    <string name="providers_state_collapsed">Collapsed</string>
+    <string name="providers_state_saving">Saving</string>
+
+    <!-- S5 Provider detail -->
+    <string name="provider_status_configured">Configured</string>
+    <string name="provider_status_not_configured">Not configured</string>
+    <string name="provider_title_cd">%1$s, %2$s</string>
+    <string name="provider_autosave_note">Changes to the fields below are saved automatically.</string>
+    <string name="provider_disconnect">Disconnect</string>
+    <string name="provider_sign_out">Sign out</string>
+    <string name="provider_disconnect_title">Disconnect %1$s?</string>
+    <string name="provider_sign_out_title">Sign out of %1$s?</string>
+    <string name="provider_disconnect_text">Cline removes the saved credentials for %1$s from Termux. Sessions using it stop working until you connect it again.</string>
+    <string name="provider_signed_in_title">Signed in via browser</string>
+    <string name="provider_signed_in_body">This provider authenticates with your account — no API key needed.</string>
+    <string name="provider_configured_with_key">Configured with an API key.</string>
+    <string name="provider_sign_in_title">Sign in to %1$s</string>
+    <string name="provider_sign_in_body">Connects through your browser. No API key needed.</string>
+    <string name="provider_sign_in_browser">Sign in with browser</string>
+    <string name="provider_waiting_browser">Waiting for browser...</string>
+    <string name="provider_waiting_help">Finish signing in in Termux and your browser, then come back here.</string>
+    <string name="provider_open_termux">Open Termux</string>
+    <string name="provider_use_api_key">Use an API key instead</string>
+    <string name="provider_local_title">Uses your local CLI sign-in</string>
+    <string name="provider_local_body">Credentials come from the provider\'s own CLI in Termux — no API key needed.</string>
+    <string name="provider_connect">Connect</string>
+    <string name="provider_connect_hint">Saving an API key configures this provider automatically. Use Connect if it reads credentials from your environment or a local endpoint.</string>
+    <string name="provider_get_key">Get a %1$s API key</string>
+    <string name="provider_select_not_set">Not set</string>
+    <string name="provider_show_secret">Show secret</string>
+    <string name="provider_hide_secret">Hide secret</string>
+    <string name="provider_secret_shown">Shown</string>
+    <string name="provider_secret_hidden">Hidden</string>
+    <string name="provider_copy_field">Copy %1$s</string>
+    <string name="provider_save_failed">Failed to save provider settings for %1$s: %2$s</string>
+    <string name="provider_vanished">This provider is no longer available.</string>
+    <string name="provider_configured_snackbar">Provider configured: %1$s (%2$s)</string>
+    <string name="provider_field_api_key">API Key</string>
+    <string name="provider_field_base_url">Base URL</string>
+    <string name="provider_field_model_id">Model ID</string>
+    <string name="provider_fallback_saved_placeholder">Saved in Termux</string>
+    <string name="provider_fallback_save">Save</string>
+    <string name="provider_fallback_exit">cline auth exited with code %1$d.</string>
+    <string name="provider_keyless_hint">Keyless servers accept any value here, for example \"none\".</string>
+    <string name="provider_models_title">Models</string>
+    <string name="provider_models_refresh">Refresh models</string>
+    <string name="provider_models_search_placeholder">Search models by name or ID</string>
+    <string name="provider_models_search_cd">Search models</string>
+    <string name="provider_models_no_match">No models match \"%1$s\".</string>
+    <string name="provider_models_loading">Loading models...</string>
+    <string name="provider_models_empty">No models available. Tap refresh to load models.</string>
+    <string name="provider_cap_file">File support</string>
+    <string name="provider_cap_image">Image support</string>
+    <string name="provider_cap_audio">Audio support</string>
+    <string name="provider_cap_reasoning">Reasoning support</string>
+    <string name="provider_badge_recommended">Recommended</string>
+    <string name="provider_badge_free">Free</string>
+    <string name="provider_audio_realtime">Realtime</string>
+    <string name="provider_audio_transcription">Transcription</string>
+    <string name="provider_audio_realtime_tooltip">Live audio with streaming updates</string>
+    <string name="provider_audio_transcription_tooltip">Audio-to-text transcription</string>
+    <!-- (Android) TalkBack label of an audio pill: the pill label, then its tooltip. -->
+    <string name="provider_audio_pill_cd">%1$s, %2$s</string>
+    <string name="provider_streaming_unsupported">Streaming not supported</string>
+    <string name="provider_copy_model_id_cd">Copy model ID %1$s</string>
+    <string name="provider_copy_model_id">Copy model ID</string>
+    <string name="provider_copied">Copied</string>
+    <string name="provider_favorite_cd">Favorite %1$s</string>
+    <string name="provider_unfavorite_cd">Unfavorite %1$s</string>
+    <string name="provider_favorite">Favorite</string>
+    <string name="provider_unfavorite">Unfavorite</string>
+
+    <!-- S6 Add OpenAI-compatible provider -->
+    <string name="add_provider_title">Add Provider</string>
+    <string name="add_provider_description">Add an OpenAI-compatible provider and choose its available models.</string>
+    <string name="add_provider_group">OpenAI-Compatible Provider</string>
+    <string name="add_provider_id_label">Provider ID</string>
+    <string name="add_provider_id_placeholder">my-provider</string>
+    <string name="add_provider_id_help">Lowercase ID used in provider registry.</string>
+    <string name="add_provider_id_duplicate">This provider ID already exists.</string>
+    <string name="add_provider_name_label">Provider Name</string>
+    <string name="add_provider_name_placeholder">My Provider</string>
+    <string name="add_provider_base_url_label">Base URL</string>
+    <string name="add_provider_base_url_placeholder">https://api.example.com/v1</string>
+    <string name="add_provider_source_label">Model Source URL (Optional)</string>
+    <string name="add_provider_source_placeholder">https://api.example.com/v1/models</string>
+    <string name="add_provider_source_help">Supported JSON: OpenAI `/models` shape with a `data` array, or a direct model array.</string>
+    <string name="add_provider_models_label">Models</string>
+    <string name="add_provider_models_placeholder">Type a model ID, then tap Done</string>
+    <string name="add_provider_models_help">Add at least one model or set a Model Source URL.</string>
+    <string name="add_provider_remove_model">Remove %1$s</string>
+    <string name="add_provider_default_model">Default Model</string>
+    <string name="add_provider_api_key_label">API Key (Optional)</string>
+    <string name="add_provider_api_key_placeholder">sk-...</string>
+    <string name="add_provider_show_key">Show API key</string>
+    <string name="add_provider_hide_key">Hide API key</string>
+    <string name="add_provider_copy_key">Copy API key</string>
+    <string name="add_provider_capabilities">Capabilities</string>
+    <string name="add_provider_cap_streaming">streaming</string>
+    <string name="add_provider_cap_tools">tools</string>
+    <string name="add_provider_cap_reasoning">reasoning</string>
+    <string name="add_provider_cap_vision">vision</string>
+    <string name="add_provider_cap_prompt_cache">prompt cache</string>
+    <string name="add_provider_advanced">Advanced Settings</string>
+    <string name="add_provider_timeout_label">Timeout (ms)</string>
+    <string name="add_provider_timeout_placeholder">30000</string>
+    <string name="add_provider_headers">Custom Headers</string>
+    <string name="add_provider_header_name">Header name</string>
+    <string name="add_provider_header_value">Value</string>
+    <string name="add_provider_remove_header">Remove header</string>
+    <string name="add_provider_add_header">Add Header</string>
+    <string name="add_provider_save">Add Provider</string>
+    <string name="add_provider_saving">Saving...</string>
+    <string name="add_provider_discard_title">Discard this provider?</string>
+    <string name="add_provider_discard_text">The details you entered will be lost.</string>
+    <string name="add_provider_keep_editing">Keep editing</string>
+    <string name="add_provider_discard">Discard</string>
+
+    <!-- S7 Sign in with Cline: the copy S5's inline sign-in shows -->
+    <string name="signin_waiting_a11y">Waiting for browser. Finish signing in in Termux and your browser, then come back here.</string>
+    <string name="signin_failed">Sign in failed: %1$s</string>
+    <string name="signin_key_failed">Failed to save API key: %1$s</string>
+    <string name="signin_failed_exit">Sign-in did not finish in Termux (exit code %1$d).</string>
+    <string name="signin_failed_timeout">The sign-in timed out.</string>
+    <string name="signin_key_not_verified">the key could not be verified (%1$s)</string>
+    <string name="signin_connected">Your Cline account is connected.</string>
+</resources>

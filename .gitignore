@@ -1,0 +1,38 @@
+# Gradle
+.gradle/
+build/
+**/build/
+.kotlin/
+
+# Local machine configuration
+local.properties
+*.keystore
+*.jks
+keystore.properties
+*signing.properties
+# Owner- and device-specific agent notes (CLAUDE.md points to it)
+CLAUDE.local.md
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Harness-managed agent worktrees (nested checkouts under .claude/worktrees/)
+.claude/
+
+# Build outputs kept out of git; releases are attached to tags
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Device captures and evidence from the ADB loop (screenshots, recordings, UI dumps, log
+# extracts): all of screenshots/ stays local except its placeholder
+captures/
+screenshots/**
+!screenshots/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db

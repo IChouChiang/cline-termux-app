@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Loopback WebSocket to the Hub inside Termux on this phone. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Run control commands inside Termux (declared by Termux; granted at runtime). -->
+    <uses-permission android:name="com.termux.permission.RUN_COMMAND" />
+    <!-- Task finished / approval needed notifications (API 33+ runtime grant). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Keep the Hub socket alive while a turn runs with the app in the background. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- Composer dictation (on-device SpeechRecognizer; runtime grant). -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Kernel reliability checklist (onboarding-kernel.md D): the direct "Allow Cline to run in
+         the background" dialog for this app; Termux's own entry still goes through its settings. -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <!-- Package visibility (API 30+) so we can detect Termux and start its service/activity,
+         and find a speech recognition service for dictation. -->
+    <queries>
+        <package android:name="com.termux" />
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".ClineApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/full_backup_content"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ClineTermux"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:enableOnBackInvokedCallback="true">
+
+        <!-- The launcher entry lives on the two aliases below (design-system.md §10.6), so
+             the home-screen icon can switch between Midnight and Classic without a reinstall.
+             The activity itself stays exported for `am start -n …/.MainActivity`. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.ClineTermux.Starting"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode|smallestScreenSize" />
+
+        <activity-alias
+            android:name=".LauncherMidnight"
+            android:targetActivity=".MainActivity"
+            android:exported="true"
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".LauncherClassic"
+            android:targetActivity=".MainActivity"
+            android:exported="true"
+            android:enabled="false"
+            android:icon="@mipmap/ic_launcher_classic"
+            android:roundIcon="@mipmap/ic_launcher_classic"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- Termux posts RUN_COMMAND results here through our own PendingIntent. -->
+        <receiver
+            android:name=".core.kernel.termux.TermuxResultReceiver"
+            android:exported="false" />
+
+        <!-- "Stop agent" / "Disconnect" on the foreground notification (customize-and-rest.md §12.3). -->
+        <receiver
+            android:name=".service.KernelServiceActions"
+            android:exported="false" />
+
+        <!-- Serves diff/output shares, diagnostics bundles and camera captures (docs/07 D7).
+             Per application id, so the debug build (.debug) and the owner's app can coexist;
+             code reads it as ShareFiles.AUTHORITY. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.files"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- Holds the process (and so the Hub WebSocket) while the agent is working. -->
+        <service
+            android:name=".service.KernelForegroundService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Keeps a loopback WebSocket to the Cline agent running inside Termux alive while it executes a user task and may need an approval or an answer." />
+        </service>
+    </application>
+</manifest>

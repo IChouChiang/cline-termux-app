@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Kernel copy (onboarding-kernel.md §0, E.5–E.9, F.2 and §9; settings-providers.md §0.5).
+  Owned by the kernel-ui package. D = desktop verbatim ("..." kept where the desktop has it),
+  DS = design system, A = Android ("…").
+  Other packages reuse these keys instead of redefining them: kernel_* (status, steps,
+  actions, restart, stop), hub_* (Hub line, update dialog, session counts), state_* (panel),
+  banner_*, diag_* and kernel_blocked_* (KernelBlockedCard).
+-->
+<resources>
+    <!-- Actions (E.5, F.2) -->
+    <string name="kernel_start">Start kernel</string>
+    <string name="kernel_starting">Starting…</string>
+    <string name="kernel_try_again">Try again</string>
+    <string name="kernel_connect">Connect</string>
+    <string name="kernel_disconnect">Disconnect</string>
+    <string name="kernel_restart">Restart kernel</string>
+    <string name="kernel_restarting">Restarting…</string>
+    <string name="kernel_stop">Stop kernel</string>
+    <string name="kernel_stopping">Stopping…</string>
+    <string name="kernel_fix_kernel">Fix the Cline kernel</string>
+    <string name="kernel_open_termux">Open Termux</string>
+    <string name="kernel_run_diagnostics">Run diagnostics</string>
+    <string name="kernel_running_diagnostics">Running diagnostics…</string>
+
+    <!-- Start steps (KS §0.4) and restart phases (E.7) -->
+    <string name="kernel_step_checking_termux">Checking Termux…</string>
+    <string name="kernel_step_checking_kernel">Checking the Cline kernel…</string>
+    <string name="kernel_step_starting_hub">Starting Cline Hub…</string>
+    <string name="kernel_step_keeping_awake">Keeping Termux awake…</string>
+    <string name="kernel_step_reading_credentials">Reading Hub credentials…</string>
+    <string name="kernel_step_connecting">Connecting…</string>
+    <string name="kernel_restart_phase_checking">Checking sessions…</string>
+    <string name="kernel_restart_phase_disconnecting">Disconnecting…</string>
+    <string name="kernel_restart_phase_replacing">Replacing the Cline Hub…</string>
+    <string name="kernel_restart_phase_starting">Starting Cline Hub…</string>
+    <string name="kernel_restart_phase_reconnecting">Reconnecting...</string>
+    <string name="kernel_slow">This is taking longer than usual.</string>
+    <string name="kernel_connected_announce">Cline kernel connected</string>
+
+    <!-- App-detected start failures (KS §0.4 H2, H4, H5) -->
+    <string name="kernel_failure_credentials_unreadable">The Cline Hub started but its credentials could not be read.</string>
+    <string name="kernel_failure_handshake">The Cline Hub refused the connection handshake.</string>
+    <string name="kernel_failure_timed_out">Termux didn\'t answer within 60 seconds.</string>
+    <string name="kernel_protocol_unsupported">This Cline Hub speaks a protocol this app doesn\'t support.</string>
+    <string name="kernel_auth_failed">The Cline Hub rejected this app\'s credentials.</string>
+
+    <!-- Hub line (DS §1.6, E.4) -->
+    <string name="hub_at_port">Cline Hub @%1$s</string>
+    <string name="hub_at_unknown">Cline Hub @unknown</string>
+    <string name="hub_not_connected">Cline Hub is not connected.</string>
+    <string name="hub_line_cd">Cline Hub at port %1$s, %2$s</string>
+    <!-- (Android) Hub line spoken with its error line: "<hub line>. <error>" (DS §8.2.3). -->
+    <string name="kernel_cd_two_lines">%1$s. %2$s</string>
+    <!-- (Android) The same when the first line already ends a sentence: "<hub line> <error>". -->
+    <string name="kernel_cd_two_lines_continued">%1$s %2$s</string>
+    <string name="kernel_rail_label">Hub</string>
+    <string name="kernel_lines_cd">%1$s, %2$s</string>
+
+    <!-- Status values (E.5) -->
+    <string name="kernel_status_connected">Connected</string>
+    <string name="kernel_status_connecting">Connecting...</string>
+    <string name="kernel_status_reconnecting">Reconnecting...</string>
+    <string name="kernel_status_draining">Draining</string>
+    <string name="kernel_status_asleep">Termux asleep</string>
+    <string name="kernel_status_asleep_line2">Start kernel to continue.</string>
+    <string name="kernel_status_stopped">Kernel stopped</string>
+    <string name="kernel_status_stopped_in_termux">Stopped in Termux</string>
+    <string name="kernel_status_restarting">Restarting…</string>
+    <string name="kernel_status_disconnected">Disconnected</string>
+    <string name="kernel_status_not_connected">Not connected</string>
+    <string name="kernel_status_update_required">Update required</string>
+    <string name="kernel_status_setup_needed">Setup needed</string>
+    <string name="kernel_draining_note">The Cline Hub is finishing current work before it restarts.</string>
+
+    <!-- Kernel status sheet (E.4–E.5) -->
+    <string name="kernel_sheet_pane_title">Kernel status</string>
+    <string name="kernel_sheet_product">Cline Termux</string>
+    <string name="kernel_sheet_version">Version %1$s</string>
+    <string name="kernel_sheet_version_unavailable">Version unavailable</string>
+    <string name="kernel_row_status">Status</string>
+    <string name="kernel_row_kernel">Kernel</string>
+    <string name="kernel_row_core">Core</string>
+    <string name="kernel_row_build">Build</string>
+    <string name="kernel_row_process">Process</string>
+    <string name="kernel_row_uptime">Uptime</string>
+    <string name="kernel_row_protocol">Protocol</string>
+    <string name="kernel_row_hub_id">Hub ID</string>
+    <string name="kernel_row_event_log">Event log</string>
+    <string name="kernel_row_active_runs">Active runs</string>
+    <string name="kernel_value_pid">pid %1$d</string>
+    <string name="kernel_value_sequence">sequence %1$d</string>
+    <string name="kernel_value_runs">%1$d running · %2$d queued</string>
+    <string name="kernel_more_details">More details</string>
+    <string name="kernel_update_title">Restart to use %1$s</string>
+    <string name="kernel_update_body">Cline kernel %1$s is installed, but the running Cline Hub started before the update.</string>
+    <string name="kernel_update_restart">Restart</string>
+    <string name="kernel_keep_awake">Keep Termux awake</string>
+    <string name="kernel_keep_awake_body">Holds Termux\'s wake lock so Android does not stop the Cline Hub while Cline is connected.</string>
+    <string name="kernel_keep_awake_failed">Couldn\'t take Termux\'s wake lock: %1$s</string>
+    <string name="kernel_reliability_row">Background reliability</string>
+    <!-- (Android) Spoken label of the warning dot on the Background reliability row (DS §8.1.3). -->
+    <string name="kernel_reliability_required_missing">Required step not done</string>
+    <string name="kernel_settings_row">Kernel settings</string>
+
+    <!-- Restart and stop (E.7, E.10) -->
+    <string name="kernel_restart_failed">Restarting the Cline Hub failed. Try again, or run \'cline doctor fix\' in a terminal.</string>
+    <string name="kernel_restart_busy_hint">Finish the sessions in the other Cline app, then try again.</string>
+    <string name="kernel_restart_confirm_title">Restart the Cline kernel?</string>
+    <string name="kernel_restart_confirm_body">The Cline Hub is still serving %1$s. Restart kernel stops that Hub and interrupts its sessions.</string>
+    <string name="kernel_restart_confirm_own">A task is still running. Restarting the Cline kernel interrupts it.</string>
+    <string name="kernel_stop_not_stopped">The Cline Hub did not stop. Try again, or use Fix processes.</string>
+    <string name="kernel_stop_confirm_title">Stop the Cline kernel?</string>
+    <string name="kernel_stop_confirm_body">The Cline Hub is still serving %1$s. Stopping it interrupts them.</string>
+    <string name="kernel_stop_confirm_own">A task is still running. Stopping the Cline kernel interrupts it.</string>
+    <string name="kernel_stopped_snackbar">Cline kernel stopped</string>
+    <string name="kernel_restarted_snackbar">Cline Hub restarted</string>
+    <string name="kernel_disconnected_snackbar">Disconnected from the Cline Hub</string>
+    <string name="kernel_copied_value">Copied %1$s</string>
+
+    <!-- The language this file is written in (a BCP 47 tag). Plurals in the kernel and
+         onboarding copy pick their form by this language's rules, not the device's, so a
+         translation sets it to its own tag. -->
+    <string name="kernel_copy_language">en</string>
+    <!-- describeOutdatedHubSessions (D, shared/src/hub.ts) -->
+    <plurals name="hub_sessions_count">
+        <item quantity="one">%1$d active session</item>
+        <item quantity="other">%1$d active sessions</item>
+    </plurals>
+    <plurals name="hub_sessions_from_clients">
+        <item quantity="one">%1$s from %2$d connected Cline client</item>
+        <item quantity="other">%1$s from %2$d connected Cline clients</item>
+    </plurals>
+    <string name="hub_sessions_fallback">active sessions from other Cline clients</string>
+
+    <!-- Diagnostics (E.6) -->
+    <string name="diag_overline">Diagnostics</string>
+    <string name="diag_hub_healthy">Hub healthy</string>
+    <string name="diag_yes_pid">Yes (pid %1$d)</string>
+    <string name="diag_yes">Yes</string>
+    <string name="diag_no">No</string>
+    <string name="diag_listeners">Hub listeners</string>
+    <string name="diag_stale">Stale hub daemons</string>
+    <string name="diag_locks">Hub startup locks</string>
+    <string name="diag_cli">CLI processes</string>
+    <string name="diag_cli_version">CLI version</string>
+    <string name="diag_uptime">Hub uptime</string>
+    <string name="diag_none">None</string>
+    <string name="diag_privacy">Prompts, conversation contents, API keys and the Hub token are never shown here.</string>
+    <string name="diag_fix">Fix processes</string>
+    <string name="diag_fixing">Fixing…</string>
+    <string name="diag_fix_confirm_title">Stop all Cline processes?</string>
+    <string name="diag_fix_confirm_body">This runs cline doctor fix in Termux. It stops the Cline Hub and every other Cline process there, including open TUI sessions.</string>
+    <string name="diag_cancel">Cancel</string>
+    <string name="diag_failed">Couldn\'t run diagnostics.</string>
+    <string name="diag_failed_timeout">Termux didn\'t answer within 30 seconds.</string>
+
+    <!-- Hub update required (E.9) -->
+    <string name="hub_updated_title">Cline Hub was updated</string>
+    <string name="hub_updated_body">Another Cline installation updated the shared Cline Hub (core %1$s), and it no longer matches this app.</string>
+    <string name="hub_updated_body_no_core">Another Cline installation updated the shared Cline Hub, and it no longer matches this app.</string>
+    <string name="hub_updated_body_android">Update the Cline Termux app to keep using this Hub. If you recently went back to an older Cline kernel in Termux, Restart kernel starts the Hub that is installed there.</string>
+    <string name="hub_outdated_title">Cline Hub update required</string>
+    <string name="hub_outdated_body">This app needs a newer Cline Hub than the one running. Restart kernel starts the Hub that is installed in Termux. If that doesn\'t help, update the Cline kernel by running the installer again in Termux:</string>
+    <string name="hub_still_unsupported">The Cline Hub installed in Termux still doesn\'t match this app.</string>
+    <string name="hub_update_later">Later</string>
+    <string name="hub_update_try_again">Try again</string>
+    <string name="hub_installer_command" translatable="false">curl -fsSL https://github.com/IChouChiang/cline-termux/releases/latest/download/install-cline-termux.sh | bash</string>
+
+    <!-- KernelStatePanel (F.2) -->
+    <string name="state_asleep_body">Android stopped Termux while it was in the background, and the Cline Hub stopped with it. Your sessions are saved. Start kernel to continue.</string>
+    <string name="state_asleep_why">Why did this happen?</string>
+    <string name="state_stopped_body">You stopped the Cline kernel. Start it again to keep working.</string>
+    <string name="state_stopped_in_termux_body">The Cline Hub was stopped in Termux. Start it again to keep working.</string>
+    <string name="state_disconnected_body">Cline is not connected to the Cline Hub. The Hub is still running in Termux.</string>
+    <string name="state_failed_title">Couldn\'t start the Cline Hub</string>
+    <string name="state_connect_failed_title">Couldn\'t connect to the Cline Hub</string>
+    <string name="state_crash_loop">The Cline Hub stopped twice right after starting, so Cline stopped restarting it.</string>
+    <string name="state_kernel_status">Kernel status</string>
+    <string name="state_details">Details</string>
+
+    <!-- KernelBanner (F.2) -->
+    <string name="banner_stopped">Kernel stopped</string>
+    <string name="banner_disconnected">Disconnected from the Cline Hub.</string>
+    <string name="banner_degraded">Cline can\'t run commands in Termux.</string>
+    <string name="banner_degraded_line2">Some features are unavailable.</string>
+    <string name="banner_fix">Fix</string>
+
+    <!-- KernelBlockedCard (settings-providers.md §0.5) -->
+    <string name="kernel_blocked_termux_title">Termux is not installed</string>
+    <string name="kernel_blocked_termux_body">Cline runs its kernel inside Termux.</string>
+    <string name="kernel_blocked_termux_action">Install Termux</string>
+    <string name="kernel_blocked_permission_title">Cline can\'t run commands in Termux yet</string>
+    <string name="kernel_blocked_permission_body">Allow the Termux \"Run commands\" permission to continue.</string>
+    <string name="kernel_blocked_permission_action">Allow</string>
+    <string name="kernel_blocked_permission_settings">Open app settings</string>
+    <string name="kernel_blocked_external_title">Termux is blocking Cline</string>
+    <string name="kernel_blocked_external_body">Turn on allow-external-apps in Termux, then try again.</string>
+    <string name="kernel_blocked_open_setup">Open kernel setup</string>
+    <string name="kernel_blocked_timeout_title">Termux did not answer</string>
+    <string name="kernel_blocked_timeout_body">The command did not finish within a minute.</string>
+    <string name="kernel_blocked_retry">Retry</string>
+    <string name="kernel_blocked_more">More actions</string>
+    <string name="kernel_blocked_setup_body">The Cline kernel in Termux needs attention before this works.</string>
+</resources>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Model picker + reasoning menu (settings-providers.md S8, DS #7) and workspace picker + folder
+  browser (S9). Desktop copy verbatim (chat-input-bar.tsx ModelSelector, search-combobox.tsx,
+  welcome-workspace-controls.tsx, remote-directory-picker.tsx); (Android) marks new copy.
+-->
+<resources>
+    <!-- S8 model picker -->
+    <string name="model_picker_title">Model and provider</string>
+    <string name="model_picker_close">Close model selector</string>
+    <string name="model_picker_provider">Provider</string>
+    <string name="model_picker_model">Model</string>
+    <string name="model_picker_search_providers">Search providers</string>
+    <string name="model_picker_search_models">Search models</string>
+    <string name="model_picker_no_providers">No providers found.</string>
+    <string name="model_picker_no_models">No models found.</string>
+    <string name="model_picker_set_up_provider">Set up another provider</string>
+    <string name="model_picker_section_recommended">Recommended</string>
+    <string name="model_picker_section_free">Free</string>
+    <string name="model_picker_section_all">All models</string>
+    <string name="model_picker_section_subscribed">Subscribed</string>
+    <string name="model_picker_section_current">Current model</string>
+    <string name="model_picker_free_description">Try with limited usage at no cost</string>
+    <string name="model_picker_free_description_cline_pass">Try with limited usage, separate from ClinePass quota</string>
+    <string name="model_picker_badge_images">Images</string>
+    <string name="model_picker_badge_reasoning">Reasoning</string>
+    <!-- (Android) -->
+    <string name="model_picker_use_model_id">Use model id “%1$s”</string>
+    <!-- (Android) -->
+    <string name="model_picker_refresh">Refresh models</string>
+    <!-- (Android) -->
+    <string name="model_picker_fallback_notice">Showing a built-in model list. Open Providers to load the full list.</string>
+    <!-- (Android) -->
+    <string name="model_picker_busy">You can change the model when the agent finishes.</string>
+    <!-- (Android) -->
+    <string name="model_picker_switch_failed">Could not switch model: %1$s</string>
+    <!-- (Android) a live session's thinking-level update failed; %1$s is kernel text -->
+    <string name="model_picker_reasoning_failed">Could not change the thinking level: %1$s</string>
+    <!-- (Android) stateDescription of a row whose session.update_connection is in flight -->
+    <string name="model_picker_switching">Switching model</string>
+    <!-- (Android) joins two fragments of a model row's TalkBack label (label, section, badges); translations pick their own separator -->
+    <string name="model_picker_a11y_join">%1$s, %2$s</string>
+    <!-- (Android) progress semantics while the active provider's models refresh -->
+    <string name="model_picker_loading">Loading models</string>
+
+    <!-- S8.4 reasoning menu (desktop EFFORT_LEVELS) -->
+    <string name="reasoning_level_none">None</string>
+    <string name="reasoning_level_low">Low</string>
+    <string name="reasoning_level_medium">Medium</string>
+    <string name="reasoning_level_high">High</string>
+    <string name="reasoning_level_extra">Extra</string>
+    <string name="reasoning_label_generic">Reasoning</string>
+
+    <!-- S9 workspace picker -->
+    <!-- (Android, from "Choose remote workspace") -->
+    <string name="workspace_title">Choose workspace</string>
+    <string name="workspace_search">Search workspaces, or type a folder path</string>
+    <string name="workspace_open_typed">Open folder “%1$s”</string>
+    <string name="workspace_section">Workspaces</string>
+    <string name="workspace_empty">No workspaces found — type a full folder path to add one</string>
+    <string name="workspace_empty_path">Press the option above to open this folder</string>
+    <string name="workspace_open_folder">Open folder...</string>
+    <string name="workspace_just_chat">Just chat</string>
+    <string name="workspace_open_failed">Couldn\'t open \"%1$s\". Check that the folder exists and try again.</string>
+    <!-- (Android) stateDescription while a row validates -->
+    <string name="workspace_validating">Checking folder</string>
+
+    <!-- S9 folder browser -->
+    <!-- (Android) -->
+    <string name="workspace_browser_description">Browse folders in Termux. Cline works inside Termux, so only Termux folders are shown here.</string>
+    <string name="workspace_browser_use">Use this folder</string>
+    <!-- (Android) -->
+    <string name="workspace_browser_home_chip">Home</string>
+    <!-- (Android) -->
+    <string name="workspace_browser_shared_chip">Shared storage</string>
+    <!-- from "Remote home directory" -->
+    <string name="workspace_browser_home_cd">Home directory</string>
+    <!-- from "Parent remote directory" -->
+    <string name="workspace_browser_parent_cd">Parent directory</string>
+    <!-- from "Refresh remote directories" -->
+    <string name="workspace_browser_refresh_cd">Refresh directories</string>
+    <!-- (Android) -->
+    <string name="workspace_browser_current_cd">Current folder %1$s</string>
+    <!-- (Android) -->
+    <string name="workspace_browser_folder_cd">%1$s, folder</string>
+    <!-- from "Loading remote directories…" -->
+    <string name="workspace_browser_loading">Loading directories…</string>
+    <string name="workspace_browser_empty">No subdirectories</string>
+    <!-- (Android) the listing failed without any stderr text -->
+    <string name="workspace_browser_list_failed">Couldn\'t list this folder.</string>
+    <string name="workspace_browser_truncated">Only the first directories are shown. Open a folder to continue browsing.</string>
+    <!-- (Android) -->
+    <string name="workspace_storage_setup_title">Set up shared storage</string>
+    <!-- (Android) -->
+    <string name="workspace_storage_setup_body">Lets Cline open folders in your phone\'s storage. Termux asks for storage permission.</string>
+    <!-- (Android) termux-setup-storage exited early with an error; %1$s is its stripped stderr line -->
+    <string name="workspace_storage_setup_failed">Couldn\'t set up shared storage: %1$s</string>
+    <!-- (Android) Termux's activity could not be brought forward for the storage prompt -->
+    <string name="workspace_storage_open_termux_failed">Open Termux to finish setting up shared storage.</string>
+</resources>

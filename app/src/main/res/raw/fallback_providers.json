@@ -1,0 +1,2860 @@
+{
+ "schema": 2,
+ "generatedAt": "2026-10-07T17:24:58.473Z",
+ "source": {
+  "package": "@cline/llms",
+  "entry": "sdk/packages/llms/src/index.ts",
+  "cliVersion": "3.0.69",
+  "forkRoot": "~/workspace/cline-termux-v3-phone"
+ },
+ "clineDefaultModelId": "anthropic/claude-sonnet-5",
+ "providers": [
+  {
+   "id": "cline",
+   "name": "Cline Usage-Billing",
+   "popular": true,
+   "authKind": "oauth",
+   "supportsBaseUrl": false,
+   "defaultModelId": "anthropic/claude-sonnet-5",
+   "capabilities": [
+    "oauth",
+    "popular",
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "cline-pass",
+   "name": "ClinePass",
+   "popular": true,
+   "authKind": "oauth",
+   "supportsBaseUrl": false,
+   "defaultModelId": "cline-pass/mimo-v2.6-flash",
+   "capabilities": [
+    "oauth",
+    "popular",
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "openai-codex",
+   "name": "OpenAI ChatGPT Subscription",
+   "popular": true,
+   "authKind": "oauth",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-5.6-terra",
+   "capabilities": [
+    "oauth",
+    "popular",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "deepseek",
+   "name": "DeepSeek",
+   "popular": true,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4-flash",
+   "capabilities": [
+    "popular",
+    "prompt-cache",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "anthropic",
+   "name": "Anthropic",
+   "popular": true,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-sonnet-5",
+   "capabilities": [
+    "popular",
+    "prompt-cache",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "openrouter",
+   "name": "OpenRouter",
+   "popular": true,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "anthropic/claude-sonnet-5",
+   "capabilities": [
+    "popular",
+    "prompt-cache",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "ollama",
+   "name": "Ollama",
+   "popular": true,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "default",
+   "capabilities": [
+    "popular",
+    "tools"
+   ]
+  },
+  {
+   "id": "bedrock",
+   "name": "AWS Bedrock",
+   "popular": true,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "minimax.minimax-m2.5",
+   "capabilities": [
+    "popular",
+    "prompt-cache",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "openai-compatible",
+   "name": "OpenAI Compatible",
+   "popular": true,
+   "authKind": "api-key",
+   "supportsBaseUrl": true,
+   "defaultModelId": "gpt-4o",
+   "capabilities": [
+    "popular",
+    "tools"
+   ]
+  },
+  {
+   "id": "litellm",
+   "name": "LiteLLM",
+   "popular": true,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-5.4",
+   "capabilities": [
+    "popular",
+    "prompt-cache"
+   ]
+  },
+  {
+   "id": "gemini",
+   "name": "Google Gemini",
+   "popular": true,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gemini-3.8-flash",
+   "capabilities": [
+    "popular",
+    "prompt-cache",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "302ai",
+   "name": "302.AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-sonnet-5-5",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "abacus",
+   "name": "Abacus",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gemini-3.7-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "abliteration-ai",
+   "name": "abliteration.ai",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "abliterated-model-large-v2",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "above",
+   "name": "above.dev",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mimo-v2.6-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "agentrouter",
+   "name": "AgentRouter",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5.3",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "agnes",
+   "name": "Agnes AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "agnes-2.5-pro-alpha",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "aihubmix",
+   "name": "AI Hub Mix",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-4o",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "ai-router",
+   "name": "AI-ROUTER",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-5.6-luna",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "aiand",
+   "name": "ai&",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-org/glm-5.3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "ai21",
+   "name": "AI21 Labs",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "jamba-mini",
+   "capabilities": [
+    "tools"
+   ]
+  },
+  {
+   "id": "ainetcafe",
+   "name": "ainetcafe",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Kimi-K3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "aixy",
+   "name": "Aixy",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "openai/gpt-4.1-mini",
+   "capabilities": [
+    "prompt-cache",
+    "tools"
+   ]
+  },
+  {
+   "id": "aki-io",
+   "name": "AKI.IO",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash-552b",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "alibaba",
+   "name": "Alibaba",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen3.8-omni-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "alibaba-cn",
+   "name": "Alibaba (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen3.8-omni-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "alibaba-coding-plan",
+   "name": "Alibaba Coding Plan",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen3.7-plus",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "alibaba-coding-plan-cn",
+   "name": "Alibaba Coding Plan (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen3.7-plus",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "qwen",
+   "name": "Alibaba Qwen",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen-plus-latest",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "qwen-code",
+   "name": "Alibaba Qwen Code",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen3-coder-plus",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "alibaba-token-plan",
+   "name": "Alibaba Token Plan",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "alibaba-token-plan-cn",
+   "name": "Alibaba Token Plan (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "ambient",
+   "name": "Ambient",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen/qwen3.8-27b",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "amd",
+   "name": "AMD",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "DeepSeek-V4.1-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "anyapi",
+   "name": "AnyAPI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek/deepseek-v4-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "arcee",
+   "name": "Arcee",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek/deepseek-v4-pro-0813",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "asksage",
+   "name": "AskSage",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-4o",
+   "capabilities": [
+    "tools"
+   ]
+  },
+  {
+   "id": "atomic-chat",
+   "name": "Atomic Chat",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen3_5-9B-MLX-4bit",
+   "capabilities": [
+    "tools"
+   ]
+  },
+  {
+   "id": "auriko",
+   "name": "Auriko",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "bailing",
+   "name": "Bailing",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Ling-1T",
+   "capabilities": [
+    "tools"
+   ]
+  },
+  {
+   "id": "baseten",
+   "name": "Baseten",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "bee",
+   "name": "Bee by HEOSSI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "bee-brood",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "berget",
+   "name": "Berget.AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-org/GLM-5.3-Flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "blueclaw",
+   "name": "Blue Claw",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen3.8-27B",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "bothub",
+   "name": "Bothub",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "muse-spark-1.3-contributor",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "cerebras",
+   "name": "Cerebras",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-glm-4.7",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "hyper",
+   "name": "Charm Hyper",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "chutes",
+   "name": "Chutes",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen/Qwen3.8-27B-TEE",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "clarifai",
+   "name": "Clarifai",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "moonshotai/chat-completion/models/Kimi-K2_6",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "claude-code",
+   "name": "Claude Code",
+   "popular": false,
+   "authKind": "local",
+   "supportsBaseUrl": false,
+   "defaultModelId": "sonnet",
+   "capabilities": [
+    "local-auth",
+    "provider-tools",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "claudinio",
+   "name": "Claudinio",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claudinio",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "cloudferro-sherlock",
+   "name": "CloudFerro Sherlock",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "MiniMaxAI/MiniMax-M2.5",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "cloudflare-workers-ai",
+   "name": "Cloudflare Workers AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "@cf/zai-org/glm-5.3-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "coralbricks",
+   "name": "CoralBricks",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash-fast",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "wandb",
+   "name": "CoreWeave",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "cortecs",
+   "name": "Cortecs",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-6.1-sol",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "crof",
+   "name": "CrofAI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5.3-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "crossmodel",
+   "name": "CrossModel",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "openai/gpt-6.1-sol",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "crusoe",
+   "name": "Crusoe",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai/GLM-5.2",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "drun",
+   "name": "D.Run (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "public/minimax-m25",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "daoxe",
+   "name": "DaoXE",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "grok-4.5",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "databricks",
+   "name": "Databricks",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "databricks-gpt-5-6-luna",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "llmgateway",
+   "name": "DevPass (LLM Gateway)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mistral-large-4",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "dify",
+   "name": "Dify",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "default",
+   "capabilities": []
+  },
+  {
+   "id": "digitalocean",
+   "name": "DigitalOcean",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "openai-gpt-6-1-sol",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "dinference",
+   "name": "DInference",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5.2",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "doubao",
+   "name": "Doubao",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "doubao-1-5-pro-256k-250115",
+   "capabilities": [
+    "tools"
+   ]
+  },
+  {
+   "id": "ebcloud",
+   "name": "EBCloud",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "DeepSeek-V4-Flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "echo",
+   "name": "Echo",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "echo",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "edenai",
+   "name": "Eden AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "openai/gpt-6.1-sol",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "elevenlabs",
+   "name": "ElevenLabs",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "scribe_v2",
+   "capabilities": []
+  },
+  {
+   "id": "empiriolabs",
+   "name": "EmpirioLabs AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mimo-v2-6-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "engy",
+   "name": "engy",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "evroc",
+   "name": "evroc",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen/Qwen3.8-27B",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "fastrouter",
+   "name": "FastRouter",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "anthropic/claude-opus-4.8",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "fireworks",
+   "name": "Fireworks AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "accounts/fireworks/models/ember-1",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "freemodel",
+   "name": "FreeModel",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-fable-5",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "friendli",
+   "name": "Friendli",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-org/GLM-5.3-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "frogbot",
+   "name": "FrogBot",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "grok-4-3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "github-copilot",
+   "name": "GitHub Copilot",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-6.1-sol",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "gmicloud",
+   "name": "GMI Cloud",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen/Qwen3.8-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "vertex",
+   "name": "Google Vertex AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-sonnet-5-5@default",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "greenpt",
+   "name": "GreenPT",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "groq",
+   "name": "Groq",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "moonshotai/kimi-k2-instruct-0905",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "helicone",
+   "name": "Helicone",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-4.5-opus",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "hetzner",
+   "name": "Hetzner",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen3.8-27B",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "hicap",
+   "name": "HiCap",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "hicap-pro",
+   "capabilities": []
+  },
+  {
+   "id": "hpc-ai",
+   "name": "HPC-AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-org/glm-5.2",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "huawei-cloud-maas",
+   "name": "Huawei Cloud MaaS",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "DeepSeek-R1",
+   "capabilities": []
+  },
+  {
+   "id": "huggingface",
+   "name": "Hugging Face",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "iflowcn",
+   "name": "iFlow",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "kimi-k2-0905",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "impossibl",
+   "name": "Impossibl",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "google/gemini-3.5-flash-lite",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "inception",
+   "name": "Inception",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mercury-2.5",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "inceptron",
+   "name": "Inceptron",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "inco",
+   "name": "Inco",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash:fast",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "infer",
+   "name": "Infer by Flow7",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "infer/gpt-6-astra:official",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "inference",
+   "name": "Inference",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "google/gemma-3",
+   "capabilities": [
+    "tools"
+   ]
+  },
+  {
+   "id": "inferx",
+   "name": "InferX",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Agents-A1",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "infomaniak",
+   "name": "Infomaniak",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "swiss-ai/Apertus-v1.5-70B",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "io-net",
+   "name": "IO.NET",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "iteracompute",
+   "name": "IteraCompute",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "z-ai/glm-5.3-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "jalapeno",
+   "name": "Jalapeno Cloud",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Kimi-K3",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "jiekou",
+   "name": "Jiekou.AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-opus-4-6",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "kenari",
+   "name": "Kenari",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4-1-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "kilo",
+   "name": "Kilo Gateway",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-4o",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "kimi-code-plan-global",
+   "name": "Kimi For Coding (kimi.ai)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "kimi-for-coding",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "kimi-code-plan-cn",
+   "name": "Kimi For Coding (kimi.com)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "kimi-for-coding",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "klokintegration",
+   "name": "klokintegration.se",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Kloker",
+   "capabilities": [
+    "tools"
+   ]
+  },
+  {
+   "id": "kosmik",
+   "name": "Kosmik Compute",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen/qwen3.8-27b",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "kuae-cloud-coding-plan",
+   "name": "KUAE Cloud Coding Plan",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "GLM-4.7",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "lilac",
+   "name": "Lilac",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-org/glm-5.2",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "llama",
+   "name": "Llama",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "cerebras-llama-4-maverick-17b-128e-instruct",
+   "capabilities": [
+    "tools"
+   ]
+  },
+  {
+   "id": "llmgateway-providers",
+   "name": "LLM Gateway",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mistral/mistral-large-4",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "llmtech",
+   "name": "LLM Tech",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "nvidia/Qwen3.8-27B-NVFP4",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "llmtr",
+   "name": "LLMTR",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "muse-glimmer-30b-tr",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "lmstudio",
+   "name": "LM Studio",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "openai/gpt-oss-20b",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "longcat",
+   "name": "LongCat",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "LongCat-2.0",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "lucidquery",
+   "name": "LucidQuery",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "lucidquery-agi-01-frontier",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "lynkr",
+   "name": "Lynkr",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "lynkr-auto",
+   "capabilities": [
+    "tools"
+   ]
+  },
+  {
+   "id": "meganova",
+   "name": "Meganova",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "MiniMaxAI/MiniMax-M2.5",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "melious",
+   "name": "Melious",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "meta",
+   "name": "Meta",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "muse-spark-1.3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "minimax-cn",
+   "name": "MiniMax (minimax.cn)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "MiniMax-M3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "minimax",
+   "name": "MiniMax (minimax.io)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "MiniMax-M3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "minimax-cn-coding-plan",
+   "name": "MiniMax Token Plan (minimax.cn)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "MiniMax-M3.1-Flash-Preview",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "minimax-coding-plan",
+   "name": "MiniMax Token Plan (minimax.io)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "MiniMax-M3.1-Flash-Preview",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "mistral",
+   "name": "Mistral",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mistral-large-4",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "mixlayer",
+   "name": "Mixlayer",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen/qwen3.5-122b-a10b",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "moark",
+   "name": "Moark",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "MiniMax-M2.1",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "modal",
+   "name": "Modal",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-org/GLM-5.3-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "model-oracle-ai",
+   "name": "Model Oracle AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-sonnet-5",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "modelis",
+   "name": "Modelis",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-fable-5",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "modelscope",
+   "name": "ModelScope",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "ZhipuAI/GLM-4.6",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "moonshot",
+   "name": "Moonshot AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "kimi-k3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "moonshotai-cn",
+   "name": "Moonshot AI (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "kimi-k3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "morph",
+   "name": "Morph",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "default",
+   "capabilities": []
+  },
+  {
+   "id": "nan",
+   "name": "NaN",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mimo-v2.6-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "nano-gpt",
+   "name": "NanoGPT",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mistralai/mistral-large-4",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "nearai",
+   "name": "NEAR AI Cloud",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "google/gemini-3.5-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "nebius",
+   "name": "Nebius Token Factory",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-ai/DeepSeek-V4.1-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "neon",
+   "name": "Neon",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-opus-5-5",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "neosmith",
+   "name": "NeoSmith",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "neosmith.intelligent-maestro",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "neuralwatt",
+   "name": "Neuralwatt",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "nousResearch",
+   "name": "Nous Research",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "DeepHermes-3-Llama-3-3-70B-Preview",
+   "capabilities": []
+  },
+  {
+   "id": "nova",
+   "name": "Nova",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "nova-2-pro-v1",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "novita-ai",
+   "name": "NovitaAI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "moonshotai/kimi-k3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "nvidia",
+   "name": "Nvidia",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-ai/deepseek-v4.1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "oci",
+   "name": "OCI Generative AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "xai.grok-4.6",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "ofox",
+   "name": "Ofox",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "openai/gpt-6.1-sol",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "openai-native",
+   "name": "OpenAI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": true,
+   "defaultModelId": "gpt-5.4",
+   "capabilities": [
+    "reasoning"
+   ]
+  },
+  {
+   "id": "openai-codex-cli",
+   "name": "OpenAI Codex CLI",
+   "popular": false,
+   "authKind": "local",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-5.6-sol",
+   "capabilities": [
+    "local-auth",
+    "provider-tools",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "opencode",
+   "name": "OpenCode",
+   "popular": false,
+   "authKind": "local",
+   "supportsBaseUrl": false,
+   "defaultModelId": "openai/gpt-5.6-sol",
+   "capabilities": [
+    "local-auth",
+    "reasoning"
+   ]
+  },
+  {
+   "id": "opencode-go",
+   "name": "OpenCode Go",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "longcat-2.5-preview-free",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "openreason",
+   "name": "OpenReason",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-ai/deepseek-v4-flash-0731",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "opper",
+   "name": "Opper",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-6-astra",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "oca",
+   "name": "Oracle Code Assist",
+   "popular": false,
+   "authKind": "oauth",
+   "supportsBaseUrl": false,
+   "defaultModelId": "anthropic/claude-3-7-sonnet-20250219",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "orcarouter",
+   "name": "OrcaRouter",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "orcarouter/free",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "ovhcloud",
+   "name": "OVHcloud AI Endpoints",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen3.8-27b",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "pareto",
+   "name": "Pareto Inference",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "z-ai/glm-5.3-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "pendra",
+   "name": "Pendra",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "perplexity-agent",
+   "name": "Perplexity Agent",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "xai/grok-4.6",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "pioneer",
+   "name": "Pioneer",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "fastino/GLiNER-2.5-Decide",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "poe",
+   "name": "Poe",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "anthropic/claude-opus-4.8",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "poolside",
+   "name": "Poolside",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "poolside/laguna-s-2.1",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "privatemode-ai",
+   "name": "Privatemode AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5.3-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "qihang-ai",
+   "name": "QiHang",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gemini-2.5-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "qiniu-ai",
+   "name": "Qiniu",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen3.5-397b-a17b",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "regolo-ai",
+   "name": "Regolo AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen3.8-27b",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "requesty",
+   "name": "Requesty",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mistral-large-4",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "routing-run",
+   "name": "routing.run",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-5.6-luna",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "runinfra",
+   "name": "RunInfra",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-org/GLM-5.3-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "sakana",
+   "name": "Sakana AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "sakana-namazu",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "sambanova",
+   "name": "SambaNova",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "default",
+   "capabilities": []
+  },
+  {
+   "id": "sapaicore",
+   "name": "SAP AI Core",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "anthropic--claude-3.5-sonnet",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "sarvam",
+   "name": "Sarvam AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "sarvam-105b",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "scaleway",
+   "name": "Scaleway",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "qwen3.8-27b",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "scnet-token-plan",
+   "name": "SCNet Token Plan",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "DeepSeek-V4.1-Flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "scx-ai",
+   "name": "SCX.ai",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen3.8-Max",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "sensenova",
+   "name": "SenseNova (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4-pro",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "siliconflow",
+   "name": "SiliconFlow",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-org/GLM-5.3-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "siliconflow-cn",
+   "name": "SiliconFlow (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zai-org/GLM-5.2",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "snowflake-cortex",
+   "name": "Snowflake Cortex",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-opus-5",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "stackit",
+   "name": "STACKIT",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen/Qwen3.6-27B",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "stepfun",
+   "name": "StepFun (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "step-5-preview",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "stepfun-ai",
+   "name": "StepFun (Global)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "step-5-preview",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "stepfun-step-plan",
+   "name": "StepFun Step Plan (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "step-5-preview",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "stepfun-ai-step-plan",
+   "name": "StepFun Step Plan (Global)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "step-5-preview",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "subconscious",
+   "name": "Subconscious",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "subconscious/deepseek-v4.1-flash-marathon",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "submodel",
+   "name": "submodel",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-ai/DeepSeek-R1-0528",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "synthetic",
+   "name": "Synthetic",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "hf:deepseek-ai/DeepSeek-V4.1-Flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "tempr",
+   "name": "Tempr Gateway",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "xiaomi-mimo/mimo-v2.6-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "tencent-coding-plan",
+   "name": "Tencent Coding Plan (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "hunyuan-2.0-instruct",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "tencent-token-plan",
+   "name": "Tencent Token Plan",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "hy4-preview",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "tencent-tokenhub",
+   "name": "Tencent TokenHub",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "hy4-preview",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "tensorx",
+   "name": "TensorX",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek/deepseek-v4.1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "the-grid-ai",
+   "name": "The Grid AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "bytedance-pro-latest",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "thinkingmachines",
+   "name": "Thinking Machines",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "thinkingmachines/Inkling",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "tinfoil",
+   "name": "Tinfoil",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4-1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "together",
+   "name": "Together AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "Qwen/Qwen3.5-397B-A17B",
+   "capabilities": [
+    "reasoning"
+   ]
+  },
+  {
+   "id": "tokengo",
+   "name": "TokenGo",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "z-ai/glm-5.3-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "tokenrouter",
+   "name": "TokenRouter",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "z-ai/glm-5.3-free",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "trustedrouter",
+   "name": "TrustedRouter",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "trustedrouter/synth",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "umans-ai",
+   "name": "Umans AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "umans-deepseek-v4.1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "umans-ai-coding-plan",
+   "name": "Umans AI Coding Plan",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "umans-deepseek-v4.1-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "unorouter",
+   "name": "UnoRouter",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "claude-sonnet-5",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "upstage",
+   "name": "Upstage",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "solar-pro4",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "vancine",
+   "name": "Vancine",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "deepseek-v4.1-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "vercel-ai-gateway",
+   "name": "Vercel AI Gateway",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "alibaba/qwen3.6-plus",
+   "capabilities": [
+    "reasoning"
+   ]
+  },
+  {
+   "id": "v0",
+   "name": "Vercel V0",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "v0-1.5-md",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "vispark",
+   "name": "Vispark",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "vispark/vision-large",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "vivgrid",
+   "name": "Vivgrid",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-6.1-sol",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "volcengine",
+   "name": "Volcengine Ark",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5-3-flash-260828",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "volcengine-coding-plan",
+   "name": "Volcengine Ark Coding Plan",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5.3-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "vultr",
+   "name": "Vultr",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mimo-v2.6-flash-rl",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "wafer.ai",
+   "name": "Wafer",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "GLM-5.2",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "wallaby",
+   "name": "Wallaby",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "moonshotai/kimi-k3",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "xai",
+   "name": "xAI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "grok-4.20-0309-non-reasoning",
+   "capabilities": [
+    "reasoning"
+   ]
+  },
+  {
+   "id": "xiaomi",
+   "name": "Xiaomi",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mimo-v2.6-flash",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "xiaomi-token-plan-cn",
+   "name": "Xiaomi Token Plan (China)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mimo-v2.6-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "xiaomi-token-plan-ams",
+   "name": "Xiaomi Token Plan (Europe)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mimo-v2.6-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "xiaomi-token-plan-sgp",
+   "name": "Xiaomi Token Plan (Singapore)",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "mimo-v2.6-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "xpersona",
+   "name": "Xpersona",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "gpt-5.6",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "zai",
+   "name": "Z.AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5v-turbo",
+   "capabilities": [
+    "reasoning"
+   ]
+  },
+  {
+   "id": "zai-coding-plan",
+   "name": "Z.AI Coding Plan",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5.2",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "zeldoc",
+   "name": "Zeldoc",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "zdev",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "zenifra",
+   "name": "Zenifra",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "alibaba/qwen3.6-35b-a3b",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "zenmux",
+   "name": "ZenMux",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "anthropic/claude-opus-5.5",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "zhipuai",
+   "name": "Zhipu AI",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5.3-flashx",
+   "capabilities": [
+    "prompt-cache",
+    "reasoning",
+    "tools"
+   ]
+  },
+  {
+   "id": "zhipuai-coding-plan",
+   "name": "Zhipu AI Coding Plan",
+   "popular": false,
+   "authKind": "api-key",
+   "supportsBaseUrl": false,
+   "defaultModelId": "glm-5.3-flash",
+   "capabilities": [
+    "reasoning",
+    "tools"
+   ]
+  }
+ ]
+}

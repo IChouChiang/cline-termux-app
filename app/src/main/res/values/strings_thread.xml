@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Thread view (work package thread-view): home-chat.md §3.5, §3.10, §3.15 (transcript), §4 (streaming
+  indicator), §5 (image lightbox), keys per HC §8. Desktop copy verbatim; (Android) marks new strings.
+  Reused from other files (do not redefine): chat_transport_*, chat_banner_retry, msg_attachment_alt,
+  msg_generated_alt, media_unrenderable_image (strings_transcript.xml); components_scroll_to_latest,
+  components_kernel_* (strings_components.xml); run_failed_*, cred_*, chat_resume_missing_config
+  (strings_session.xml).
+-->
+<resources>
+    <!-- Streaming indicator (desktop chat-messages.tsx, three ASCII dots) -->
+    <string name="chat_thinking">Thinking...</string>
+
+    <!-- Session loading (desktop chat-messages.tsx): progress indicator CD + status text -->
+    <string name="chat_loading">Loading session...</string>
+    <string name="chat_switching">Switching session...</string>
+
+    <!-- Transcript pane (desktop aria-label) -->
+    <string name="chat_pane_title">Agent conversation</string>
+
+    <!-- (Android) Polite live region (DS §8.1.4) -->
+    <string name="chat_status_working">Agent is working…</string>
+    <!-- (Android) -->
+    <string name="chat_status_failed">Run failed: %1$s</string>
+
+    <!-- (Android) Error banner (HC §3.10); %1$s is kernel text or an app-side cause -->
+    <string name="chat_start_error">Couldn\'t start the session: %1$s</string>
+    <!-- (Android) -->
+    <string name="chat_resume_error">Couldn\'t resume this session: %1$s</string>
+    <!-- (Android) -->
+    <string name="chat_history_error">Couldn\'t load this session: %1$s</string>
+
+    <!-- Missing session (HC §3.5) -->
+    <!-- (Android) -->
+    <string name="chat_missing_title">This session no longer exists.</string>
+    <!-- (Android) -->
+    <string name="chat_missing_body">It may have been deleted from another device or the Termux CLI.</string>
+    <string name="chat_new_session">New session</string>
+
+    <!-- Image lightbox (desktop image-lightbox.tsx, agent-image-lightbox.tsx, image-carousel.tsx) -->
+    <string name="lightbox_title">Expanded attachment</string>
+    <string name="lightbox_close">Close image viewer</string>
+    <string name="lightbox_close_tooltip">Close</string>
+    <string name="lightbox_backdrop">Close expanded attachment</string>
+    <string name="lightbox_prev_generated">Previous generated image</string>
+    <string name="lightbox_next_generated">Next generated image</string>
+    <!-- (Android) -->
+    <string name="lightbox_prev_attachment">Previous attachment</string>
+    <!-- (Android) -->
+    <string name="lightbox_next_attachment">Next attachment</string>
+    <string name="lightbox_counter">%1$d / %2$d</string>
+    <!-- (Android) -->
+    <string name="lightbox_share">Share image</string>
+    <!-- (Android) -->
+    <string name="lightbox_share_error">Couldn\'t share this image.</string>
+    <!-- (Android) TalkBack: the page tap that shows or hides the lightbox controls. -->
+    <string name="lightbox_hide_controls">Hide controls</string>
+    <!-- (Android) -->
+    <string name="lightbox_show_controls">Show controls</string>
+    <!-- (Android) -->
+    <string name="lightbox_controls_shown">Controls shown</string>
+    <!-- (Android) -->
+    <string name="lightbox_controls_hidden">Controls hidden</string>
+</resources>

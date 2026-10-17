@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Notification accent (design-system.md §1.7), dark variants. -->
+<resources>
+    <color name="notification_accent">#CBBEFF</color>
+    <color name="notification_error">#F2B8B5</color>
+</resources>

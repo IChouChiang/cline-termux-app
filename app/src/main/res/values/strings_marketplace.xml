@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Marketplace list and entry detail (design/screens/customize-and-rest.md C3 / C4, §3.5).
+  Desktop copy verbatim (marketplace-explorer-view.tsx, marketplace-view.tsx, lib/marketplace.ts);
+  strings marked (Android) in the spec are new.
+-->
+<resources>
+    <!-- Page -->
+    <string name="marketplace_title">Marketplace</string>
+    <string name="marketplace_description">A curated set of plugins, MCP servers, and skills from the Cline community.</string>
+    <string name="marketplace_installed_action">Installed</string>
+
+    <!-- Search and filters -->
+    <string name="marketplace_search">Search marketplace</string>
+    <string name="marketplace_clear_search">Clear search</string>
+    <string name="marketplace_filter_all">All</string>
+    <string name="marketplace_type_chip_description">%1$s, %2$d</string>
+    <string name="marketplace_all_categories">All categories</string>
+    <string name="marketplace_filter_by_category">Filter by category</string>
+
+    <!-- TYPE_META -->
+    <string name="marketplace_type_skill_label">Skill</string>
+    <string name="marketplace_type_skill_plural">Skills</string>
+    <string name="marketplace_type_skill_short">Skill</string>
+    <string name="marketplace_type_skill_blurb">Step-by-step instructions Cline follows for a workflow. No setup.</string>
+    <string name="marketplace_type_mcp_label">MCP server</string>
+    <string name="marketplace_type_mcp_plural">MCP servers</string>
+    <string name="marketplace_type_mcp_short">MCP</string>
+    <string name="marketplace_type_mcp_blurb">Live tools from an external server. You install and configure it.</string>
+    <string name="marketplace_type_plugin_label">Plugin</string>
+    <string name="marketplace_type_plugin_plural">Plugins</string>
+    <string name="marketplace_type_plugin_short">Plugin</string>
+    <string name="marketplace_type_plugin_blurb">A bundle of tools, hooks, and skills built for Cline.</string>
+
+    <!-- Rows -->
+    <string name="marketplace_verified">Verified</string>
+    <string name="marketplace_installed">Installed</string>
+
+    <!-- List states -->
+    <string name="marketplace_loading">Loading marketplace...</string>
+    <string name="marketplace_empty">No entries match the current filters.</string>
+    <string name="marketplace_http_error">Failed to fetch marketplace: %1$d</string>
+    <string name="marketplace_network_error">Couldn\'t reach the marketplace. Check your connection.</string>
+    <string name="marketplace_stale_notice">Showing the last downloaded catalog.</string>
+    <string name="marketplace_helper_starting">Starting settings helper...</string>
+    <string name="marketplace_helper_body">Cline could not start its settings helper in Termux. Installs run with the Cline command line instead, and installed checks may miss items.</string>
+
+    <!-- Detail -->
+    <string name="marketplace_install">Install</string>
+    <string name="marketplace_uninstall">Uninstall</string>
+    <string name="marketplace_checking">Checking...</string>
+    <string name="marketplace_installing">Installing...</string>
+    <string name="marketplace_uninstalling">Uninstalling...</string>
+    <string name="marketplace_learn_more">Learn more</string>
+    <string name="marketplace_close_details">Close details</string>
+    <string name="marketplace_select_title">Select an entry</string>
+    <string name="marketplace_select_body">Tap a skill, MCP server or plugin to see its details and install it.</string>
+    <string name="marketplace_explainer">%1$s. %2$s</string>
+    <string name="marketplace_author">Author</string>
+    <string name="marketplace_author_description">Author: %1$s</string>
+    <string name="marketplace_author_link_description">Author: %1$s, opens in browser</string>
+    <string name="marketplace_about">About</string>
+    <string name="marketplace_filter_by_tag">Filter by %1$s</string>
+    <string name="marketplace_env_setup">Environment setup</string>
+    <string name="marketplace_env_required">Required</string>
+    <string name="marketplace_env_optional">Optional</string>
+    <string name="marketplace_env_get_value">Get value</string>
+    <string name="marketplace_show_more">Show more</string>
+    <string name="marketplace_vanished">This entry is no longer in the marketplace.</string>
+    <string name="marketplace_interrupted">Check the result: the install may have finished in Termux.</string>
+
+    <!--
+      CLI-route results (customize-and-rest.md §3.5, dashboard wording from
+      sdk/packages/core/src/services/marketplace.ts). %1$s is the entry name.
+    -->
+    <string name="marketplace_done_installed">Installed %1$s.</string>
+    <string name="marketplace_done_installed_global">Installed %1$s globally for Cline.</string>
+    <string name="marketplace_done_uninstalled">Uninstalled %1$s.</string>
+    <string name="marketplace_done_not_installed">%1$s is not installed.</string>
+    <string name="marketplace_plugin_arguments">Plugin install expects exactly one argument.</string>
+
+    <!--
+      CLI-route failures: %1$d is the exit code. The *_output variant ends with ":" because
+      the CLI's own output follows it on the next lines as left-to-right data.
+    -->
+    <string name="marketplace_cli_mcp_install_failed">MCP install failed with exit code %1$d</string>
+    <string name="marketplace_cli_mcp_install_failed_output">MCP install failed with exit code %1$d:</string>
+    <string name="marketplace_cli_plugin_install_failed">Plugin install failed with exit code %1$d</string>
+    <string name="marketplace_cli_plugin_install_failed_output">Plugin install failed with exit code %1$d:</string>
+    <string name="marketplace_cli_skill_install_failed">Skill install failed with exit code %1$d</string>
+    <string name="marketplace_cli_skill_install_failed_output">Skill install failed with exit code %1$d:</string>
+    <string name="marketplace_cli_mcp_uninstall_failed">MCP uninstall failed with exit code %1$d</string>
+    <string name="marketplace_cli_mcp_uninstall_failed_output">MCP uninstall failed with exit code %1$d:</string>
+    <string name="marketplace_cli_plugin_uninstall_failed">Plugin uninstall failed with exit code %1$d</string>
+    <string name="marketplace_cli_plugin_uninstall_failed_output">Plugin uninstall failed with exit code %1$d:</string>
+    <string name="marketplace_cli_skill_uninstall_failed">Skill uninstall failed with exit code %1$d</string>
+    <string name="marketplace_cli_skill_uninstall_failed_output">Skill uninstall failed with exit code %1$d:</string>
+
+    <!-- Uninstall confirm (Android) -->
+    <string name="marketplace_uninstall_title">Uninstall %1$s?</string>
+    <string name="marketplace_uninstall_body">This removes %1$s from this Cline environment.</string>
+</resources>

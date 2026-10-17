@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Checkpoint dialogs C1/C2, the C3 picker sheet and the message-row extras
+  (design/screens/changes-tools-checkpoints.md C.7, D). Desktop and CLI copy is verbatim;
+  entries marked (Android) are new. Shared words reuse components_* / hub_* keys.
+-->
+<resources>
+    <!-- C1 / C2 -->
+    <string name="checkpoint_revert_title">Revert to this checkpoint?</string>
+    <string name="checkpoint_revert_confirm">Revert</string>
+    <string name="checkpoint_edit_title">Edit and restart from here?</string>
+    <string name="checkpoint_edit_confirm">Continue</string>
+    <string name="checkpoint_restore_to">Restore to: \"%1$s\"</string>
+    <string name="checkpoint_opt_workspace">Restore chat and workspace</string>
+    <string name="checkpoint_opt_workspace_detail">Rewind conversation and reset files</string>
+    <string name="checkpoint_opt_chat">Restore chat only</string>
+    <string name="checkpoint_opt_chat_detail">Rewind conversation, keep current files</string>
+    <string name="checkpoint_git_warning">This runs git reset --hard and git clean -fd in the workspace.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_warning_cd">Warning</string>
+    <string name="checkpoint_revert_text_ws">Workspace files and conversation history after this point will be discarded. This cannot be undone.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_revert_text_chat">Conversation history after this point will be discarded. Workspace files are kept as they are now.</string>
+    <string name="checkpoint_edit_text_ws">This creates a new session and restores the workspace to its checkpoint before placing this message in the composer. Workspace and conversation changes after this point will be discarded.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_edit_text_chat">This creates a new session and places this message in the composer. Workspace files are kept as they are now.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_edit_text_none">This creates a new session from the conversation before this message and places the message in the composer. No checkpoint was recorded for this message, so workspace files stay as they are.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_history_note">The current session stays in history.</string>
+    <string name="checkpoint_busy">Wait for the current turn to finish before undoing</string>
+    <string name="checkpoint_restore_error">Could not restore checkpoint.</string>
+    <string name="checkpoint_edit_error">Could not restart from this message.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_split_partial">The workspace was restored, but the new session could not start: %1$s</string>
+    <string name="checkpoint_status_ws">Restoring to checkpoint (chat + workspace)...</string>
+    <string name="checkpoint_status_chat">Restoring to checkpoint (chat only)...</string>
+    <string name="checkpoint_failed">Checkpoint restore failed: %1$s</string>
+    <string name="checkpoint_failed_no_result">Checkpoint restore failed: no result returned.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_lost_title">Restore status unknown</string>
+    <!-- (Android) -->
+    <string name="checkpoint_lost_text">The connection dropped before the restore finished. Check the session list before trying again.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_open_sessions">Open sessions</string>
+    <string name="checkpoint_restored">Restored to checkpoint</string>
+    <string name="checkpoint_in_progress">Checkpoint restore already in progress</string>
+    <!-- (Android, shared with CT B.10) -->
+    <string name="checkpoint_pending_state">In progress</string>
+    <!-- (Android) -->
+    <string name="checkpoint_draining">Cline Hub is restarting. Waiting...</string>
+
+    <!-- Entry points the chat screen renders (DS-A4, DS-A6) -->
+    <!-- (Android) -->
+    <string name="checkpoint_header_menu">Restore checkpoint…</string>
+    <!-- (Android) DS-A6: the user message long-press menu's edit item, naming the restart -->
+    <string name="checkpoint_menu_edit">Edit and restart from here</string>
+
+    <!-- C3 picker -->
+    <string name="checkpoint_picker_title">Restore to Checkpoint</string>
+    <!-- (Android) -->
+    <string name="checkpoint_picker_supporting">Choose a message to restart from.</string>
+    <string name="checkpoint_picker_busy">Wait for the current run to finish before restoring</string>
+    <string name="checkpoint_picker_empty">No checkpoints available</string>
+    <string name="checkpoint_picker_no_rows">No checkpoints to restore</string>
+    <!-- (Android) -->
+    <string name="checkpoint_picker_no_rows_body">Only messages that are not part of a compacted summary can be restored.</string>
+    <string name="checkpoint_picker_load_error">No checkpoint data available</string>
+    <!-- (Android) -->
+    <string name="checkpoint_picker_not_repo">Checkpoints are recorded only when the workspace is a Git repository. Run git init in this folder to start recording them.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_picker_no_git">Checkpoints need Git in Termux. Install it with pkg install git, then start a new turn.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_picker_repo_ok">A checkpoint is recorded at the start of each turn. Send a message to create the first one.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_picker_unknown">Checkpoints are recorded at the start of each turn when the workspace is a Git repository and Git is installed in Termux.</string>
+    <!-- (Android) -->
+    <string name="checkpoint_picker_copy_command">Copy command</string>
+    <!-- (Android) clipboard label -->
+    <string name="checkpoint_picker_command_label">Command</string>
+    <!-- (Android) " · Plan" after the row time when the message ran in plan mode -->
+    <string name="checkpoint_picker_row_time_plan">%1$s · Plan</string>
+    <!-- (Android) -->
+    <string name="checkpoint_picker_row_cd">Restore to %1$s, %2$s</string>
+    <!-- (Android) -->
+    <string name="checkpoint_picker_row_action">Restore to this message</string>
+</resources>

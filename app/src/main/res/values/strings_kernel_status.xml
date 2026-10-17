@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Kernel status lane (onboarding-kernel.md D, E and the settings `kernel` page; §9 strings).
+  Owned by the kernel-status package (ui/kernel: ReliabilityScreen, KernelStatusSheet,
+  KernelSettingsScreen). The sheet's shared copy (kernel_*, hub_*, state_*, diag_*) lives in
+  strings_kernel.xml and is reused, never redefined here.
+  D = desktop verbatim, A = Android ("…").
+-->
+<resources>
+    <!-- D: "Keep the kernel running" (A) -->
+    <string name="reliability_title">Keep the kernel running</string>
+    <string name="reliability_body">Android and One UI stop apps in the background to save battery. When that happens to Termux, the Cline Hub stops and running tasks are interrupted. These settings prevent it.</string>
+    <string name="reliability_progress">%1$d of %2$d done</string>
+    <string name="reliability_group_required">Required</string>
+    <string name="reliability_group_recommended">Recommended</string>
+    <string name="reliability_group_optional">Optional</string>
+    <string name="reliability_status_done">Done</string>
+    <string name="reliability_status_not_set">Not set</string>
+    <string name="reliability_status_check_yourself">Check yourself</string>
+    <string name="reliability_all_done">Cline and Termux can keep running in the background.</string>
+    <string name="reliability_confirm">I\'ve done this</string>
+    <string name="reliability_unavailable">This setting isn\'t available on this device.</string>
+    <!-- D (onboarding-view.tsx ImportHistoryStep, ConnectStep) -->
+    <string name="reliability_skip">Skip for now</string>
+    <string name="reliability_continue">Continue</string>
+    <!-- A: TalkBack, one node per item (D.9) and the disclosure state -->
+    <string name="reliability_item_cd">%1$s, %2$s, %3$s</string>
+    <string name="reliability_expanded">Expanded</string>
+    <string name="reliability_collapsed">Collapsed</string>
+
+    <!-- D.6 items (A) -->
+    <string name="reliability_termux_battery_title">Termux battery</string>
+    <string name="reliability_battery_done">Unrestricted</string>
+    <string name="reliability_termux_battery_not_set">Optimized — Android may stop Termux in the background.</string>
+    <string name="reliability_battery_instructions">Tap Battery, then choose Unrestricted.</string>
+    <string name="reliability_open_termux_settings">Open Termux settings</string>
+    <string name="reliability_cline_battery_title">Cline battery</string>
+    <string name="reliability_cline_battery_not_set">Optimized — Android may stop Cline in the background.</string>
+    <string name="reliability_allow">Allow</string>
+    <string name="reliability_never_sleeping_title">Never sleeping apps</string>
+    <string name="reliability_never_sleeping_body">Add Termux and Cline to Never sleeping apps.</string>
+    <string name="reliability_never_sleeping_path">Settings → Battery → Background usage limits → Never sleeping apps</string>
+    <string name="reliability_never_sleeping_done">You added Termux and Cline.</string>
+    <string name="reliability_open_battery_settings">Open battery settings</string>
+    <string name="reliability_child_title">Child process restrictions</string>
+    <string name="reliability_child_not_set">Android may stop the Hub\'s helper processes when many are running. Turn on “Disable child process restrictions” in Developer options.</string>
+    <string name="reliability_child_done">Child process restrictions are off.</string>
+    <string name="reliability_child_dev_off">Turn on Developer options first: Settings → About phone → Software information → tap Build number 7 times.</string>
+    <string name="reliability_child_adb">Run this from a computer with adb.</string>
+    <string name="reliability_child_adb_command" translatable="false">adb shell settings put global settings_enable_monitor_phantom_procs false</string>
+    <string name="reliability_open_dev_options">Open developer options</string>
+    <string name="reliability_notifications_title">Notifications</string>
+    <string name="reliability_notifications_done">On</string>
+    <string name="reliability_notifications_not_set">Off — you won\'t hear about approvals or finished tasks while Cline is in the background.</string>
+    <string name="reliability_overlay_title">Termux: display over other apps</string>
+    <string name="reliability_overlay_body">Lets Termux open your browser by itself during Cline sign-in. Not needed for anything else.</string>
+    <string name="reliability_open_termux_setting">Open Termux setting</string>
+
+    <!-- E: Kernel status sheet and the settings `kernel` page (A) -->
+    <string name="kernel_status_page_title">Kernel</string>
+    <string name="kernel_status_expanded">Expanded</string>
+    <string name="kernel_status_collapsed">Collapsed</string>
+    <string name="kernel_status_open_termux_failed">Couldn\'t open Termux.</string>
+    <string name="kernel_status_termux_no_answer">Termux didn\'t answer.</string>
+    <string name="kernel_status_unknown_port">unknown</string>
+    <string name="kernel_status_copy_action">Copy</string>
+</resources>

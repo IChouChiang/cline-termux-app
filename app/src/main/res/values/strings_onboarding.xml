@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Onboarding copy (onboarding-kernel.md §1, A, B, C and §9). Owned by the onboarding package.
+  D = desktop verbatim (onboarding-view.tsx; "..." kept where the desktop has it),
+  A = Android ("…"). Kernel strings the spec keys as kernel_* (Start kernel, Try again,
+  Run diagnostics, step labels, "Cline kernel connected") live in strings_kernel.xml.
+-->
+<resources>
+    <!-- A0 Welcome -->
+    <string name="onboarding_welcome_title">Cline Termux</string>
+    <!-- A: the unofficial notice (2026-10-16) takes the place of the desktop tagline "Build software your way". -->
+    <string name="onboarding_welcome_tagline">An unofficial app for the Cline CLI in Termux.</string>
+    <string name="onboarding_welcome_notice">Not affiliated with or endorsed by Cline Bot Inc. or the Termux project.</string>
+    <string name="onboarding_welcome_body">Cline is an AI coding agent. It reads your code, edits files, runs commands, and works through tasks with you — in any project on this device.</string>
+    <string name="onboarding_welcome_cta">Get started</string>
+    <string name="onboarding_welcome_footer">Takes less than a minute. Everything can be changed later in Settings.</string>
+    <string name="onboarding_welcome_footer_no_termux">Takes a few minutes if Termux still needs installing. Everything can be changed later in Settings.</string>
+    <string name="onboarding_continue">Continue</string>
+    <!-- A (Android): content description of every external link button (KS §0.7 template). -->
+    <string name="onboarding_link_cd">%1$s, opens in browser</string>
+
+    <!-- A Kernel setup -->
+    <string name="kernel_setup_title">Set up the Cline kernel</string>
+    <string name="kernel_setup_body">Cline runs its agent inside Termux on this device, and this app connects to it. Each step is checked for you.</string>
+    <string name="kernel_setup_repair_title">Fix the Cline kernel</string>
+    <string name="kernel_setup_repair_body">Something Cline needs in Termux changed. Fix the step below to keep working.</string>
+    <string name="kernel_setup_progress">%1$d of %2$d ready</string>
+    <plurals name="kernel_setup_ok_summary">
+        <item quantity="one">%1$d step OK</item>
+        <item quantity="other">%1$d steps OK</item>
+    </plurals>
+    <string name="setup_checking">Checking…</string>
+    <string name="setup_waiting_above">Waiting for the steps above.</string>
+    <string name="setup_status_waiting">waiting</string>
+    <string name="setup_status_checking">checking</string>
+    <string name="setup_status_passed">passed</string>
+    <string name="setup_status_needs_action">needs action</string>
+    <string name="setup_status_failed">failed</string>
+    <!-- A: merged row description "<title>, <status word>, <supporting>" (A.9). -->
+    <string name="setup_row_cd">%1$s, %2$s, %3$s</string>
+    <!-- (Android) A: a row's supporting and extra lines joined for TalkBack: "<line>. <next line>". -->
+    <string name="setup_row_cd_lines">%1$s. %2$s</string>
+    <!-- (Android) The same when the line before already ends a sentence: "<line> <next line>". -->
+    <string name="setup_row_cd_lines_continued">%1$s %2$s</string>
+    <!-- A: the invisible status line "<row title>: <status word>" (A.9). -->
+    <string name="setup_row_announce">%1$s: %2$s</string>
+    <string name="setup_check_again">Check again</string>
+    <string name="setup_open_termux">Open Termux</string>
+    <string name="setup_copy_command">Copy command</string>
+    <string name="setup_copied_command">Copied command</string>
+    <string name="setup_command_copied">Command copied</string>
+    <string name="setup_expand_summary">Show the steps that are OK</string>
+    <string name="setup_collapse_summary">Hide the steps that are OK</string>
+    <string name="setup_state_expanded">Expanded</string>
+    <string name="setup_state_collapsed">Collapsed</string>
+
+    <string name="check_termux_title">Termux</string>
+    <string name="check_termux_passed">Termux %1$s is installed</string>
+    <string name="check_termux_missing">Termux is not installed</string>
+    <string name="check_termux_disabled">Termux is turned off</string>
+    <string name="check_termux_too_old">Termux %1$s is too old. Cline needs Termux 0.109 or later.</string>
+    <string name="check_termux_install">Install Termux</string>
+    <string name="check_termux_open_settings">Open Termux settings</string>
+    <string name="check_permission_title">Permission to run commands</string>
+    <string name="check_permission_passed">Allowed</string>
+    <string name="check_permission_body">Cline needs this to start the kernel and read its status.</string>
+    <string name="check_permission_allow">Allow</string>
+    <string name="check_permission_denied">Permission denied. Turn on “Run commands in Termux environment” in Cline Termux\'s app permissions.</string>
+    <string name="check_permission_path">Permissions → Additional permissions → Run commands in Termux environment</string>
+    <string name="check_permission_open_settings">Open app settings</string>
+    <string name="check_external_title">Termux accepts commands from Cline</string>
+    <string name="check_external_passed">allow-external-apps is on</string>
+    <string name="check_external_body">Termux blocks commands from other apps until you allow it. Run this once in Termux:</string>
+    <string name="check_kernel_title">Cline kernel</string>
+    <!-- A: the port's release, named "Cline kernel" because "Cline Termux" is this app's name (CR1, 2026-10-16). -->
+    <string name="check_kernel_passed">Cline kernel %1$s</string>
+    <!-- A: row 4 passed when no VERSION read exists (degraded mode skips P3). -->
+    <string name="check_kernel_passed_unknown">Cline kernel is installed</string>
+    <string name="check_kernel_missing">The Cline kernel is not installed in Termux. Run the installer in Termux:</string>
+    <string name="check_kernel_too_old">Cline kernel %1$s can\'t start the Cline Hub. Update it to 3.0.68-termux.2 or later by running the installer again:</string>
+    <!-- A: the too-old text when the VERSION file names no release (port .1 without `release=`). -->
+    <string name="check_kernel_too_old_unknown">This Cline kernel can\'t start the Cline Hub. Update it to 3.0.68-termux.2 or later by running the installer again:</string>
+    <string name="check_kernel_not_set_up">Termux hasn\'t finished its first-run setup. Open Termux, wait for the prompt, then check again.</string>
+    <string name="check_hub_title">Cline Hub</string>
+    <string name="check_hub_idle">Starts the Cline Hub in Termux. It keeps running in the background while Cline is connected and uses about 300 MB of memory.</string>
+    <string name="check_hub_starting">Starting the Cline kernel in Termux…</string>
+    <string name="check_hub_step_elapsed">%1$s · %2$ds</string>
+    <string name="check_hub_slow">This is taking longer than usual.</string>
+    <string name="check_hub_passed">Cline Hub @%1$s · core %2$s</string>
+    <string name="check_hub_passed_no_core">Cline Hub @%1$s</string>
+    <string name="check_hub_failed">Couldn\'t start the Cline Hub.</string>
+    <string name="check_hub_timed_out">Termux didn\'t answer within 60 seconds.</string>
+    <string name="check_hub_protocol">This Cline Hub speaks a protocol this app doesn\'t support.</string>
+    <string name="check_hub_auth">The Cline Hub rejected this app\'s credentials.</string>
+    <string name="check_hub_stopped_meanwhile">The Cline Hub stopped.</string>
+    <string name="check_hub_credentials_unreadable">The Cline Hub started but its credentials could not be read.</string>
+    <string name="check_hub_handshake">The Cline Hub refused the connection handshake.</string>
+    <string name="check_hub_crash_loop">The Cline Hub stopped twice right after starting, so Cline stopped restarting it.</string>
+
+    <!-- B Install Termux -->
+    <string name="install_termux_title">Install Termux</string>
+    <string name="install_termux_body">Cline runs its agent inside Termux, a terminal app for Android. Install Termux, then come back here. Cline continues by itself.</string>
+    <string name="install_termux_builds">Use the F-Droid or GitHub build. Cline is tested with Termux 0.118.</string>
+    <string name="install_termux_fdroid">Get Termux on F-Droid</string>
+    <string name="install_termux_github">Get Termux on GitHub</string>
+    <string name="install_termux_update_title">Update Termux</string>
+    <string name="install_termux_update_body">Termux %1$s is too old for Cline. Install Termux 0.109 or later from the same place you got it, then come back here.</string>
+    <string name="install_termux_disabled_title">Turn on Termux</string>
+    <string name="install_termux_disabled_body">Termux is turned off on this device. Turn it back on in Settings, then come back here.</string>
+    <string name="install_termux_setup_title">Open Termux once</string>
+    <string name="install_termux_setup_body">Termux is installed. Open it once and wait until it shows a prompt, so it can finish installing its basic packages.</string>
+    <string name="install_termux_waiting">Waiting for Termux…</string>
+    <string name="install_termux_ready">Termux is ready</string>
+
+    <!-- C Connect a model -->
+    <string name="connect_title">Set up Cline</string>
+    <string name="connect_body">Choose how Cline connects to models. You can add more providers anytime in Settings.</string>
+    <string name="connect_cline_title">Sign in with Cline</string>
+    <string name="connect_recommended">Recommended</string>
+    <string name="connect_cline_benefit_1">Regular free model promotions</string>
+    <string name="connect_cline_benefit_2">Subscribe to ClinePass for generous usage across the best open weights models like DeepSeek, Kimi, and GLM</string>
+    <string name="connect_cline_benefit_3">No API key needed</string>
+    <string name="connect_signed_in_as">Signed in as %1$s</string>
+    <string name="connect_signed_in">Signed in to Cline</string>
+    <string name="connect_sign_in">Sign in</string>
+    <string name="connect_waiting_browser">Waiting for browser...</string>
+    <string name="connect_waiting_help">Termux opened to sign you in. Open the link it shows, approve the sign-in in your browser, then come back to Cline Termux.</string>
+    <string name="connect_cancel">Cancel</string>
+    <string name="connect_sign_up">Sign up</string>
+    <string name="connect_sign_in_failed">Sign in failed: %1$s</string>
+    <string name="connect_sign_in_timeout">the sign-in did not finish within 15 minutes.</string>
+    <string name="connect_sign_in_exit">cline auth exited with code %1$d in Termux.</string>
+    <string name="connect_cline_key_toggle">Use a Cline API key</string>
+    <string name="connect_cline_key_field">Cline API key</string>
+    <string name="connect_connect">Connect</string>
+    <string name="connect_connecting">Connecting...</string>
+    <string name="connect_find_key">Find your key</string>
+    <string name="connect_cline_key_failed">Failed to save API key: %1$s</string>
+    <string name="connect_cline_key_unverified_detail">the key could not be verified (%1$s)</string>
+    <string name="connect_api_title">Use your own API key</string>
+    <string name="connect_api_body">Anthropic, OpenAI, OpenRouter, and more.</string>
+    <string name="connect_providers_failed">Failed to load providers: %1$s</string>
+    <string name="connect_provider_label">Provider</string>
+    <string name="connect_provider_loading">Loading providers...</string>
+    <string name="connect_provider_placeholder">Choose a provider</string>
+    <string name="connect_api_key_label">API key</string>
+    <string name="connect_api_key_placeholder">%1$s API key</string>
+    <string name="connect_show_key">Show API key</string>
+    <string name="connect_hide_key">Hide API key</string>
+    <string name="connect_model_label">Model</string>
+    <string name="connect_model_supporting">Cline starts new sessions with this model. You can switch models in the composer.</string>
+    <string name="connect_model_required">Enter a model ID.</string>
+    <string name="connect_base_url_label">Base URL</string>
+    <string name="connect_base_url_placeholder">https://api.example.com/v1</string>
+    <string name="connect_base_url_invalid">Enter a base URL that starts with http:// or https://.</string>
+    <string name="connect_get_key">Get a %1$s API key</string>
+    <string name="connect_more_providers">More providers are in Settings → Providers.</string>
+    <string name="connect_save_failed">Failed to save provider: %1$s</string>
+    <string name="connect_save_timeout_detail">Termux didn\'t answer within 30 seconds.</string>
+    <string name="connect_kernel_unavailable">Cline can\'t reach Termux right now.</string>
+    <string name="connect_open_kernel_setup">Open kernel setup</string>
+    <string name="connect_skip">Skip</string>
+    <string name="connect_try_again">Try again</string>
+    <string name="connect_provider_connected">%1$s is connected.</string>
+    <string name="connect_selected">Selected</string>
+    <string name="connect_not_selected">Not selected</string>
+    <!-- (Android) Option card label read by TalkBack: title, then its badge (C.9). -->
+    <string name="connect_option_with_badge">%1$s, %2$s</string>
+
+    <!-- C5 Done -->
+    <string name="done_title">You\'re all set</string>
+    <string name="done_provider_connected">%1$s is connected.</string>
+    <string name="done_cline_connected">Your Cline account is connected.</string>
+    <string name="done_cline_unverified">Cline checks the key when you send your first message.</string>
+    <string name="done_clinepass_title">ClinePass</string>
+    <string name="done_clinepass_body">Generous usage across the best open weights models like DeepSeek, Kimi, and GLM.</string>
+    <string name="done_clinepass_cta">Get ClinePass</string>
+    <string name="done_start_building">Start building</string>
+</resources>

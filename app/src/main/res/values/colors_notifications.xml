@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Notification accent (design-system.md §1.7) below API 31, and the error pair. values-night overrides. -->
+<resources>
+    <color name="notification_accent">#6249C2</color>
+    <color name="notification_error">#B3261E</color>
+</resources>

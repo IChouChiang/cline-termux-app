@@ -1,0 +1,16 @@
+{
+ "schema": 1,
+ "generatedAt": "2026-10-07T18:39:50.693Z",
+ "source": {
+  "package": "@cline/llms",
+  "entry": "sdk/packages/llms/src/index.ts",
+  "cliVersion": "3.0.69",
+  "forkRoot": "~/workspace/cline-termux-v3-phone"
+ },
+ "providers": {
+  "claude-code": "subscription",
+  "cline-pass": "subscription",
+  "openai-codex": "subscription",
+  "openai-codex-cli": "subscription"
+ }
+}

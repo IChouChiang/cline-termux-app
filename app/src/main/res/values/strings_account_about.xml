@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Account (C8), Agents roster (C9), About (C10), What's new (C11), Export diagnostics (C12)
+     and Open source licenses (C13): design/screens/customize-and-rest.md §5–§10. Desktop copy
+     verbatim (account-view.tsx, agent-header.tsx, about-view.tsx, whats-new-dialog.tsx,
+     export-diagnostics-dialog.tsx); strings the spec marks (Android) are new. -->
+<resources>
+    <!-- C8 Account -->
+    <string name="account_title">Account</string>
+    <string name="account_tab_overview">Overview</string>
+    <string name="account_tab_usage">Usage</string>
+    <string name="account_tab_billing">Billing</string>
+    <string name="account_sign_out">Sign Out</string>
+    <string name="account_signing_out">Signing Out</string>
+    <string name="account_more_options">More options</string>
+    <string name="account_sign_out_confirm_title">Sign out of Cline?</string>
+    <string name="account_sign_out_confirm_text">Cline removes the saved credentials for Cline from Termux. Sessions using it stop working until you connect it again.</string>
+    <string name="account_sign_out_confirm_button">Sign out</string>
+    <string name="account_signed_out_title">Sign in to Cline</string>
+    <string name="account_signed_out_body">Connect your Cline account to review credits, usage, billing, and organization details.</string>
+    <string name="account_sign_in">Sign in</string>
+    <string name="account_signing_in">Signing in</string>
+    <string name="account_create_account">Create account</string>
+    <string name="account_waiting_title">Waiting for browser...</string>
+    <string name="account_waiting_body">Finish signing in in Termux and your browser, then come back here.</string>
+    <string name="account_waiting_a11y">Waiting for browser. Finish signing in in Termux and your browser, then come back here.</string>
+    <string name="account_open_termux">Open Termux</string>
+    <string name="account_sign_in_failed">Sign in failed: %1$s</string>
+    <string name="account_save_key_failed">Failed to save API key: %1$s</string>
+    <string name="account_signin_failure_exit">Sign-in did not finish in Termux (exit code %1$d).</string>
+    <string name="account_signin_failure_timeout">The sign-in timed out.</string>
+    <string name="account_signin_failure_key_not_verified">the key could not be verified (%1$s)</string>
+    <string name="account_signin_failure_no_answer">Termux did not answer.</string>
+    <string name="account_member_since">Member since %1$s</string>
+    <string name="account_open_dashboard">Open dashboard</string>
+    <string name="account_opens_in_browser">%1$s, opens in browser</string>
+    <string name="account_balance_org">%1$s Balance</string>
+    <string name="account_balance_credits">Credits Balance</string>
+    <string name="account_balance_amount">$%1$s</string>
+    <string name="account_balance_a11y">Credits balance, %1$s</string>
+    <string name="account_personal_line">Personal account: %1$s credits</string>
+    <string name="account_credit">Credit</string>
+    <string name="account_organizations">Organizations</string>
+    <string name="account_create">Create</string>
+    <string name="account_personal">Personal</string>
+    <string name="account_personal_account">Personal account</string>
+    <string name="account_active">Active</string>
+    <string name="account_switch">Switch</string>
+    <string name="account_switching_to">Switching to %1$s</string>
+    <string name="account_switched_to">Switched to %1$s.</string>
+    <string name="account_signed_out_snackbar">Signed out of Cline.</string>
+    <string name="account_usage_description_all">Recent API usage and token consumption across all providers.</string>
+    <string name="account_usage_description_org">Recent API usage and token consumption for %1$s.</string>
+    <string name="account_col_model">Model</string>
+    <string name="account_col_tokens">Tokens</string>
+    <string name="account_col_credits">Credits</string>
+    <string name="account_col_time">Time</string>
+    <string name="account_col_date">Date</string>
+    <string name="account_col_amount">Amount</string>
+    <string name="account_usage_empty">No usage transactions yet.</string>
+    <string name="account_billing_description">Payment history and credit purchases.</string>
+    <string name="account_billing_empty">No payment transactions yet.</string>
+    <string name="account_see_more">See More</string>
+    <string name="account_tokens_short">%1$s tok</string>
+    <string name="account_meta_line">%1$s · %2$s</string>
+    <string name="account_credits_plus">+%1$s</string>
+    <!-- (Android) usage row for TalkBack: model, provider, account_tokens_a11y, account_credits_a11y, account_date_time -->
+    <string name="account_usage_row_a11y">%1$s, %2$s, %3$s, %4$s, %5$s</string>
+    <!-- (Android) payment row for TalkBack: date, amount, account_credits_a11y -->
+    <string name="account_payment_row_a11y">%1$s, %2$s, %3$s</string>
+    <!-- (Android) the spoken token count of a usage row; %1$s is the formatted count -->
+    <plurals name="account_tokens_a11y">
+        <item quantity="one">%1$s token</item>
+        <item quantity="other">%1$s tokens</item>
+    </plurals>
+    <!-- (Android) the spoken credit amount of a usage or payment row; %1$s is the formatted amount -->
+    <plurals name="account_credits_a11y">
+        <item quantity="one">%1$s credit</item>
+        <item quantity="other">%1$s credits</item>
+    </plurals>
+    <!-- (Android) a usage row's date and time, e.g. "Oct 2, 2026 4:03 PM" -->
+    <string name="account_date_time">%1$s %2$s</string>
+    <string name="account_helper_starting">Starting settings helper...</string>
+    <string name="account_signed_in_reduced">Signed in to Cline</string>
+    <string name="account_signed_in_reduced_body">Account details need the settings helper in Termux.</string>
+    <string name="account_older_helper">The settings helper in Termux is running an older build that does not support account commands. Update the Cline kernel, then try again.</string>
+
+    <!-- C9 Agents roster -->
+    <string name="agents_title">Agents</string>
+    <plurals name="agents_count">
+        <item quantity="one">%1$d agent</item>
+        <item quantity="other">%1$d agents</item>
+    </plurals>
+    <string name="agents_summary">%1$s: %2$s</string>
+    <string name="agents_join">%1$s, %2$s</string>
+    <!-- (Android) joins the two sentences of the kernel banner in the roster's error line; CJK translations drop the space -->
+    <string name="agents_banner_join">%1$s %2$s</string>
+    <string name="agents_part_running">%1$d running</string>
+    <string name="agents_part_completed">%1$d completed</string>
+    <string name="agents_part_failed">%1$d failed</string>
+    <string name="agents_part_cancelled">%1$d cancelled</string>
+    <string name="agents_part_unresolved">%1$d with no recorded outcome</string>
+    <string name="agents_loading">Loading agents...</string>
+    <string name="agents_waiting">Waiting for the first agent to report in...</string>
+    <string name="agents_none">No agent details were recorded for this session.</string>
+    <string name="agents_stale">Could not refresh — showing the last known agents.</string>
+    <string name="agents_stale_with_error">Could not refresh — showing the last known agents. %1$s</string>
+    <string name="agents_untitled">Untitled task</string>
+    <string name="agents_team">team</string>
+    <string name="agents_team_named">team %1$s</string>
+    <string name="agents_running_tool">Running %1$s</string>
+    <string name="agents_starting_up">Starting up...</string>
+    <string name="agents_no_activity">No activity recorded (%1$s)</string>
+    <string name="agents_state_running">running</string>
+    <string name="agents_state_completed">completed</string>
+    <string name="agents_state_failed">failed</string>
+    <string name="agents_state_cancelled">cancelled</string>
+    <string name="agents_state_unresolved">unresolved</string>
+    <string name="agents_open_session">Open this agent\'s session</string>
+    <string name="agents_row_a11y">%1$s, %2$s, %3$s</string>
+    <string name="agents_row_team_a11y">%1$s, %2$s, %3$s, %4$s</string>
+
+    <!-- C10 About -->
+    <string name="about_title">About</string>
+    <string name="about_product">Cline Termux</string>
+    <string name="about_product_beta">Cline Termux Beta</string>
+    <string name="about_version">v%1$s</string>
+    <string name="about_beta">Beta</string>
+    <!-- A: the unofficial notice (2026-10-16), also in the README. -->
+    <string name="about_notice">Cline Termux is an unofficial, independent app. It is not affiliated with, endorsed by or sponsored by Cline Bot Inc. or the Termux project. Cline is a trademark of Cline Bot Inc., and other names belong to their owners; the app uses them only to name the software it works with. Please report problems with this app on its GitHub Issues page, not to Cline or Termux.</string>
+    <string name="about_versions">Versions</string>
+    <string name="about_app">App</string>
+    <string name="about_app_value">%1$s (%2$d)</string>
+    <string name="about_kernel_release">Kernel release</string>
+    <string name="about_cli">Cline CLI</string>
+    <string name="about_hub">Cline Hub</string>
+    <string name="about_hub_value">core %1$s · %2$s</string>
+    <string name="about_hub_value_core">core %1$s</string>
+    <string name="about_kernel_status">Kernel status</string>
+    <string name="about_checking">Checking…</string>
+    <string name="about_not_running">Not running</string>
+    <string name="about_unavailable">Unavailable</string>
+    <string name="about_copy">Copy</string>
+    <string name="about_version_row_a11y">%1$s, %2$s</string>
+    <string name="about_highlights">Highlights</string>
+    <string name="about_highlights_body">A short tour of the biggest recent additions.</string>
+    <string name="about_show_whats_new">Show what\'s new</string>
+    <string name="about_report">Report an issue</string>
+    <string name="about_report_body">Found a bug or have a request? Open an issue on GitHub.</string>
+    <string name="about_open_issues">Open GitHub issues</string>
+    <string name="about_diagnostics">Diagnostics</string>
+    <string name="about_diagnostics_body">Export app info, recent logs, and the metadata of sessions you choose as a file you can attach when reporting a problem.</string>
+    <string name="about_export">Export…</string>
+    <string name="about_licenses">Open source licenses</string>
+    <string name="about_licenses_body">Libraries and fonts used by this app</string>
+    <string name="about_developer">Developer</string>
+    <string name="about_developer_body">Kernel probe (debug builds only)</string>
+    <string name="about_release_notes">Release notes</string>
+    <string name="about_full_changelog">Full changelog</string>
+    <string name="about_installed">Installed</string>
+    <string name="about_release_link_cd">Open this release on GitHub</string>
+    <string name="about_notes_loading">Loading release notes…</string>
+    <string name="about_notes_error">Release notes aren\'t available in this build. The full changelog is on GitHub.</string>
+
+    <!-- C11 What's new -->
+    <string name="whats_new_overline">What\'s new in Cline Termux</string>
+    <string name="whats_new_see_all">See all changes</string>
+    <string name="whats_new_get_started">Get Started</string>
+
+    <!-- C12 Export diagnostics -->
+    <string name="diagnostics_title">Export diagnostics</string>
+    <string name="diagnostics_description">Saves a text file with app info, recent logs, and the metadata of the sessions you pick. Prompts, conversation contents, and API keys are never included.</string>
+    <string name="diagnostics_sessions">Sessions</string>
+    <string name="diagnostics_loading">Loading sessions…</string>
+    <string name="diagnostics_empty">No sessions in Termux yet.</string>
+    <string name="diagnostics_hub_down">Sessions can\'t be listed while the Cline Hub is not connected. The report will include app and kernel info only.</string>
+    <string name="diagnostics_export">Export</string>
+    <string name="diagnostics_done_title">Diagnostics exported</string>
+    <string name="diagnostics_share">Share</string>
+    <string name="diagnostics_save">Save to Files</string>
+    <string name="diagnostics_done">Done</string>
+    <string name="diagnostics_saved">Saved to Files</string>
+    <string name="diagnostics_session_subtitle">%1$s · %2$s</string>
+    <string name="diagnostics_write_failed">Could not write the diagnostics file: %1$s</string>
+    <string name="diagnostics_save_failed">Could not save the file: %1$s</string>
+
+    <!-- C13 Open source licenses -->
+    <string name="licenses_title">Open source licenses</string>
+    <string name="licenses_meta">%1$s · %2$s</string>
+    <string name="licenses_text_missing">This license text is not bundled with this build.</string>
+</resources>

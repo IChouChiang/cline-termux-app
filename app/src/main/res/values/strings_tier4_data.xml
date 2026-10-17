@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tier-4 data package (data/about WhatsNewContent): the first Android What's new entry,
+     customize-and-rest.md §8.3. All strings are (Android) copy written for this app. -->
+<resources>
+    <string name="whats_new_android_0_1_title">Cline in your pocket</string>
+    <string name="whats_new_android_0_1_chat_title">Native chat</string>
+    <string name="whats_new_android_0_1_chat_description">Talk to the Cline kernel in Termux from a real Android app, with streaming replies and Markdown.</string>
+    <string name="whats_new_android_0_1_approvals_title">Approvals on the go</string>
+    <string name="whats_new_android_0_1_approvals_description">Approve tools and answer Cline\'s questions, and get a notification when Cline needs you.</string>
+    <string name="whats_new_android_0_1_schedules_title">Schedules and agents</string>
+    <string name="whats_new_android_0_1_schedules_description">Run routines on a schedule inside the Cline Hub and follow every subagent a task starts.</string>
+    <string name="whats_new_android_0_1_customize_title">Customize and marketplace</string>
+    <string name="whats_new_android_0_1_customize_description">Turn skills, plugins, tools and MCP servers on or off, and install more from the marketplace.</string>
+</resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Chat screen (work package chat-screen): home-chat.md §2 Home, §6 conversation header,
+  §2.5 branch sheet, §6.6 export, §6.7 rename/delete; keys per HC §8. Desktop copy verbatim;
+  (Android) marks new strings. Reused from other files (do not redefine): chat_* thread copy
+  (strings_thread.xml), chat_transport_* (strings_transcript.xml), components_kernel_*,
+  components_open_sessions, components_copied (strings_components.xml), state_kernel_status
+  (strings_kernel.xml), sessions_delete_* / sessions_pin_failed / sessions_unpin_failed /
+  session_details_* (strings_sessions.xml), fork_failed (strings_queue_suggestions.xml),
+  checkpoint_header_menu (strings_checkpoints.xml).
+-->
+<resources>
+    <!-- Home workspace and branch chips (HC §2.4) -->
+    <!-- (Android, decided A22) no folder chosen: the session starts in the Termux home -->
+    <string name="home_workspace_default">Home</string>
+    <string name="home_workspace_home">~</string>
+    <string name="home_workspace_cd">Workspace: %1$s</string>
+    <string name="home_branch_cd">Branch: %1$s</string>
+    <string name="home_branch_cd_busy">Branch: %1$s. Branch switching is unavailable while an agent is running in this workspace.</string>
+    <!-- (Android) Home kernel notice button (HC §2.4) -->
+    <string name="home_kernel_status">Kernel status</string>
+
+    <!-- Branch sheet (HC §2.5) -->
+    <string name="branch_sheet_title">Branch</string>
+    <string name="branch_search_placeholder">Search branches</string>
+    <string name="branch_loading">Loading...</string>
+    <string name="branch_empty">No branches found</string>
+    <string name="branch_switch_error">Couldn\'t switch to %1$s: %2$s</string>
+    <string name="branch_busy">Branch switching is unavailable while an agent is running in this workspace.</string>
+    <string name="branch_capped">Showing the 500 most recent branches</string>
+    <string name="branch_current_state">Current branch</string>
+    <string name="branch_switching_state">Switching</string>
+
+    <!-- Conversation header (HC §6) -->
+    <string name="header_title_fallback">New Session</string>
+    <string name="header_status_cd">%1$s, %2$s</string>
+    <string name="header_details">Session details</string>
+    <string name="header_rename">Rename</string>
+    <string name="header_renaming">Renaming...</string>
+    <string name="header_pin">Pin</string>
+    <string name="header_unpin">Unpin</string>
+    <string name="header_fork">Fork</string>
+    <string name="header_forking">Forking...</string>
+    <string name="header_details_item">Details</string>
+    <string name="header_export">Export</string>
+    <string name="header_delete">Delete session</string>
+    <string name="header_deleting">Deleting...</string>
+    <string name="header_actions_cd">Session actions</string>
+    <string name="header_new_cd">New session</string>
+    <string name="header_new_tooltip">Start a new session</string>
+    <!-- Diff chip TalkBack: "Open diff: <additions>, <deletions>", each a plural below -->
+    <string name="header_diff_cd">Open diff: %1$s, %2$s</string>
+    <plurals name="header_diff_additions_cd">
+        <item quantity="one">%1$d addition</item>
+        <item quantity="other">%1$d additions</item>
+    </plurals>
+    <plurals name="header_diff_deletions_cd">
+        <item quantity="one">%1$d deletion</item>
+        <item quantity="other">%1$d deletions</item>
+    </plurals>
+    <string name="header_diff_added">\u2066+%1$d\u2069</string>
+    <string name="header_diff_removed">\u2066-%1$d\u2069</string>
+    <string name="header_main_agent">Main Agent Session</string>
+    <string name="header_main_agent_hint">Back to the main agent session</string>
+    <string name="header_main_agent_hint_title">Back to the main agent session: %1$s</string>
+    <string name="header_agents_overflow">Agents · %1$s</string>
+    <string name="header_changes_overflow">Changes · +%1$d -%2$d</string>
+    <string name="header_sidebar_expand">Expand sidebar</string>
+    <string name="header_sidebar_collapse">Collapse sidebar</string>
+    <string name="header_kernel_disabled">Start kernel to continue.</string>
+
+    <!-- Inline rename (HC §6.7) -->
+    <string name="rename_label">Session title</string>
+    <string name="rename_save">Save title</string>
+    <string name="rename_cancel">Cancel rename</string>
+    <string name="rename_error">Rename failed: %1$s</string>
+
+    <!-- Delete (HC §6.6) -->
+    <string name="delete_error">Couldn\'t delete this session: %1$s</string>
+
+    <!-- Export (HC §6.6, Android) -->
+    <string name="export_saved">Saved to Download/%1$s</string>
+    <string name="export_storage_title">Allow storage access</string>
+    <string name="export_storage_body">Run termux-setup-storage in Termux, then try again.</string>
+    <string name="export_open_termux">Open Termux</string>
+    <string name="export_error">Couldn\'t export this session: %1$s</string>
+
+    <!-- First send without a model (HC §2.7, Android) -->
+    <string name="chat_no_model">Choose a model before sending.</string>
+</resources>

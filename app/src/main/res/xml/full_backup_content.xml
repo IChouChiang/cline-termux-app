@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Same exclusions as data_extraction_rules.xml for API 26–30 (docs/07 §7.4). -->
+<full-backup-content>
+    <exclude domain="file" path="datastore/kernel.preferences_pb" />
+    <exclude domain="file" path="datastore/sessions.preferences_pb" />
+    <exclude domain="file" path="sessions/list-cache.json" />
+    <exclude domain="file" path="catalog-cache.json" />
+    <exclude domain="sharedpref" path="." />
+</full-backup-content>

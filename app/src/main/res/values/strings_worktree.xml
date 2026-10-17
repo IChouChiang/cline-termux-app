@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- G3 worktree toggle (desktop welcome-workspace-controls.tsx WorktreeToggle, work-in-selection.ts). -->
+    <!-- Home chip after the branch chip; shown only for git workspaces. -->
+    <string name="worktree_chip">Worktree</string>
+    <!-- Long-press tooltip of the chip (desktop "About worktrees" tooltip, verbatim). -->
+    <string name="worktree_tooltip">Runs the task on a separate copy of this folder on its own branch, so your files stay untouched until you merge.</string>
+    <!-- The first send could not cut the worktree; %1$s is git's (or Termux's) last line. Desktop use-chat-session.ts. -->
+    <string name="worktree_create_failed">Couldn\'t create a worktree: %1$s</string>
+    <!-- Appended to every delete confirmation of a session that ran in a task worktree (desktop TASK_WORKTREE_DELETE_WARNING). -->
+    <string name="worktree_delete_warning">This session ran in its own git worktree. Deleting it also removes that worktree and its generated branch, including any uncommitted changes in it.</string>
+</resources>

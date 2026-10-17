@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Markdown link safety and blocked images (HC §3 "Links", HC §8 keys; desktop
+  webview/components/ui/markdown.tsx, verbatim). The renderer's copy-button strings stay in
+  strings.xml where the foundation put them.
+-->
+<resources>
+    <string name="md_link_title">Open external link?</string>
+    <string name="md_link_body">You are about to leave Cline and visit this address.</string>
+    <string name="md_link_cancel">Cancel</string>
+    <string name="md_link_open">Open link</string>
+    <string name="md_image_blocked">External image blocked for privacy</string>
+    <string name="md_image_blocked_alt">External image blocked for privacy: %1$s</string>
+    <!-- Android: no Custom Tab, browser or handler took the link. -->
+    <string name="link_no_app">No app can open this link.</string>
+</resources>

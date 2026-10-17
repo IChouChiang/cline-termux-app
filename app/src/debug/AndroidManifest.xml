@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!-- Developer Hub override (docs/06): only the adb shell holds DUMP, so only
+             `am broadcast` from a workstation can set or clear the token. Debug builds only. -->
+        <receiver
+            android:name="dev.cline.termux.debug.HubTokenOverrideReceiver"
+            android:exported="true"
+            android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="dev.cline.termux.debug.SET_HUB_TOKEN" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The window theme only has to be transparent to Compose: no action bar,
+         no forced title, system bars drawn by Compose's edge-to-edge setup.
+         Light parent here, dark parent in values-night (DeviceDefault.DayNight
+         needs API 29; minSdk is 26). -->
+    <style name="Theme.ClineTermux" parent="android:Theme.DeviceDefault.Light.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- Launch theme (design-system.md §10.4): the adaptive foreground on the brand
+         surface until the first frame. MainActivity calls installSplashScreen() and
+         never holds it; the kernel states have their own UI. -->
+    <style name="Theme.ClineTermux.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.ClineTermux</item>
+    </style>
+</resources>

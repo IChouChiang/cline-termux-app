@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Composer, attach sheet, context usage, voice input and the welcome setup notice
+     (design/screens/composer-approvals.md C1, C7, C8). Desktop copy verbatim; (Android) strings are new. -->
+<resources>
+    <!-- C1.10 placeholders, highest precedence first -->
+    <string name="composer_placeholder_transcribing">Transcribing voice input…</string>
+    <string name="composer_placeholder_listening">Listening…</string>
+    <string name="composer_placeholder_busy_queue">Agent is working... submit to queue another message, or Enter to send the first message from the queue</string>
+    <string name="composer_placeholder_busy">Agent is working... submit to queue another message</string>
+    <string name="composer_placeholder_welcome">Ask to make changes, @mention files, reference #PRs, or run /commands.</string>
+    <string name="composer_placeholder_conversation">Enter your question or type / for commands or @ for context</string>
+
+    <!-- C1.10 controls -->
+    <string name="composer_cd_send">Send message</string>
+    <string name="composer_tt_send">Send (Enter)</string>
+    <string name="composer_cd_stop">Stop agent</string>
+    <string name="composer_tt_stop">Stop the agent (Esc)</string>
+    <string name="composer_cd_starting">Starting</string>
+    <string name="composer_cd_attach">Attach files</string>
+    <string name="composer_tt_attach">Attach files</string>
+    <string name="composer_tt_attach_no_images">Attach files (this model doesn’t support images)</string>
+    <string name="composer_cd_remove_attachment">Remove %1$s</string>
+    <string name="composer_cd_attachment_writing">%1$s, attaching</string>
+    <string name="composer_mode_plan">Plan</string>
+    <string name="composer_mode_act">Act</string>
+    <string name="composer_cd_mode_group">Mode</string>
+    <string name="composer_cd_model_chip">Model and provider: %1$s / %2$s</string>
+    <string name="composer_cd_model_chip_empty">Model and provider</string>
+    <string name="composer_tt_model_chip">%1$s / %2$s</string>
+    <string name="composer_model_chip_placeholder">Model</string>
+    <string name="composer_model_chip_separator">" / "</string>
+    <string name="composer_tt_model_busy">The model can be changed when the agent is idle.</string>
+    <string name="composer_cd_thinking_level">Thinking level</string>
+    <string name="composer_cd_thinking_level_value">Thinking level: %1$s</string>
+    <string name="composer_effort_none">None</string>
+    <string name="composer_effort_low">Low</string>
+    <string name="composer_effort_medium">Medium</string>
+    <string name="composer_effort_high">High</string>
+    <string name="composer_effort_extra">Extra</string>
+    <string name="composer_effort_unknown">Reasoning</string>
+    <string name="composer_tt_reasoning_unsupported">The selected model does not report reasoning support</string>
+    <string name="composer_cd_context_ring">Context window: %1$s of %2$s tokens used (%3$d%%)</string>
+    <string name="composer_images_unsupported_inline">This model doesn’t support the attached images. Remove them or choose a model that supports images before sending.</string>
+    <string name="composer_images_unsupported">This model doesn’t support image input. Choose a model that supports images or remove the images before sending. Other files can still be attached.</string>
+    <string name="composer_needs_text">Add a message to go with your attachments. Describe what you want Cline to do with the attached files before sending.</string>
+    <string name="composer_connect_model">Connect a model to start building</string>
+    <string name="composer_action_connect_model">Connect a model</string>
+    <string name="composer_resuming">Resuming session...</string>
+    <string name="composer_resume_failed">Could not resume this session.</string>
+    <string name="composer_action_retry">Retry</string>
+    <string name="composer_held_for_hub">Cline Hub is restarting. Your message will be sent when it is back.</string>
+    <string name="composer_send_failed">Message not sent. %1$s</string>
+    <string name="composer_send_failed_disconnected">Message not sent. Cline Hub disconnected.</string>
+    <!-- HC §3.12 step 6 / HC §8 (key from the home-chat spec): a held prompt returned because the kernel is down. -->
+    <string name="chat_not_sent">Message not sent. Start kernel to continue.</string>
+    <!-- CA C1.10 `kernel_starting` (Android): the composer's polite announcement while its Start kernel runs (the KS button keeps "Starting…"). -->
+    <string name="composer_kernel_starting">Starting kernel...</string>
+    <string name="composer_run_interrupted">The run was interrupted by a kernel restart.</string>
+    <string name="composer_action_resend">Resend</string>
+    <!-- C1.7 Stop: run.abort failed or the run outlived the Hub's command timeout (A4); shown with "Restart kernel" until the run is over (trial row 11). -->
+    <string name="composer_stop_failed">The agent did not stop. Try again.</string>
+    <string name="composer_session_deleted">This session was deleted.</string>
+    <string name="composer_action_new_session">New session</string>
+    <string name="composer_state_transcribing">Transcribing</string>
+    <plurals name="composer_suggestions_state">
+        <item quantity="one">%1$d suggestion</item>
+        <item quantity="other">%1$d suggestions</item>
+    </plurals>
+
+    <!-- C5.5 send-time slash results (the slash panel's own copy lives with C5) -->
+    <string name="composer_team_usage">Usage: /team &lt;task description&gt;. Starts a team of agents for the given task.</string>
+    <string name="composer_team_unavailable_mode">Agent teams are not available in plan mode.</string>
+    <string name="composer_team_disabled">Agent teams are disabled. Enable the Teams tool in Customize → Tools.</string>
+    <string name="composer_action_open_tools">Open Tools</string>
+    <string name="composer_skill_read_failed">Could not read the skill %1$s.</string>
+    <string name="composer_workflow_read_failed">Could not read the workflow %1$s.</string>
+
+    <!-- C1.9 attach sheet and pipeline -->
+    <string name="attach_sheet_title">Attach files</string>
+    <string name="attach_photos">Photos</string>
+    <string name="attach_photos_support">PNG, JPEG, GIF or WebP</string>
+    <string name="attach_camera">Camera</string>
+    <string name="attach_files">Files</string>
+    <string name="attach_files_support">Any file; text up to 1 MB</string>
+    <string name="attach_images_unsupported_support">This model doesn’t support images</string>
+    <string name="attach_too_many_images">Attach up to 5 images.</string>
+    <string name="attach_image_too_large">Each image must be 3.75 MB or smaller.</string>
+    <string name="attach_total_too_large">Attachments must be 6 MB or smaller in total.</string>
+    <string name="attach_image_unreadable">Could not read the image.</string>
+    <string name="attach_unsupported_image_type">Choose PNG, JPEG, GIF, or WebP images.</string>
+    <string name="attach_file_too_large">%1$s is larger than 1 MB.</string>
+    <string name="attach_file_not_text">%1$s is not a text file and cannot be attached.</string>
+    <string name="attach_file_failed">Could not attach %1$s.</string>
+    <string name="attach_cd_attachment_image">Attachment %1$d</string>
+
+    <!-- C1.12 context usage sheet -->
+    <string name="composer_usage_title">Context window</string>
+    <string name="composer_usage_input">Input tokens</string>
+    <string name="composer_usage_output">Output tokens</string>
+    <string name="composer_usage_cached">Cached tokens</string>
+    <string name="composer_usage_cost">Cost</string>
+
+    <!-- C7.5 voice input -->
+    <string name="voice_cd_record_speech">Record speech</string>
+    <string name="voice_cd_stop_recording">Stop recording</string>
+    <string name="voice_cd_transcribing">Transcribing voice input</string>
+    <string name="voice_state_listening">Listening</string>
+    <string name="voice_failed_permission">Speech input failed. Check the microphone permission for Cline and try again.</string>
+    <string name="voice_failed_generic">Speech input failed. %1$s</string>
+    <string name="voice_err_network">Speech recognition needs a network connection on this device.</string>
+    <string name="voice_err_busy">Speech recognition is busy. Try again in a moment.</string>
+    <string name="voice_err_audio">The microphone is in use by another app.</string>
+    <string name="voice_err_unavailable">Speech recognition is not available on this device.</string>
+    <string name="voice_action_settings">Settings</string>
+
+    <!-- C8 welcome setup notice (DS §4.2 WelcomeSetupNotice) -->
+    <string name="composer_setup_notice_title">Connect a model to start building</string>
+    <string name="composer_setup_notice_body">Sign in with Cline or add an API key — it takes under a minute.</string>
+    <string name="composer_setup_notice_connect">Connect a model</string>
+    <string name="composer_setup_notice_settings">Model settings</string>
+</resources>

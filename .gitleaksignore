@@ -1,0 +1,22 @@
+# gitleaks findings that are not secrets (checked 2026-10-09 with gitleaks 8.30.1).
+# Each entry is a global fingerprint (file:rule:line), so it holds for every commit, for
+# `gitleaks dir` and for a history that is rewritten or squashed. Two fake values cause them:
+# - the test Hub token and helper secret of the unit tests and fakes (the hex digits 0 to f,
+#   in order, repeated);
+# - the sample WebSocket key of RFC 6455 section 1.3 (the base64 of "the sample nonce").
+# Lines that hold them now:
+app/src/test/kotlin/dev/cline/termux/core/kernel/dashboard/DashboardClientTest.kt:generic-api-key:42
+app/src/test/kotlin/dev/cline/termux/core/kernel/dashboard/SettingsHelperTest.kt:generic-api-key:33
+app/src/test/kotlin/dev/cline/termux/core/kernel/termux/ClineCommandsTest.kt:generic-api-key:77
+app/src/test/kotlin/dev/cline/termux/core/kernel/termux/TermuxCommandTest.kt:generic-api-key:11
+app/src/test/kotlin/dev/cline/termux/fakes/FakeKernelCommands.kt:generic-api-key:15
+docs/05-open-questions.md:generic-api-key:9
+docs/research/kernel-and-desktop-synthesis.json:generic-api-key:664
+tools/hub-fixtures/record.ts:generic-api-key:378
+# Lines that held them in earlier commits:
+app/src/test/kotlin/dev/cline/termux/core/kernel/dashboard/DashboardClientTest.kt:generic-api-key:30
+app/src/test/kotlin/dev/cline/termux/core/kernel/dashboard/SettingsHelperTest.kt:generic-api-key:30
+app/src/test/kotlin/dev/cline/termux/core/kernel/termux/ClineCommandsTest.kt:generic-api-key:73
+app/src/test/kotlin/dev/cline/termux/core/kernel/termux/TermuxCommandTest.kt:generic-api-key:10
+app/src/test/kotlin/dev/cline/termux/kernel/KernelCoordinatorTest.kt:generic-api-key:32
+tools/hub-fixtures/record.ts:generic-api-key:334

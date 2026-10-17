@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Notifications package (docs/07 §5): system notifications (customize-and-rest.md §11,
+  settings-providers.md S3.3), the foreground "Cline is working..." notification (§12) and the
+  Notifications settings page copy (settings-providers.md S3.2). Prefixes per docs/07 §13:
+  notif_ for notifications and their settings, kernel_notification_ for the foreground service.
+  Desktop copy is verbatim ("..." versus "…" kept); (Android) marks copy new to this app.
+-->
+<resources>
+    <!-- Channels (S3.3 table, §11.7); names are (Android). -->
+    <string name="notif_channel_group_sessions">Sessions</string>
+    <string name="notif_channel_task_completed">Task completed</string>
+    <string name="notif_channel_task_completed_quiet">Task completed (silent)</string>
+    <string name="notif_channel_approval_needed">Approval needed</string>
+    <string name="notif_channel_approval_needed_quiet">Approval needed (no sound)</string>
+    <string name="notif_channel_question_asked">Question asked</string>
+    <string name="notif_channel_question_asked_quiet">Question asked (no sound)</string>
+    <string name="notif_channel_session_error">Session error</string>
+    <string name="notif_channel_session_error_quiet">Session error (silent)</string>
+    <string name="notif_channel_account">Account</string>
+    <string name="notif_channel_kernel">Kernel</string>
+    <string name="notif_channel_kernel_description">Shown while Cline keeps a session connected in the background</string>
+
+    <!-- Session notifications (desktop lib/desktop-notifications.ts). -->
+    <string name="notif_task_completed_title">Task completed</string>
+    <string name="notif_task_completed_body">Cline finished working and the result is ready.</string>
+    <string name="notif_task_failed_title">Task failed</string>
+    <string name="notif_task_failed_body">Cline encountered an error while running this task.</string>
+    <string name="notif_approval_title">Approval needed</string>
+    <string name="notif_approval_body">%1$s is waiting for your approval.</string>
+    <string name="notif_approval_tool_fallback">A tool</string>
+    <string name="notif_question_title">Cline has a question</string>
+    <string name="notif_question_body_fallback">Open this task to answer Cline\'s question.</string>
+    <!-- Sub-text fallback for an untitled session (desktop agent-header.tsx). -->
+    <string name="notif_session_untitled">New Session</string>
+    <!-- Group summary text (Android). -->
+    <plurals name="notif_group_summary">
+        <item quantity="one">%1$d update</item>
+        <item quantity="other">%1$d updates</item>
+    </plurals>
+    <!-- Sign in with Cline finished while the app was in the background (SP S7 step 5, Android). -->
+    <string name="notif_signed_in_title">Signed in to Cline</string>
+    <string name="notif_signed_in_body">Return to Cline to start building.</string>
+
+    <!-- Foreground service (customize-and-rest.md §12.3). -->
+    <string name="kernel_notification_working">Cline is working...</string>
+    <string name="kernel_notification_waiting">Waiting for your approval</string>
+    <string name="kernel_notification_waiting_text">%1$s is waiting for your approval.</string>
+    <string name="kernel_notification_question">Cline has a question</string>
+    <plurals name="kernel_notification_several">
+        <item quantity="one">Cline is working on %1$d task</item>
+        <item quantity="other">Cline is working on %1$d tasks</item>
+    </plurals>
+    <string name="kernel_notification_connected">Connected to the Cline Hub</string>
+    <string name="kernel_notification_connected_text">Cline will notify you when a task needs you.</string>
+    <string name="kernel_notification_reconnecting">Reconnecting...</string>
+    <string name="kernel_notification_stopping">Stopping...</string>
+    <string name="kernel_notification_action_stop">Stop agent</string>
+    <string name="kernel_notification_action_disconnect">Disconnect</string>
+    <string name="kernel_notification_title_separator">", "</string>
+
+    <!-- Settings > Notifications (settings-providers.md S3.2). -->
+    <string name="notif_settings_title">Notifications</string>
+    <string name="notif_settings_description">Notify only while Cline is in the background. Tapping a notification opens its session.</string>
+    <string name="notif_settings_checking">Checking…</string>
+    <string name="notif_settings_permission_needed">Cline needs permission to show notifications.</string>
+    <string name="notif_settings_allow">Allow notifications</string>
+    <string name="notif_settings_blocked">Notifications are blocked in system settings.</string>
+    <string name="notif_settings_check_permission">Check permission</string>
+    <string name="notif_settings_events_header">Events</string>
+    <string name="notif_settings_task_completion_label">Task completed</string>
+    <string name="notif_settings_task_completion_description">When Cline finishes a task or turn.</string>
+    <string name="notif_settings_approval_needed_label">Approval needed</string>
+    <string name="notif_settings_approval_needed_description">When a tool is waiting for your approval.</string>
+    <string name="notif_settings_question_asked_label">Question asked</string>
+    <string name="notif_settings_question_asked_description">When Cline needs an answer before continuing.</string>
+    <string name="notif_settings_session_error_label">Session error</string>
+    <string name="notif_settings_session_error_description">When a task stops because of an error.</string>
+    <string name="notif_settings_sound">Sound</string>
+    <string name="notif_settings_notify_cd">%1$s notifications</string>
+    <string name="notif_settings_sound_cd">%1$s sound</string>
+    <string name="notif_settings_channel_blocked">Blocked in system settings</string>
+    <string name="notif_settings_channel_open">Open</string>
+    <string name="notif_settings_delivery_header">Delivery</string>
+    <string name="notif_settings_background_connection">Background connection</string>
+    <string name="notif_settings_background_connection_supporting">Cline can notify you only while it stays connected to the kernel.</string>
+    <string name="notif_settings_keep_alive_denied">Android did not allow Cline to stay connected.</string>
+    <string name="notif_settings_system">System notification settings</string>
+    <string name="notif_settings_system_supporting">Channels, sounds and Do Not Disturb</string>
+    <string name="notif_settings_system_supporting_granted">Allowed by system. Channels, sounds and Do Not Disturb</string>
+</resources>

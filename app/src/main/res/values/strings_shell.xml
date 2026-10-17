@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copy owned by the app shell (ui/AppShell.kt, ui/navigation): drawer header, destination
+  items, rail (design-system.md §5.2, sessions.md §2.3). Desktop strings are verbatim
+  (agent-sidebar.tsx); strings marked (Android) are new. The shell reuses
+  components_open_sessions ("Open sessions") and the kernel_* / components_kernel_* keys.
+-->
+<resources>
+    <!-- Destinations (DS §5.2). "Chats" is the Android label for the session/chat area. -->
+    <string name="shell_destination_chats">Chats</string>
+    <string name="shell_destination_schedules">Schedules</string>
+    <string name="shell_destination_customize">Customize</string>
+    <string name="shell_destination_settings">Settings</string>
+
+    <!-- Drawer destination items (sessions.md §2.3; "New session" adapts the desktop row label "Session") -->
+    <string name="shell_new_session">New session</string>
+    <string name="shell_new_session_tooltip">Start a new session</string>
+    <string name="shell_customize_tooltip">Customize Cline with plugins, rules, and more</string>
+
+    <!-- Drawer / list pane header row (sessions.md §2.3) -->
+    <string name="shell_drawer_title">Cline Termux</string>
+    <string name="shell_cline_home">Cline Termux home</string>
+    <string name="shell_home_tooltip">Home</string>
+    <string name="shell_search_sessions">Search sessions</string>
+    <!-- Android adaptation of "Search sessions (Cmd/Ctrl+P)"; shown only with a hardware keyboard -->
+    <string name="shell_search_sessions_shortcut">Search sessions (Ctrl+P)</string>
+    <!-- (Android) drawer pane title, announced when it opens (sessions.md §2.10) -->
+    <string name="shell_sessions_pane_title">Sessions</string>
+
+    <!-- Rail on expanded windows: the menu button toggles the list pane (Android; desktop "Expand sidebar") -->
+    <string name="shell_collapse_sessions">Collapse sessions</string>
+    <string name="shell_expand_sessions">Expand sessions</string>
+
+    <!-- (Android) the 6dp unread badge on the Chats rail item (sessions.md §2.3) -->
+    <string name="shell_unread_sessions">Unread sessions</string>
+    <!-- (Android) TalkBack for a rail item with the unread badge: "<label>, <badge>" -->
+    <string name="shell_rail_item_with_badge">%1$s, %2$s</string>
+</resources>

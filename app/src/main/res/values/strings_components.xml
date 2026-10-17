@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copy owned by ui/components (design-system.md §4, §1.6, §8; copy ids per docs/07 §13).
+  Desktop strings are verbatim, including "..." versus "…"; strings marked (Android) are new.
+-->
+<resources>
+    <!-- PageScaffold / app bars (DS §5.3) -->
+    <string name="components_back">Back</string>
+    <string name="components_open_sessions">Open sessions</string>
+
+    <!-- Dialogs and sheets (DS §4.1 #16) -->
+    <string name="components_close">Close</string>
+    <string name="components_save">Save</string>
+    <string name="components_cancel">Cancel</string>
+    <string name="components_retry">Retry</string>
+    <string name="components_details">Details</string>
+
+    <!-- Clipboard (DS §14 clipboard rule; Android) -->
+    <string name="components_copied">Copied</string>
+    <string name="components_copy_value">Copy %1$s</string>
+    <string name="components_copy_failed">Copy failed. The text could not be copied to the clipboard.</string>
+    <!-- ClipDescription labels of plain clips (docs/07 §14; Android) -->
+    <string name="components_clip_url">Link</string>
+    <string name="components_clip_path">Path</string>
+
+    <!-- External links (onboarding-kernel.md §0.7, customize-and-rest.md §0.8; Android) -->
+    <string name="components_no_browser">No browser found to open %1$s.</string>
+
+    <!-- EmptyState defaults (desktop ConversationEmptyState) -->
+    <string name="components_empty_title_default">No messages yet</string>
+    <string name="components_empty_body_default">Start a conversation to see messages here.</string>
+
+    <!-- ScrollToLatestButton (desktop ConversationScrollButton) -->
+    <string name="components_scroll_to_latest">Scroll to latest message</string>
+
+    <!-- Home's screen-reader-only heading over the WelcomeHero (desktop welcome-chat.tsx sr-only h1) -->
+    <string name="components_hero_a11y">What would you like to build?</string>
+
+    <!-- Session status labels (DS §1.6; sessions.md §1.3 action-pending row) -->
+    <string name="components_status_failed">Failed</string>
+    <string name="components_status_approval_required">Approval required</string>
+    <string name="components_status_question_asked">Question asked</string>
+    <string name="components_status_pending">Pending</string>
+    <string name="components_status_starting">Starting</string>
+    <string name="components_status_running">Running</string>
+    <string name="components_status_unread">Unread</string>
+    <string name="components_status_completed">Completed</string>
+    <string name="components_status_cancelled">Cancelled</string>
+    <string name="components_status_idle">Idle</string>
+    <string name="components_status_renaming">Renaming...</string>
+    <string name="components_status_forking">Forking...</string>
+    <string name="components_status_deleting">Deleting...</string>
+    <string name="components_status_a11y">Session status: %1$s</string>
+
+    <!-- Kernel connection (DS §1.6 kernel table) -->
+    <string name="components_kernel_connected">Cline Hub @%1$s</string>
+    <string name="components_kernel_connecting">Connecting...</string>
+    <string name="components_kernel_reconnecting">Reconnecting...</string>
+    <string name="components_kernel_unavailable">Cline Hub @unknown</string>
+    <string name="components_kernel_unavailable_detail">Cline Hub is not connected.</string>
+    <string name="components_kernel_asleep">Termux asleep</string>
+    <string name="components_kernel_asleep_detail">Start kernel to continue.</string>
+    <string name="components_kernel_status_a11y">Kernel status: %1$s</string>
+
+    <!-- HelperUnavailableCard (settings-providers.md §0.3; Android) -->
+    <string name="components_helper_unavailable_title">Settings helper unavailable</string>
+    <string name="components_helper_kernel_stopped_title">Kernel is stopped</string>
+    <string name="components_helper_start_failed_body">Cline could not start its settings helper in Termux, so this page shows a reduced set of options. Keys you save still go straight to Termux.</string>
+    <string name="components_helper_build_unsupported_body">This Cline kernel build cannot run the settings helper on this phone. You can still add API keys and choose models.</string>
+    <string name="components_helper_port_in_use_body">Another Cline dashboard is already running in Termux on port 8787. Stop it to see every option here. You can still add API keys and choose models.</string>
+    <string name="components_helper_port_in_use_detail">A dashboard started without an invite secret can be read by other apps on this phone, so Cline does not use it.</string>
+    <string name="components_helper_kernel_stopped_body">You stopped the Cline kernel, so this page shows a reduced set of options. Keys you save still go straight to Termux.</string>
+    <string name="components_helper_start_kernel">Start kernel</string>
+
+    <!-- Typed repository failures (FailureCopy.kt; customize-and-rest.md §0.5, Android). Kernel text is shown verbatim instead when there is any. -->
+    <string name="components_failure_hub_disconnected">Cline Hub disconnected. Try again when it reconnects.</string>
+    <string name="components_failure_hub_timeout">The Cline Hub did not answer in time.</string>
+    <string name="components_failure_hub_draining">Cline Hub is restarting. Try again in a moment.</string>
+    <string name="components_failure_termux_missing">Termux is not installed.</string>
+    <string name="components_failure_termux_permission">Cline is not allowed to run commands in Termux.</string>
+    <string name="components_failure_termux_external_apps">Termux is blocking commands from other apps.</string>
+    <string name="components_failure_termux_timeout">Termux did not answer.</string>
+    <string name="components_failure_termux_start">Termux could not start the command.</string>
+    <string name="components_failure_command_exit">The command failed with exit code %1$d.</string>
+    <string name="components_failure_helper_down">The settings helper in Termux is not running.</string>
+    <string name="components_failure_helper_lost">The settings helper in Termux stopped responding.</string>
+    <string name="components_failure_helper_timeout">The settings helper in Termux did not answer in time.</string>
+    <!-- Desktop "Unknown error": a failure that carried an empty message. -->
+    <string name="components_failure_unknown">Unknown error</string>
+
+    <!-- SearchField: the clear button of a search field whose screen has no label of its own (Android) -->
+    <string name="components_clear_search">Clear search</string>
+</resources>

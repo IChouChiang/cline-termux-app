@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FileProvider roots (docs/07 §5, D7). All under cacheDir; ShareFiles sweeps them after 24 h. -->
+<paths>
+    <cache-path name="share" path="share/" />
+    <cache-path name="diagnostics" path="diagnostics/" />
+    <cache-path name="camera" path="camera/" />
+</paths>

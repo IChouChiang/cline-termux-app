@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Schedules (customize-and-rest.md C5 list, C6 editor, C7 details; §4.5 copy). Desktop copy
+     verbatim from routine-view.tsx; strings marked (Android) in the spec are new. -->
+<resources>
+    <!-- C5 list -->
+    <string name="schedule_title">Schedules</string>
+    <string name="schedule_description">Run agents on cron schedules for recurring automations like daily summaries and code reviews.</string>
+    <string name="schedule_refresh">Refresh</string>
+    <string name="schedule_new">New Schedule</string>
+    <string name="schedule_loading">Loading schedules...</string>
+    <string name="schedule_empty">No schedules yet. Start from a suggestion below, or create your own with New Schedule.</string>
+    <string name="schedule_label_id">ID:</string>
+    <string name="schedule_label_model">Model:</string>
+    <string name="schedule_label_last_run">Last run:</string>
+    <string name="schedule_label_last_result">Last result:</string>
+    <string name="schedule_label_last_error">Last error:</string>
+    <string name="schedule_label_next_run">Next run:</string>
+    <string name="schedule_label_active">Active:</string>
+    <string name="schedule_active_value">%1$s since %2$s</string>
+    <string name="schedule_cd_edit">Edit %1$s</string>
+    <string name="schedule_cd_run_now">Run %1$s now</string>
+    <string name="schedule_cd_pause">Pause %1$s</string>
+    <string name="schedule_cd_resume">Resume %1$s</string>
+    <string name="schedule_cd_delete">Delete %1$s</string>
+    <string name="schedule_cd_enable">Enable %1$s</string>
+    <string name="schedule_cd_actions">Actions for %1$s</string>
+    <string name="schedule_tooltip_edit">Edit schedule</string>
+    <string name="schedule_tooltip_run_now">Run now</string>
+    <string name="schedule_tooltip_pause">Pause schedule</string>
+    <string name="schedule_tooltip_resume">Resume schedule</string>
+    <string name="schedule_tooltip_delete">Delete schedule</string>
+    <string name="schedule_tooltip_enabled">Enabled — tap to disable</string>
+    <string name="schedule_tooltip_disabled">Disabled — tap to enable</string>
+    <string name="schedule_run_now">Run now</string>
+    <string name="schedule_suggested">Suggested</string>
+    <string name="schedule_template_daily">Daily</string>
+    <string name="schedule_template_weekly">Weekly</string>
+    <!-- ROUTINE_TEMPLATES title/description (routine-templates.ts), display copy only; the template
+         `name` and `prompt` stay data because the kernel stores and matches them. -->
+    <string name="schedule_template_find_critical_bugs_title">Find critical bugs</string>
+    <string name="schedule_template_find_critical_bugs_description">Sweep recent commits for high-severity bugs that slipped past review, and fix the ones with a concrete trigger.</string>
+    <string name="schedule_template_security_scan_title">Scan for vulnerabilities</string>
+    <string name="schedule_template_security_scan_description">Audit the codebase for exploitable security issues with a validated end-to-end attack path.</string>
+    <string name="schedule_template_daily_digest_title">Summarize changes daily</string>
+    <string name="schedule_template_daily_digest_description">Get a skimmable digest of everything that landed in the last 24 hours, plus risks worth watching.</string>
+    <string name="schedule_template_update_docs_title">Keep docs updated</string>
+    <string name="schedule_template_update_docs_description">Refresh documentation whenever the code drifts away from it, verified against the source.</string>
+    <string name="schedule_snackbar_run_started">Run started. \"%1$s\" was queued to run now.</string>
+    <string name="schedule_snackbar_run_not_started">Run not started. \"%1$s\" did not queue a run — the schedule may be disabled or deleted.</string>
+    <string name="schedule_snackbar_run_failed">Failed to start run. %1$s</string>
+    <string name="schedule_keep_alive_text">Schedules run inside the Cline Hub in Termux. Keep the kernel running so they fire on time.</string>
+    <string name="schedule_keep_alive_action">Keep it running</string>
+    <string name="schedule_dismiss">Dismiss</string>
+    <string name="schedule_delete_title">Delete Routine</string>
+    <string name="schedule_delete_text">This will delete \"%1$s\" and remove future scheduled runs.</string>
+    <string name="schedule_delete_fallback_name">this routine</string>
+    <string name="schedule_delete_confirm">Delete</string>
+    <string name="schedule_deleting">Deleting...</string>
+    <string name="schedule_reduced_scope">Showing schedules for %1$s only.</string>
+    <string name="schedule_unavailable_reconnecting">Unavailable while reconnecting</string>
+    <string name="schedule_select_title">Select a schedule</string>
+    <string name="schedule_select_body">Tap a schedule to see its details and runs.</string>
+    <string name="schedule_state_enabled">enabled</string>
+    <string name="schedule_state_disabled">disabled</string>
+    <string name="schedule_card_a11y">%1$s, %2$s, %3$s, next run %4$s, last result %5$s</string>
+    <string name="schedule_loading_a11y">Loading schedules...</string>
+
+    <!-- Errors (CR §0.5, Android) -->
+    <string name="schedule_retry">Retry</string>
+
+    <!-- C6 editor -->
+    <string name="schedule_editor_title">Schedule</string>
+    <string name="schedule_editor_create_description">Create a scheduler routine.</string>
+    <string name="schedule_editor_update_description">Update this scheduler routine.</string>
+    <string name="schedule_editor_name">Name</string>
+    <string name="schedule_editor_name_placeholder">Daily code review</string>
+    <string name="schedule_editor_schedule">Schedule</string>
+    <string name="schedule_editor_current_cron">Current cron expression: %1$s. Changing the timing controls replaces this expression.</string>
+    <string name="schedule_editor_frequency">Frequency</string>
+    <string name="schedule_editor_daily">Daily</string>
+    <string name="schedule_editor_weekly">Weekly</string>
+    <string name="schedule_editor_once">Once</string>
+    <string name="schedule_editor_date">Date</string>
+    <string name="schedule_editor_days">Days</string>
+    <string name="schedule_editor_choose_days">Choose days</string>
+    <string name="schedule_editor_time">Time</string>
+    <string name="schedule_editor_prompt">Prompt</string>
+    <string name="schedule_editor_provider">Provider</string>
+    <string name="schedule_editor_model">Model</string>
+    <string name="schedule_editor_no_providers">No providers found.</string>
+    <string name="schedule_editor_no_models">No models found.</string>
+    <string name="schedule_editor_workspace">Workspace</string>
+    <string name="schedule_editor_choose_workspace">Choose workspace</string>
+    <string name="schedule_editor_system_prompt">System prompt (optional)</string>
+    <string name="schedule_editor_timeout">Timeout seconds (optional)</string>
+    <string name="schedule_editor_timeout_placeholder">3600</string>
+    <string name="schedule_editor_tags">Tags (comma-separated, optional)</string>
+    <string name="schedule_editor_tags_placeholder">automation,review</string>
+    <string name="schedule_editor_cancel">Cancel</string>
+    <string name="schedule_editor_create">Create Schedule</string>
+    <string name="schedule_editor_save">Save Changes</string>
+    <string name="schedule_editor_creating">Creating...</string>
+    <string name="schedule_editor_saving">Saving...</string>
+    <string name="schedule_editor_close">Close</string>
+    <string name="schedule_editor_ok">OK</string>
+    <string name="schedule_editor_date_a11y">Date, %1$s, double-tap to change</string>
+    <string name="schedule_editor_time_a11y">Time, %1$s, double-tap to change</string>
+    <string name="schedule_error_name_required">Routine name is required.</string>
+    <string name="schedule_error_once_in_past">Choose a one-time date and time in the future.</string>
+    <string name="schedule_error_no_weekday">Select at least one weekday.</string>
+    <string name="schedule_error_prompt_required">Prompt is required.</string>
+    <string name="schedule_error_workspace_required">Workspace is required.</string>
+    <string name="schedule_error_timeout_invalid">Enter a whole number of seconds, or leave it empty.</string>
+    <string name="schedule_error_home_only">Schedules can only use the home folder on this connection.</string>
+    <string name="schedule_error_workspace_missing">That workspace folder doesn\'t exist in Termux.</string>
+    <string name="schedule_discard_title">Discard changes?</string>
+    <string name="schedule_discard_text">Your changes to this schedule will be lost.</string>
+    <string name="schedule_discard_keep">Keep editing</string>
+    <string name="schedule_discard_confirm">Discard</string>
+
+    <!-- C7 details -->
+    <string name="schedule_details_fallback_title">Schedule</string>
+    <string name="schedule_details_schedule">Schedule:</string>
+    <string name="schedule_details_mode">Mode:</string>
+    <string name="schedule_details_enabled">Enabled:</string>
+    <string name="schedule_details_yes">yes</string>
+    <string name="schedule_details_no">no</string>
+    <string name="schedule_details_copy_id">Copy schedule ID</string>
+    <string name="schedule_details_copied_id">Copied schedule ID</string>
+    <string name="schedule_details_last_session">Last session</string>
+    <string name="schedule_details_open_last_session">Open last session</string>
+    <string name="schedule_details_prompt">Prompt</string>
+    <string name="schedule_details_tags">Tags</string>
+    <string name="schedule_details_runs">Runs</string>
+    <plurals name="schedule_details_results">
+        <item quantity="one">%1$d result</item>
+        <item quantity="other">%1$d results</item>
+    </plurals>
+    <string name="schedule_details_no_runs">No runs yet.</string>
+    <plurals name="schedule_details_show_all">
+        <item quantity="one">Show all %1$d run</item>
+        <item quantity="other">Show all %1$d runs</item>
+    </plurals>
+    <string name="schedule_details_open_session">Open session</string>
+    <string name="schedule_details_run_no_session">%1$s, no session</string>
+    <string name="schedule_details_run_a11y">%1$s, %2$s</string>
+    <!-- (Android) Run-row TalkBack label with the run's error line: status, error, timestamp. -->
+    <string name="schedule_details_run_error_a11y">%1$s, %2$s, %3$s</string>
+    <string name="schedule_details_close">Close details</string>
+    <string name="schedule_details_more">More actions</string>
+    <string name="schedule_details_json">Schedule JSON</string>
+    <string name="schedule_run_completed">Completed</string>
+    <string name="schedule_run_failed">Failed</string>
+    <string name="schedule_run_timeout">Timeout</string>
+    <string name="schedule_run_aborted">Aborted</string>
+    <string name="schedule_run_running">Running</string>
+    <string name="schedule_run_pending">Pending</string>
+    <string name="schedule_run_success">Success</string>
+    <string name="schedule_run_unknown">Unknown result</string>
+
+    <!-- CR §4.5 trigger and last-result lines (desktop routine-view.tsx formatters, verbatim). -->
+    <string name="schedule_words_every_day">Every day</string>
+    <string name="schedule_words_weekdays">Weekdays</string>
+    <!-- "<status> at <date-time>": %1$s the run status as the kernel reports it, %2$s when it ended. -->
+    <string name="schedule_words_status_at">%1$s at %2$s</string>
+    <string name="schedule_words_unknown_status">unknown</string>
+    <!-- Trigger line "<frequency> · <time>": %1$s "Once", "Daily" or the day list, %2$s the time (the date and time for a one-time schedule). -->
+    <string name="schedule_trigger_pair">%1$s · %2$s</string>
+    <!-- Trigger line with a zone: %1$s the frequency, %2$s the time, %3$s the IANA time zone id ("Europe/Berlin"). -->
+    <string name="schedule_trigger_with_zone">%1$s · %2$s · %3$s</string>
+    <!-- Joins the selected day labels pairwise, left to right ("Mon, Wed, Fri"); a CJK translation uses "%1$s、%2$s". -->
+    <string name="schedule_days_join">%1$s, %2$s</string>
+    <!-- Desktop WEEKDAY_OPTIONS short labels, Monday first. -->
+    <string-array name="schedule_day_short">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </string-array>
+    <!-- (Android) Day chip TalkBack names (CR §4.10 "Monday, selected"), Monday first. Resources, not
+         DayOfWeek.getDisplayName, so a TalkBack label never mixes the system language into English copy. -->
+    <string-array name="schedule_day_full">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+</resources>

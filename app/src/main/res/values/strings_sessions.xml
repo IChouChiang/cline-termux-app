@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copy owned by the sessions screens (ui/sessions): the drawer and list pane (S1), the
+  Sessions screen (S2), session search (S3), the row menu, rename, fork, delete and the
+  Session details sheet (F2-F6). design/screens/sessions.md §9. Desktop verbatim
+  (agent-sidebar.tsx, sessions-view.tsx, session-command-bar.tsx, use-session-history.ts)
+  unless the spec marks the line (Android).
+-->
+<resources>
+    <!-- S1 list header, sort and filter -->
+    <string name="sessions_header_time">Sessions</string>
+    <string name="sessions_header_project">Projects</string>
+    <string name="sessions_cd_sort_mode">Sort sessions: %1$s</string>
+    <string name="sessions_sort_mode_time">Time</string>
+    <string name="sessions_sort_mode_project">Project</string>
+    <string name="sessions_tooltip_sorted_by_time">Sorted by time — tap to group by project</string>
+    <string name="sessions_tooltip_grouped_by_project">Grouped by project — tap to sort by time</string>
+    <string name="sessions_cd_filter">Filter sessions</string>
+    <string name="sessions_cd_filter_active">Filter sessions, filtered</string>
+    <string name="sessions_filter_status">Status</string>
+    <string name="sessions_filter_all">All</string>
+    <string name="sessions_filter_running">Running</string>
+    <string name="sessions_filter_source">Source</string>
+    <string name="sessions_filter_all_sources">All sources</string>
+
+    <!-- S1 sections and rows -->
+    <string name="sessions_section_pinned">Pinned</string>
+    <string name="sessions_section_scheduled">Scheduled</string>
+    <string name="sessions_section_tasks">Tasks</string>
+    <plurals name="sessions_schedule_runs">
+        <item quantity="one">%1$d run</item>
+        <item quantity="other">%1$d runs</item>
+    </plurals>
+    <string name="sessions_schedule_run_number">Run %1$d</string>
+    <string name="sessions_schedule_run_fallback">Run</string>
+    <string name="sessions_a11y_scheduled">scheduled</string>
+    <string name="sessions_a11y_pinned">pinned</string>
+    <string name="sessions_a11y_join">%1$s, %2$s</string>
+    <string name="sessions_a11y_join_sentence">%1$s %2$s</string>
+    <string name="sessions_state_expanded">Expanded</string>
+    <string name="sessions_state_collapsed">Collapsed</string>
+    <string name="sessions_show_more">Show more</string>
+    <string name="sessions_show_more_in">Show more in %1$s</string>
+    <string name="sessions_loading_ellipsis">Loading...</string>
+    <string name="sessions_loading">Loading session history...</string>
+    <string name="sessions_empty_drawer">No sessions found in history.</string>
+    <string name="sessions_load_failed_title">Could not load sessions</string>
+    <string name="sessions_unavailable">Session history is unavailable right now.</string>
+    <string name="sessions_load_more_failed_title">Could not load more sessions</string>
+    <string name="sessions_retry">Retry</string>
+    <string name="sessions_showing_cached">Showing the last loaded list.</string>
+
+    <!-- Ages (compactAge, sessions.md §1.4) -->
+    <string name="sessions_age_now">now</string>
+    <string name="sessions_age_minutes">%1$dm</string>
+    <string name="sessions_age_hours">%1$dh</string>
+    <string name="sessions_age_yesterday">Yesterday</string>
+    <string name="sessions_age_days">%1$dd</string>
+
+    <!-- S1 footer -->
+    <string name="sessions_cd_account_row">Account settings, %1$s</string>
+    <string name="sessions_account_scope_personal">Personal</string>
+    <string name="sessions_account_name_fallback">Cline</string>
+    <string name="sessions_settings">Settings</string>
+
+    <!-- Row menu (DS §4.1 #15) -->
+    <string name="sessions_menu_pin">Pin</string>
+    <string name="sessions_menu_unpin">Unpin</string>
+    <string name="sessions_menu_rename">Rename</string>
+    <string name="sessions_menu_renaming">Renaming...</string>
+    <string name="sessions_menu_fork">Fork</string>
+    <string name="sessions_menu_forking">Forking...</string>
+    <string name="sessions_menu_details">Details</string>
+    <string name="sessions_menu_delete">Delete</string>
+    <string name="sessions_menu_deleting">Deleting...</string>
+    <string name="sessions_long_click_label">Session actions</string>
+    <string name="sessions_click_open">Open session</string>
+
+    <!-- S2 Sessions screen -->
+    <string name="sessions_title">Sessions</string>
+    <string name="sessions_description">Recent sessions across clients and workspaces.</string>
+    <string name="sessions_search_placeholder">Search</string>
+    <string name="sessions_cd_search">Search sessions</string>
+    <string name="sessions_cd_clear_search">Clear search</string>
+    <string name="sessions_cd_sort">Sort sessions</string>
+    <string name="sessions_sort_newest">Newest first</string>
+    <string name="sessions_sort_oldest">Oldest first</string>
+    <string name="sessions_filter_sheet_title">Filter sessions</string>
+    <string name="sessions_filter_clear">Clear filters</string>
+    <string name="sessions_filter_none">No filters available</string>
+    <string name="sessions_col_title">Title</string>
+    <string name="sessions_col_workspace">Workspace</string>
+    <string name="sessions_col_model">Model</string>
+    <string name="sessions_col_tokens">Tokens</string>
+    <string name="sessions_col_cost">Cost</string>
+    <string name="sessions_col_time">Time</string>
+    <string name="sessions_no_model">No model</string>
+    <string name="sessions_no_workspace">No workspace</string>
+    <string name="sessions_dash">-</string>
+    <string name="sessions_workspace_chat">Chat</string>
+    <string name="sessions_workspace_other">Other</string>
+    <string name="sessions_workspace_home">~</string>
+    <!-- (Android, decided A22) the drawer's project group of the Termux home, the folder a session starts in with none chosen -->
+    <string name="sessions_project_home">Home</string>
+    <string name="sessions_title_fallback">Session %1$s</string>
+    <string name="sessions_supporting_join">%1$s · %2$s</string>
+    <string name="sessions_status_prefix">"%1$s · "</string>
+    <plurals name="sessions_count">
+        <item quantity="one">%1$d session</item>
+        <item quantity="other">%1$d sessions</item>
+    </plurals>
+    <string name="sessions_empty">No sessions yet.</string>
+    <string name="sessions_empty_body">Start a new session to see it here.</string>
+    <string name="sessions_new_session">New session</string>
+    <string name="sessions_filtered_empty">No sessions match the current filters.</string>
+    <string name="sessions_cd_actions_for">Session actions for %1$s</string>
+    <string name="sessions_cd_rename_title">Rename %1$s</string>
+    <string name="sessions_cd_save_title">Save title</string>
+    <string name="sessions_cd_cancel_rename">Cancel rename</string>
+    <string name="sessions_open_session_a11y">Open session: %1$s</string>
+    <string name="sessions_tokens_spoken">%1$s input, %2$s output tokens</string>
+
+    <!-- Flow results (snackbars: "<title>. <description>", DS §4.1 #17) -->
+    <string name="sessions_snackbar">%1$s. %2$s</string>
+    <string name="sessions_rename_failed">Rename failed</string>
+    <string name="sessions_rename_failed_body">The session title could not be updated.</string>
+    <string name="sessions_pin_failed">Pin failed</string>
+    <string name="sessions_unpin_failed">Unpin failed</string>
+    <string name="sessions_pin_failed_body">The session could not be updated.</string>
+    <string name="sessions_fork_failed">Fork failed</string>
+    <string name="sessions_fork_failed_body">The session could not be forked.</string>
+    <string name="sessions_fork_empty">Cannot fork an empty session.</string>
+    <string name="sessions_delete_failed">Delete failed</string>
+    <string name="sessions_delete_failed_body">The session could not be removed from local history.</string>
+    <string name="sessions_session_gone">This session no longer exists.</string>
+    <string name="sessions_hub_not_connected">Cline Hub is not connected.</string>
+
+    <!-- F5 delete dialog -->
+    <string name="sessions_delete_title">Delete session?</string>
+    <string name="sessions_delete_body">This removes \"%1$s\" from local history.</string>
+    <string name="sessions_delete_body_running">The running task will be stopped.</string>
+    <string name="sessions_delete_confirm">Delete</string>
+    <string name="sessions_deleting">Deleting...</string>
+
+    <!-- F6 Session details -->
+    <string name="session_details_schedule">Schedule</string>
+    <string name="session_details_run">Run</string>
+    <string name="session_details_workspace">Workspace</string>
+    <string name="session_details_branch">Branch</string>
+    <string name="session_details_provider">Provider</string>
+    <string name="session_details_model">Model</string>
+    <string name="session_details_tokens">Tokens</string>
+    <string name="session_details_cost">Cost</string>
+    <string name="session_details_source">Source</string>
+    <string name="session_details_session_id">Session ID</string>
+    <string name="session_details_loading">Loading session details</string>
+
+    <!-- S3 Session search -->
+    <string name="search_pane_title">Search session history</string>
+    <string name="search_placeholder">Search all session history…</string>
+    <string name="search_searching">Searching sessions…</string>
+    <string name="search_no_results">No matching session history.</string>
+    <string name="search_live_hint">Sessions that are still running may not appear until they end.</string>
+    <string name="search_failed">Search is unavailable right now.</string>
+    <string name="search_retry">Retry</string>
+    <string name="search_group">Session history</string>
+    <!-- Keyed on the total (%2$d) -->
+    <plurals name="search_showing">
+        <item quantity="one">Showing %1$d of %2$d result</item>
+        <item quantity="other">Showing %1$d of %2$d results</item>
+    </plurals>
+    <plurals name="search_results_count">
+        <item quantity="one">%1$d result</item>
+        <item quantity="other">%1$d results</item>
+    </plurals>
+    <string name="search_idle_hint">Search messages, commands, errors, and file paths.</string>
+    <string name="search_keyboard_hint">Navigate with ↑↓ and open with ↵</string>
+    <string name="search_keyboard_shortcut">Ctrl+P</string>
+    <string name="search_hit_a11y">%1$s: %2$s. %3$s. %4$s</string>
+    <string name="search_cd_clear">Clear search</string>
+    <!-- HC §6.5 / §8 (Android, TalkBack custom action of the details sheet's Workspace row). -->
+    <string name="details_copy_path">Copy full path</string>
+    <!-- KS §5 / §9 (Android): stateDescription of a cached drawer row while the kernel is down. -->
+    <string name="list_unavailable_state">unavailable</string>
+</resources>

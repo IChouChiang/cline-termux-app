@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Changes ("Uncommitted changes") and Tool detail screens (work package changes-tool):
+  design/screens/changes-tools-checkpoints.md A.6, B.6 and section D. Desktop copy is verbatim;
+  (Android) marks new strings. Ids the terminal/diff components already define
+  (strings_terminal_diff.xml: changes_copy_path_*, changes_expand/collapse, changes_header_a11y,
+  changes_no_hunks, changes_show_more, diff_*, tool_overline_output, tool_output_cd,
+  tool_output_truncated_head, tool_scroll_latest, tool_copy_output) are reused, not redefined.
+-->
+<resources>
+    <!-- A. Changes -->
+    <string name="changes_title">Uncommitted changes</string>
+    <string name="changes_files_badge">Files: %1$d</string>
+    <string name="changes_empty">No file changes in this session yet.</string>
+    <!-- (Android) -->
+    <string name="changes_empty_body">File edits Cline makes in this session appear here.</string>
+    <!-- (Android) %1$s = the coloured "+N -N" span -->
+    <plurals name="changes_summary">
+        <item quantity="one">%1$s across %2$d file</item>
+        <item quantity="other">%1$s across %2$d files</item>
+    </plurals>
+    <!-- (Android) "+N -N" inside the summary line -->
+    <string name="changes_summary_counts">%1$s %2$s</string>
+    <!-- (Android) -->
+    <string name="changes_truncated_notice">Only the last 30 edits to a file are shown.</string>
+    <string name="changes_loading">Loading changes...</string>
+    <string name="changes_load_error">Could not load changes.</string>
+    <string name="changes_retry">Retry</string>
+    <!-- (Android) ClipDescription label of a copied path -->
+    <string name="changes_clip_label">File path</string>
+    <!-- (Android) API < 33 only; API 33+ shows the system clipboard confirmation -->
+    <string name="changes_path_copied">File path copied</string>
+    <!-- Desktop toast title + description -->
+    <string name="changes_copy_failed">Copy failed. The file path could not be copied to the clipboard.</string>
+    <!-- File menu: desktop title / (Android) -->
+    <string name="changes_copy_path">Copy file path</string>
+    <string name="changes_share_diff">Share diff</string>
+    <string name="changes_share_all">Share all changes</string>
+    <string name="changes_share_chooser">Share changes</string>
+    <string name="changes_share_subject">Changes in %1$s</string>
+    <!-- Desktop session title fallback -->
+    <string name="changes_share_subject_fallback">New Session</string>
+    <string name="changes_expand_all">Expand all</string>
+    <string name="changes_collapse_all">Collapse all</string>
+    <!-- Desktop agent-changes.tsx close button -->
+    <string name="changes_close_cd">Close diff view</string>
+    <!-- (Android) supporting pane: push the two-pane route -->
+    <string name="changes_open_full">Open full screen</string>
+    <!-- (Android) polite announcement, at most once per 5 s -->
+    <plurals name="changes_updated">
+        <item quantity="one">Changes updated: %1$d file</item>
+        <item quantity="other">Changes updated: %1$d files</item>
+    </plurals>
+    <!-- (Android) two-pane list row TalkBack: path, additions, deletions -->
+    <string name="changes_list_row_a11y">%1$s, %2$s, %3$s</string>
+    <!-- DS 1.6 kernel line 2 of "Termux asleep" -->
+    <string name="changes_kernel_start_to_continue">Start kernel to continue.</string>
+    <!-- (Android) KernelStrip TalkBack: "Kernel status: <line 1>. <line 2>" -->
+    <string name="changes_kernel_strip_a11y">Kernel status: %1$s</string>
+    <string name="changes_kernel_strip_lines">%1$s. %2$s</string>
+
+    <!-- B. Tool detail: status labels (DS 1.6 / Android) -->
+    <string name="tool_status_running">Running</string>
+    <string name="tool_status_completed">Completed</string>
+    <string name="tool_status_failed">Failed</string>
+    <string name="tool_status_approval">Approval required</string>
+    <string name="tool_status_rejected">Rejected</string>
+    <string name="tool_status_detached">Still running in the background</string>
+    <string name="tool_status_no_result">No result</string>
+    <string name="tool_status_interrupted">Interrupted</string>
+    <!-- (Android) label · duration -->
+    <string name="tool_status_line">%1$s · %2$s</string>
+    <!-- Overlines -->
+    <string name="tool_overline_command">Command</string>
+    <string name="tool_overline_details">Details</string>
+    <string name="tool_overline_input">Input</string>
+    <string name="tool_overline_error">Error</string>
+    <!-- Proceed / stop (desktop tool-message-block.tsx, use-chat-session.ts) -->
+    <string name="tool_proceed">Proceed while running</string>
+    <string name="tool_proceed_error">Could not detach the running command.</string>
+    <string name="tool_proceed_finished">The command finished before it could be detached.</string>
+    <!-- Kernel unsupported_command text, used when the reply carries none -->
+    <string name="tool_proceed_unsupported">This runtime does not support proceeding while commands are running.</string>
+    <string name="tool_stop_agent">Stop agent</string>
+    <!-- (Android) -->
+    <string name="tool_waiting_output">Waiting for output...</string>
+    <string name="tool_no_output">No output</string>
+    <string name="tool_copy_log_path">Copy log path</string>
+    <string name="tool_no_result_banner">The run ended before this tool reported a result.</string>
+    <string name="tool_interrupted_banner">The Cline Hub restarted while this tool was running.</string>
+    <string name="tool_not_found">This tool call is no longer in the session.</string>
+    <string name="tool_back_to_conversation">Back to conversation</string>
+    <string name="tool_load_error">Could not load this tool call.</string>
+    <!-- Actions (Android; "More options" = the M3 overflow CD) -->
+    <string name="tool_copy_command">Copy command</string>
+    <string name="tool_copy_input">Copy input</string>
+    <string name="tool_share_output">Share output</string>
+    <string name="tool_share_chooser">Share output</string>
+    <string name="tool_wrap_lines">Wrap lines</string>
+    <string name="tool_view_all_changes">View all changes</string>
+    <string name="tool_more_options">More options</string>
+    <!-- (Android) shown for 1600 ms after a copy -->
+    <string name="tool_copied_output">Copied output</string>
+    <string name="tool_copied_command">Copied command</string>
+    <string name="tool_copied_input">Copied input</string>
+    <string name="tool_copied_log_path">Copied log path</string>
+    <!-- (Android) a clipboard write failed -->
+    <string name="tool_copy_failed">Copy failed. The text could not be copied to the clipboard.</string>
+    <!-- (Android) ClipDescription labels -->
+    <string name="tool_clip_command">Command</string>
+    <string name="tool_clip_input">Tool input</string>
+    <string name="tool_clip_log_path">Log path</string>
+    <!-- Stream filter (stream names as the kernel spells them) -->
+    <string name="tool_filter_all">All</string>
+    <string name="tool_filter_stdout">stdout</string>
+    <string name="tool_filter_stderr">stderr</string>
+    <string name="tool_filter_all_cd">Show all output</string>
+    <string name="tool_filter_stdout_cd">Show stdout only</string>
+    <string name="tool_filter_stderr_cd">Show stderr only</string>
+    <string name="tool_filter_heading">Show</string>
+    <!-- (Android) -->
+    <string name="tool_close_cd">Close tool details</string>
+    <string name="tool_in_progress_state">In progress</string>
+    <string name="tool_announce_finished">Command finished</string>
+    <string name="tool_announce_failed">Command failed</string>
+    <string name="tool_announce_detached">Command detached</string>
+    <!-- (Android) command list row (expanded two-column layout) -->
+    <string name="tool_command_query">$ %1$s</string>
+</resources>

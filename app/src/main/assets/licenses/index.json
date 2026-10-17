@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Jetpack Compose and AndroidX",
+    "version": "Compose BOM 2026.09.00",
+    "license": "Apache-2.0",
+    "url": "https://developer.android.com/jetpack/androidx",
+    "file": "Apache-2.0.txt",
+    "artifacts": ["androidx."]
+  },
+  {
+    "name": "Kotlin and kotlinx (coroutines, serialization, collections-immutable)",
+    "version": "2.2.10",
+    "license": "Apache-2.0",
+    "url": "https://github.com/JetBrains/kotlin",
+    "file": "Apache-2.0.txt",
+    "artifacts": ["org.jetbrains.kotlin", "org.jetbrains.kotlinx:"]
+  },
+  {
+    "name": "OkHttp and Okio",
+    "version": "5.5.0",
+    "license": "Apache-2.0",
+    "url": "https://square.github.io/okhttp/",
+    "file": "Apache-2.0.txt",
+    "artifacts": ["com.squareup.okhttp3:okhttp"]
+  },
+  {
+    "name": "commonmark-java",
+    "version": "0.30.0",
+    "license": "BSD-2-Clause",
+    "url": "https://github.com/commonmark/commonmark-java",
+    "file": "commonmark-java-BSD-2-Clause.txt",
+    "artifacts": ["org.commonmark:"]
+  },
+  {
+    "name": "autolink-java",
+    "version": "0.12.0",
+    "license": "MIT",
+    "url": "https://github.com/robinst/autolink-java",
+    "file": "autolink-java-MIT.txt",
+    "artifacts": ["org.nibor.autolink:"]
+  },
+  {
+    "name": "Geist Mono",
+    "version": "1.700",
+    "license": "OFL-1.1",
+    "url": "https://github.com/vercel/geist-font",
+    "file": "GeistMono-OFL.txt",
+    "artifacts": []
+  },
+  {
+    "name": "Material Symbols",
+    "version": "Rounded, 2026",
+    "license": "Apache-2.0",
+    "url": "https://github.com/google/material-design-icons",
+    "file": "Apache-2.0.txt",
+    "artifacts": []
+  },
+  {
+    "name": "Cline",
+    "version": "3.0.68",
+    "license": "Apache-2.0",
+    "url": "https://github.com/cline/cline",
+    "file": "Apache-2.0.txt",
+    "artifacts": []
+  }
+]

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copy owned by the prompt queue (ui/queue), the slash and mention menus (ui/suggestions)
+  and the docked stack (ui/chat/ChatBanners.kt): design/screens/composer-approvals.md
+  C2.5, C5.5, C6.5. Desktop verbatim (sdk/packages/ui agent-prompt-queue.tsx,
+  chat-input-bar.tsx, sidecar chat-session.ts, CLI fork confirm); "(Android)" lines are new.
+-->
+<resources>
+    <!-- C2 prompt queue -->
+    <plurals name="queue_count">
+        <item quantity="one">%1$d prompt queued</item>
+        <item quantity="other">%1$d prompts queued</item>
+    </plurals>
+    <string name="queue_next_turn">Next turn</string>
+    <string name="queue_count_next_turn">%1$s · %2$s</string>
+    <plurals name="queue_attachments">
+        <item quantity="one">%1$d attachment</item>
+        <item quantity="other">%1$d attachments</item>
+    </plurals>
+    <string name="cd_queue_steer">Steer queued prompt</string>
+    <string name="tt_queue_steer">Steer</string>
+    <string name="cd_queue_edit">Edit queued prompt</string>
+    <string name="cd_queue_remove">Remove queued prompt</string>
+    <string name="cd_queue_save">Save queued prompt</string>
+    <string name="cd_queue_cancel_edit">Cancel editing queued prompt</string>
+    <string name="queue_err_update">Could not update the queued prompt.</string>
+    <string name="queue_err_steer">Could not steer the queued prompt.</string>
+    <string name="queue_err_remove">Could not remove the queued prompt.</string>
+    <string name="queue_steer_failed">Could not steer queued message. %1$s</string>
+    <string name="cd_queue_strip">%1$s. Open the prompt queue</string>
+    <string name="queue_state_updating">Updating</string>
+    <string name="queue_row_summary">%1$s, %2$s</string>
+
+    <!-- C5 slash menu (no /fork: decided A16, A19) -->
+    <string name="slash_team_desc">Start the task with an agent team</string>
+    <string name="slash_skill_desc_fallback">Skill command</string>
+    <string name="slash_workflow_desc_fallback">Workflow command</string>
+    <string name="slash_loading_commands">Loading commands...</string>
+    <string name="slash_no_match">No matching commands</string>
+    <string name="slash_loading_tail">Loading...</string>
+    <string name="slash_command_token">/%1$s</string>
+    <string name="slash_row_cd">/%1$s, %2$s</string>
+    <string name="cd_slash_panel">Command suggestions</string>
+    <!-- The chat's three-dot "Fork" failed (CLI copy) -->
+    <string name="fork_failed">Fork failed: %1$s</string>
+    <string name="team_usage">Usage: /team &lt;task description&gt;. Starts a team of agents for the given task.</string>
+    <string name="team_unavailable_mode">Agent teams are not available in plan mode.</string>
+    <string name="team_disabled">Agent teams are disabled. Enable the Teams tool in Customize → Tools.</string>
+    <string name="skill_read_failed">Could not read the skill %1$s.</string>
+    <string name="workflow_read_failed">Could not read the workflow %1$s.</string>
+
+    <!-- C6 mention menu -->
+    <string name="mention_searching">Searching files...</string>
+    <string name="mention_no_match">No matching files</string>
+    <string name="mention_updating">Updating...</string>
+    <string name="mention_no_workspace">Choose a workspace to mention files.</string>
+    <string name="mention_choose">Choose</string>
+    <string name="mention_kernel_down">Start kernel to search files.</string>
+    <string name="mention_permission">Cline can\'t run commands in Termux yet.</string>
+    <string name="mention_allow">Allow</string>
+    <string name="mention_error">Could not search files.</string>
+    <string name="cd_mention_row">File %1$s</string>
+    <string name="cd_mention_panel">File suggestions</string>
+</resources>

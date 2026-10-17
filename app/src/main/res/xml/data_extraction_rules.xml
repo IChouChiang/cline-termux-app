@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Backup rules (API 31+), docs/07 §7.4: the `kernel` and `sessions` DataStore files hold the
+  Hub token and replay cursors and never leave the device; the two JSON caches are
+  re-fetched from the Hub. The `app` preferences (appearance, settings) may be backed up.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="file" path="datastore/kernel.preferences_pb" />
+        <exclude domain="file" path="datastore/sessions.preferences_pb" />
+        <exclude domain="file" path="sessions/list-cache.json" />
+        <exclude domain="file" path="catalog-cache.json" />
+        <exclude domain="sharedpref" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="file" path="datastore/kernel.preferences_pb" />
+        <exclude domain="file" path="datastore/sessions.preferences_pb" />
+        <exclude domain="file" path="sessions/list-cache.json" />
+        <exclude domain="file" path="catalog-cache.json" />
+        <exclude domain="sharedpref" path="." />
+    </device-transfer>
+</data-extraction-rules>

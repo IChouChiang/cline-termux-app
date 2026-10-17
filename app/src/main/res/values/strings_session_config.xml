@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copy owned by batch 1 package P4 (session config): Settings → Context compaction (A11 row 2)
+  and steer by long-press on Send (A11 row 5).
+  The compaction labels are the terminal's (cline config: LLM, Truncation, Off).
+-->
+<resources>
+    <!-- Settings → Context compaction (Models group) -->
+    <string name="session_config_compaction">Context compaction</string>
+    <string name="session_config_compaction_llm">LLM</string>
+    <string name="session_config_compaction_truncation">Truncation</string>
+    <string name="session_config_compaction_off">Off</string>
+    <string name="session_config_compaction_note">Shared with Cline in the terminal. New and resumed sessions use it.</string>
+    <string name="session_config_compaction_saving">Saving…</string>
+    <string name="session_config_compaction_needs_kernel">Start kernel to change this.</string>
+    <!-- %1$s: one of the reasons below, or the command's own error line -->
+    <string name="session_config_compaction_save_failed">Couldn\'t save the compaction setting: %1$s</string>
+    <string name="session_config_compaction_reason_unreadable">global-settings.json is not valid JSON, so it was left unchanged.</string>
+    <string name="session_config_compaction_reason_termux">Termux did not run the command.</string>
+    <string name="session_config_compaction_reason_failed">The command failed.</string>
+
+    <!-- Steer: long-press Send while a run is active -->
+    <string name="session_config_steer_label">Send now (steer)</string>
+    <string name="session_config_steer_sent">Sent to the running agent</string>
+</resources>
