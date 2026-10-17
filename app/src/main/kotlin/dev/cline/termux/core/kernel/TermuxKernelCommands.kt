@@ -32,6 +32,8 @@ class TermuxKernelCommands(private val termux: TermuxExecutor) : KernelCommands 
 
     override suspend fun readDiscovery() = run(ClineCommands.readHubDiscovery())
 
+    override suspend fun readHubCmdline(pid: Int) = run(ClineCommands.readHubCmdline(pid))
+
     override suspend fun tailDaemonLog() = run(ClineCommands.tailDaemonLog())
 
     override suspend fun doctorJson() = run(ClineCommands.doctorJson())

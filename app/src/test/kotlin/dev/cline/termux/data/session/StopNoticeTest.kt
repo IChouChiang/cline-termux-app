@@ -1,6 +1,8 @@
 package dev.cline.termux.data.session
 
 import dev.cline.termux.core.kernel.hub.HubErrorCodes
+import dev.cline.termux.core.kernel.hub.HubEventEnvelope
+import dev.cline.termux.core.kernel.hub.HubEvents
 import dev.cline.termux.core.kernel.hub.HubJson
 import dev.cline.termux.data.chat.ProviderAuthCatalog
 import dev.cline.termux.data.chat.ProviderAuthResolver
@@ -16,7 +18,9 @@ import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.jsonObject
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -30,9 +34,9 @@ class StopNoticeTest {
     private val sid = "s1"
     private val clock = FakeClock()
 
-    private fun TestScope.newStore(hub: FakeSessionHub, saved: InMemoryStopNoticeStore) = SessionStore(
+    private fun TestScope.newStore(hub: FakeSessionHub, saved: InMemoryStopNoticeStore, turnStore: InMemoryTurnStore = InMemoryTurnStore()) = SessionStore(
         hub = hub,
-        turnStore = InMemoryTurnStore(),
+        turnStore = turnStore,
         providerAuth = ProviderAuthResolver(ProviderAuthCatalog.None),
         scope = backgroundScope,
         dispatcher = StandardTestDispatcher(testScheduler),
@@ -45,7 +49,6 @@ class StopNoticeTest {
         sessionId = session,
         requestId = requestId,
         kind = StopNoticeKind.Stopped,
-        mistakes = 3,
         detail = "Tool no_such_tool does not exist",
         at = at,
     )
@@ -56,6 +59,21 @@ class StopNoticeTest {
             {"role":"assistant","ts":3000,"content":[{"type":"text","text":"trying again"}]},
             {"role":"user","ts":7000,"content":[{"type":"text","text":"<user_input mode=\"act\">next</user_input>"}]}]""",
     ) as JsonArray
+
+    /** The stopped run's history once it ended: the answer of the model call in flight at the stop (6.5 s) is in it. */
+    private val stoppedRun = HubJson.parseToJsonElement(
+        """[{"role":"user","ts":1000,"content":[{"type":"text","text":"<user_input mode=\"act\">loop</user_input>"}]},
+            {"role":"assistant","ts":3000,"content":[{"type":"text","text":"trying again"}]},
+            {"role":"assistant","ts":6500,"content":[{"type":"text","text":"I'll call the tool."}]}]""",
+    ) as JsonArray
+
+    private fun event(name: String, seq: Long, at: Long, payload: String) = HubEventEnvelope(
+        event = name,
+        sessionId = sid,
+        sequence = seq,
+        timestamp = at,
+        payload = HubJson.parseToJsonElement(payload).jsonObject,
+    )
 
     private fun SessionStore.stopRows(sessionId: String = sid) = state(sessionId).value.messages.filter(StopNotices::isStopNotice)
 
@@ -80,10 +98,77 @@ class StopNoticeTest {
         assertEquals(Role.Status, row.role)
         assertEquals(StopNotices.NOTICE_TYPE_STOP, row.meta.noticeType)
         assertEquals(StopNotices.REASON_STOPPED, row.meta.reason)
-        assertEquals(3, row.meta.consecutiveMistakes)
         assertEquals("Tool no_such_tool does not exist", row.content)
         assertEquals(listOf(Role.User, Role.Assistant, Role.Status, Role.User), store.roles())
         assertEquals(listOf(notice()), saved.notices)
+    }
+
+    @Test
+    fun `a stop taken while its run is open waits for the run's end and sits below the run's last rows`() = runTest {
+        // Trial row 21: the Hub took the stop at 5 s; the model call in flight lands at 6 to 7.5 s, run.aborted at 8 s.
+        val hub = FakeSessionHub().apply { history = JsonArray(stoppedRun.take(2)) }
+        val saved = InMemoryStopNoticeStore()
+        val store = newStore(hub, saved)
+        store.start()
+        runCurrent()
+        store.seed(sid)
+        runCurrent()
+        store.dispatch(event(HubEvents.RUN_STARTED, 1, 900L, """{"requestId":"r1","clientId":"tui"}"""))
+        store.addStopNotice(notice(at = 5_000L))
+        runCurrent()
+        assertTrue("no row while the run is open", store.stopRows().isEmpty())
+        assertEquals("r1", saved.notices.single().endsRun)
+
+        store.dispatch(event(HubEvents.ASSISTANT_DELTA, 2, 6_000L, """{"requestId":"r1","iteration":2,"text":"I'll call the tool."}"""))
+        store.dispatch(event(HubEvents.ASSISTANT_FINISHED, 3, 6_500L, """{"requestId":"r1","iteration":2,"text":"I'll call the tool."}"""))
+        store.dispatch(event(HubEvents.SESSION_NOTICE, 4, 7_500L, """{"message":"Compacting the conversation","noticeType":"recovery","reason":"auto_compaction"}"""))
+        hub.history = stoppedRun
+        store.dispatch(event(HubEvents.RUN_ABORTED, 5, 8_000L, """{"requestId":"r1","reason":"aborted"}"""))
+        runCurrent()
+
+        val messages = store.state(sid).value.messages
+        assertEquals(StopNotices.idOf("m1"), messages.last().id)
+        assertEquals(8_000L, messages.last().createdAt)
+        assertTrue("the compaction notice sits above it", messages.indexOfFirst { it.meta.reason == "auto_compaction" } in 0 until messages.lastIndex)
+        assertTrue("the run's answer sits above it", messages.dropLast(1).any { it.role == Role.Assistant && "I'll call the tool." in it.content })
+        assertEquals(listOf(notice(at = 8_000L)), saved.notices)
+    }
+
+    @Test
+    fun `a waiting notice is placed when its run is cut by an interruption`() = runTest {
+        val saved = InMemoryStopNoticeStore()
+        val store = newStore(FakeSessionHub(), saved)
+        store.start()
+        runCurrent()
+        store.dispatch(event(HubEvents.RUN_STARTED, 1, 900L, """{"requestId":"r1","clientId":"tui"}"""))
+        store.addStopNotice(notice(at = 5_000L))
+        runCurrent()
+        assertTrue(store.stopRows().isEmpty())
+        store.markInterrupted(sid)
+        runCurrent()
+        assertEquals(listOf(clock.millis()), store.stopRows().map { it.createdAt })
+        assertNull(saved.notices.single().endsRun)
+    }
+
+    @Test
+    fun `a notice still waiting at a cold start takes the end its run had, else its own time`() = runTest {
+        val now = clock.millis()
+        val ended = TurnRecord(
+            requestId = "r1", sessionId = sid, open = false, started = true, sentAt = now - 9_000L,
+            closedAt = now - 2_000L, outcome = TurnOutcome.Aborted, ours = false,
+        )
+        val saved = InMemoryStopNoticeStore(
+            listOf(
+                notice("m1", at = now - 5_000L).copy(endsRun = "r1"),
+                notice("m2", session = "s2", at = now - 4_000L).copy(endsRun = "gone"),
+            ),
+        )
+        val store = newStore(FakeSessionHub(), saved, InMemoryTurnStore(listOf(ended)))
+        store.start()
+        runCurrent()
+        assertEquals(listOf(now - 2_000L), store.stopRows().map { it.createdAt })
+        assertEquals(listOf(now - 4_000L), store.stopRows("s2").map { it.createdAt })
+        assertTrue(saved.notices.all { it.endsRun == null })
     }
 
     @Test
@@ -155,18 +240,18 @@ class StopNoticeTest {
     }
 
     @Test
-    fun `a notice records the request's count, and the kernel's detail for a stop only`() {
+    fun `a notice records the kernel's detail for a stop only`() {
         val context = MistakeLimitContext(3, 6, 6, "tool_error", "  Tool no_such_tool does not exist  ")
         assertEquals(
-            StopNotice(sid, "m1", StopNoticeKind.Stopped, mistakes = 6, detail = "Tool no_such_tool does not exist", at = 7L),
+            StopNotice(sid, "m1", StopNoticeKind.Stopped, detail = "Tool no_such_tool does not exist", at = 7L),
             StopNotices.of(sid, "m1", StopNoticeKind.Stopped, context, at = 7L),
         )
         assertEquals(
-            StopNotice(sid, "m1", StopNoticeKind.TimedOut, mistakes = 6, detail = "", at = 7L),
+            StopNotice(sid, "m1", StopNoticeKind.TimedOut, detail = "", at = 7L),
             StopNotices.of(sid, "m1", StopNoticeKind.TimedOut, context, at = 7L),
         )
         assertEquals(
-            StopNotice(sid, "m1", StopNoticeKind.Stopped, mistakes = null, detail = "", at = 7L),
+            StopNotice(sid, "m1", StopNoticeKind.Stopped, detail = "", at = 7L),
             StopNotices.of(sid, "m1", StopNoticeKind.Stopped, null, at = 7L),
         )
         val long = "x".repeat(700)
@@ -178,10 +263,17 @@ class StopNoticeTest {
 
     @Test
     fun `the stored list round-trips, keeps one notice per request, and survives garbage`() {
-        val notices = listOf(notice("m1", at = 2L), notice("m2", at = 1L).copy(kind = StopNoticeKind.TimedOut, detail = "", mistakes = null))
+        val notices = listOf(notice("m1", at = 2L), notice("m2", at = 1L).copy(kind = StopNoticeKind.TimedOut, detail = ""))
         assertEquals(notices, StopNotices.decode(StopNotices.encode(notices)))
         assertEquals(listOf("m2", "m1"), StopNotices.prune(notices + notice("m1", at = 9L)).map { it.requestId })
         assertTrue(StopNotices.decode("not json").isEmpty())
         assertTrue(StopNotices.decode("").isEmpty())
+    }
+
+    @Test
+    fun `a notice saved with the old mistake count still loads, placed at once`() {
+        // v0.1.0-pre.1 stored the request's consecutiveMistakes (dropped for trial row 21).
+        val saved = """[{"sessionId":"$sid","requestId":"m1","kind":"Stopped","mistakes":6,"detail":"Tool no_such_tool does not exist","at":5000}]"""
+        assertEquals(listOf(notice("m1")), StopNotices.decode(saved))
     }
 }

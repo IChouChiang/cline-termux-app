@@ -165,6 +165,15 @@ class ClineCommandsTest {
     }
 
     @Test
+    fun `the daemon's argv is read through bash with the pid as an argument`() {
+        val command = ClineCommands.readHubCmdline(27447)
+        assertEquals("$prefix/bin/bash", command.path)
+        assertEquals(listOf("-c", "tr '\\0' '\\n' < \"/proc/\$1/cmdline\"", "_", "27447"), command.args)
+        assertEquals(Labels.READ_HUB_CMDLINE, command.label)
+        assertEquals(10_000, command.timeoutMs)
+    }
+
+    @Test
     fun `mention search runs the CA C6 pipeline verbatim through bash`() {
         val command = ClineCommands.searchWorkspaceFiles("$home/projects/app", "pars")
         assertEquals("$prefix/bin/bash", command.path)

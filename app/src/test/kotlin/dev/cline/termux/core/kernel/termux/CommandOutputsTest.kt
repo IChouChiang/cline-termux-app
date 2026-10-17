@@ -47,6 +47,20 @@ class CommandOutputsTest {
     }
 
     @Test
+    fun `the daemon's argv names the release tree it runs from`() {
+        // Trial row 24. The S25U's Hub on 2026-10-17, one argument per line.
+        val prefix = "/data/data/com.termux/files/usr"
+        val bun = "$prefix/opt/bun-android-ffi/1.4.0-canary.1-55f6c899f/bun"
+        val tail = "--cwd\n/data/data/com.termux/files/home\n--host\n127.0.0.1\n--port\n25463\n--pathname\n/hub\n"
+        assertEquals("3.0.72-termux.1", PortRelease.fromHubCmdline("$bun\n$prefix/opt/cline-termux/3.0.72-termux.1/entry.js\n$tail"))
+        // The Tab S7+: termux-exec runs Bun through the linker, so its path comes twice.
+        assertEquals("3.0.69-termux.1", PortRelease.fromHubCmdline("$bun\n$bun\n$prefix/opt/cline-termux/3.0.69-termux.1/entry.js\n$tail"))
+        assertNull("the symlink names no release", PortRelease.fromHubCmdline("$bun\n$prefix/opt/cline-termux/current/entry.js\n$tail"))
+        assertNull(PortRelease.fromHubCmdline("$bun\n$prefix/opt/cline-termux/3.0.72-termux.1/index.js\n"))
+        assertNull(PortRelease.fromHubCmdline(""))
+    }
+
+    @Test
     fun `global settings keep only telemetry and disabled tools`() {
         val view = GlobalSettingsView.parse("""{"telemetryOptOut":true,"autoUpdateEnabled":false,"disabledTools":["tasks","web_search"],"tools":{"webSearch":true}}""")
         assertEquals(true, view.telemetryOptOut)

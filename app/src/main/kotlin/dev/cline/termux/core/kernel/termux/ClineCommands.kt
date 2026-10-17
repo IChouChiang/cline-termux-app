@@ -57,6 +57,20 @@ object ClineCommands {
     /** Termux-private discovery record with the auth token; parsed in the bridge, raw string discarded. */
     fun readHubDiscovery() = TermuxCommand.bin("cat", TermuxPaths.HUB_DISCOVERY, label = Labels.READ_HUB_DISCOVERY, timeoutMs = TermuxTimeouts.DISCOVERY_MS)
 
+    /** `/proc/<pid>/cmdline` with its NUL separators made newlines: one argument per line. */
+    const val HUB_CMDLINE_SCRIPT = "tr '\\0' '\\n' < \"/proc/\$1/cmdline\""
+
+    /**
+     * The daemon's argv, `<bun> $PREFIX/opt/cline-termux/<release>/entry.js --cwd …`: the release
+     * tree it runs from, which `/version` does not name (trial row 24, [PortRelease.fromHubCmdline]).
+     */
+    fun readHubCmdline(pid: Int) = TermuxCommand(
+        path = TermuxPaths.BASH,
+        args = listOf("-c", HUB_CMDLINE_SCRIPT, "_", pid.toString()),
+        label = Labels.READ_HUB_CMDLINE,
+        timeoutMs = TermuxTimeouts.SHORT_MS,
+    )
+
     /** Matched for `entry.js` on the way to StartFailed/StartTimedOut, then discarded (KS §0.4). */
     fun tailDaemonLog() = TermuxCommand.bin(
         "tail", "-c", DAEMON_LOG_TAIL_BYTES.toString(), TermuxPaths.HUB_DAEMON_LOG,
@@ -347,6 +361,7 @@ object ClineCommands {
         const val WAKE_LOCK = "termux-wake-lock"
         const val WAKE_UNLOCK = "termux-wake-unlock"
         const val READ_HUB_DISCOVERY = "cat production.json"
+        const val READ_HUB_CMDLINE = "read hub argv"
         const val TAIL_DAEMON_LOG = "tail hub-daemon.log"
         const val TAIL_LOG = "tail log"
         const val DOCTOR = "cline doctor --json"

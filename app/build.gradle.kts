@@ -61,13 +61,12 @@ android {
         applicationId = "io.github.ichouchiang.clinetermux"
         minSdk = 26
         targetSdk = 36
-        // versionCode stays 1 for the first public prerelease. Raise it with every later APK given
-        // to testers: Android refuses to install an APK whose versionCode is lower than the
-        // installed one's.
-        versionCode = 1
-        // First public prerelease (docs/release-notes/v0.1.0-pre.1.md). The About screen marks a
+        // Raise versionCode with every APK given to testers: Android refuses to install an APK whose
+        // versionCode is lower than the installed one's (1 was 0.1.0-pre.1).
+        versionCode = 2
+        // Second public prerelease (docs/release-notes/v0.1.0-pre.2.md). The About screen marks a
         // release "Installed" when this equals a `## <version>` heading in assets/CHANGELOG.md.
-        versionName = "0.1.0-pre.1"
+        versionName = "0.1.0-pre.2"
         vectorDrawables.useSupportLibrary = true
         // Compose UI flows of docs/07 §10.2 (app/src/androidTest).
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

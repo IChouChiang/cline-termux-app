@@ -181,20 +181,21 @@ internal fun ReliabilityItemUi.supporting(): Int = when (id) {
 
 /**
  * The item's one primary action, or null: item 4 on API 31–33 offers only the adb command, and
- * item 5 has nothing left to allow once notifications are on (trial row 14).
+ * a verified Done item has nothing left to allow or open (trial rows 14 and 22: "Allow" on a
+ * Cline battery item that is already Unrestricted closed the system dialog at once).
  */
 @StringRes
-internal fun ReliabilityItemUi.actionLabel(): Int? = when (id) {
+internal fun ReliabilityItemUi.actionLabel(): Int? = if (status == ItemStatus.Done) null else when (id) {
     ReliabilityItemId.TermuxBattery -> R.string.reliability_open_termux_settings
     ReliabilityItemId.ClineBattery -> R.string.reliability_allow
     ReliabilityItemId.NeverSleeping -> R.string.reliability_open_battery_settings
     ReliabilityItemId.ChildProcess -> if (legacyAdbOnly) null else R.string.reliability_open_dev_options
-    ReliabilityItemId.Notifications -> if (done) null else R.string.reliability_allow
+    ReliabilityItemId.Notifications -> R.string.reliability_allow
     ReliabilityItemId.TermuxOverlay -> R.string.reliability_open_termux_setting
 }
 
-/** The instruction lines (string resources) the expanded item shows above its action (D.6). */
-internal fun ReliabilityItemUi.instructionLines(): List<Int> = buildList {
+/** The instruction lines (string resources) the expanded item shows above its action (D.6); none once verified Done. */
+internal fun ReliabilityItemUi.instructionLines(): List<Int> = if (status == ItemStatus.Done) emptyList() else buildList {
     when (id) {
         ReliabilityItemId.TermuxBattery -> add(R.string.reliability_battery_instructions)
         ReliabilityItemId.ClineBattery -> if (!directRequest) add(R.string.reliability_battery_instructions)
@@ -204,13 +205,14 @@ internal fun ReliabilityItemUi.instructionLines(): List<Int> = buildList {
     }
 }
 
-/** Item 4 on API 31–33: the adb command block. */
-internal val ReliabilityItemUi.showsAdbCommand: Boolean get() = id == ReliabilityItemId.ChildProcess && legacyAdbOnly
+/** Item 4 on API 31–33 until it is verified Done: the adb command block. */
+internal val ReliabilityItemUi.showsAdbCommand: Boolean
+    get() = id == ReliabilityItemId.ChildProcess && legacyAdbOnly && status != ItemStatus.Done
 
 /**
  * Whether expanding the item shows anything: instructions, the adb command, an action or the
- * "I've done this" row. An item without details (Notifications once on, trial row 14) is not a
- * toggle: it shows its title and status only.
+ * "I've done this" row. A verified Done item has no details (trial rows 14 and 22), so its row is
+ * not a toggle: it shows its title and status only. A self-check item keeps its checkbox.
  */
 internal fun ReliabilityItemUi.hasDetails(): Boolean = instructionLines().isNotEmpty() || showsAdbCommand || actionLabel() != null || selfCheck
 

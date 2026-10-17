@@ -17,31 +17,30 @@ import org.robolectric.annotation.Config
 
 /**
  * A17: the words of the app's stop notice rows ([noticeLines]). The owner's phone runs zh-CN,
- * whose plural rules have one form, so the counts must still read "1 mistake" / "3 mistakes"
- * (the form follows the copy's language, `quantityResources`).
+ * whose plural rules have one form, so the timeout must still read "5 minutes" (the form follows
+ * the copy's language, `quantityResources`).
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [34], qualifiers = "zh-rCN")
 class StopNoticeLinesTest {
     private val resources: Resources = ApplicationProvider.getApplicationContext<Context>().resources
 
-    private fun stopped(mistakes: Int?, detail: String = "") =
-        StopNotices.row(StopNotice("s1", "m1", StopNoticeKind.Stopped, mistakes = mistakes, detail = detail, at = 0L))
+    private fun stopped(detail: String = "") =
+        StopNotices.row(StopNotice("s1", "m1", StopNoticeKind.Stopped, detail = detail, at = 0L))
 
     @Test
-    fun `a stop names the count, with the kernel's latest detail under it`() {
+    fun `a stop names no count, with the kernel's latest detail under it`() {
+        // Trial row 21: a loop stop's count is the kernel's limit, not the 5 identical calls its detail names.
         assertEquals(
-            NoticeLines("Stopped after 3 mistakes in a row", "Latest: Tool no_such_tool does not exist"),
-            noticeLines(stopped(3, "Tool no_such_tool does not exist"), resources),
+            NoticeLines("Stopped after repeated mistakes", "Latest: Detected 5 consecutive identical calls to read_files"),
+            noticeLines(stopped("Detected 5 consecutive identical calls to read_files"), resources),
         )
-        assertEquals(NoticeLines("Stopped after 1 mistake in a row"), noticeLines(stopped(1), resources))
-        assertEquals(NoticeLines("Stopped after repeated mistakes"), noticeLines(stopped(null), resources))
-        assertEquals(NoticeLines("Stopped after repeated mistakes"), noticeLines(stopped(0), resources))
+        assertEquals(NoticeLines("Stopped after repeated mistakes"), noticeLines(stopped(), resources))
     }
 
     @Test
     fun `a timeout says the question was not answered within five minutes`() {
-        val row = StopNotices.row(StopNotice("s1", "m1", StopNoticeKind.TimedOut, mistakes = 6, at = 0L))
+        val row = StopNotices.row(StopNotice("s1", "m1", StopNoticeKind.TimedOut, at = 0L))
         assertEquals(NoticeLines("Stopped: the question was not answered within 5 minutes"), noticeLines(row, resources))
     }
 

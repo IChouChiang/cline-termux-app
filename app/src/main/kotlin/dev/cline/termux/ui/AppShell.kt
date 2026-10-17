@@ -320,7 +320,6 @@ fun AppShell(
     val nav = DrawerNav(
         homeActive = homeActive,
         area = area,
-        onHome = navigator::openHome,
         onNewSession = navigator::newSession,
         onDestination = navigator::open,
         onSearch = navigator::openSearch,
@@ -398,7 +397,6 @@ fun AppShell(
 private class DrawerNav(
     val homeActive: Boolean,
     val area: TopLevelDestination,
-    val onHome: () -> Unit,
     val onNewSession: () -> Unit,
     val onDestination: (TopLevelDestination) -> Unit,
     val onSearch: () -> Unit,
@@ -853,26 +851,23 @@ private fun ShellDrawerContent(scope: ShellDrawerScope, nav: DrawerNav, slots: S
     }
 }
 
-/** Header row (56dp): logo "Cline Termux home", "Cline Termux", the KernelChip, search. */
+/**
+ * Header row (56dp): "Cline Termux", the KernelChip, search. No logo button (trial row 27):
+ * "New session", the drawer item or the rail FAB, already opens Home.
+ */
 @Composable
 private fun DrawerHeader(scope: ShellDrawerScope, nav: DrawerNav, slots: ShellSlots) {
     val hardwareKeyboard = LocalConfiguration.current.keyboard != Configuration.KEYBOARD_NOKEYS
     Row(
-        Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(start = Spacing.xs, end = Spacing.xs),
+        // 16dp start: the title lines up with the "Sessions" label of the list header below.
+        Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(start = Spacing.l, end = Spacing.xs),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        TooltipIconButton(
-            icon = ClineIcons.AppLogo,
-            contentDescription = stringResource(R.string.shell_cline_home),
-            tooltip = stringResource(R.string.shell_home_tooltip),
-            onClick = nav.onHome,
-        )
         Text(
             stringResource(R.string.shell_drawer_title),
             style = MaterialTheme.typography.titleMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.padding(start = Spacing.xs),
         )
         // The chip takes what the title leaves and ellipsizes its own label, so a large font
         // scale shortens "Cline Hub @25463" instead of clipping the app name.
@@ -939,7 +934,7 @@ private fun DrawerItem(label: String, icon: androidx.compose.ui.graphics.vector.
 // ------------------------------------------------------------------------- previews
 
 private fun previewNav(homeActive: Boolean = true, area: TopLevelDestination = TopLevelDestination.Chats) =
-    DrawerNav(homeActive, area, {}, {}, {}, {}, {})
+    DrawerNav(homeActive, area, {}, {}, {}, {})
 
 @Composable
 private fun PreviewDrawer(variant: DrawerVariant, area: TopLevelDestination = TopLevelDestination.Chats, gate: KernelGate = KernelGate.Ready) {

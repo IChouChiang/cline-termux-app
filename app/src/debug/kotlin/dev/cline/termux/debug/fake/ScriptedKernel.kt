@@ -213,6 +213,7 @@ class ScriptedKernel(
             command.label == ClineCommands.Labels.HUB_UPGRADE -> cliOrMissing { hubUpgrade(command, timeoutMs) }
             command.label == ClineCommands.Labels.WAKE_LOCK || command.label == ClineCommands.Labels.WAKE_UNLOCK -> TermuxResult.success("")
             command.label == ClineCommands.Labels.READ_HUB_DISCOVERY -> readDiscovery()
+            command.label == ClineCommands.Labels.READ_HUB_CMDLINE -> release?.let(::hubCmdline) ?: unscripted(command)
             command.label == ClineCommands.Labels.TAIL_DAEMON_LOG -> TermuxResult.success(daemonLog())
             command.label == ClineCommands.Labels.TAIL_LOG -> TermuxResult.success("")
             command.label == ClineCommands.Labels.DOCTOR -> cliOrMissing { TermuxResult.success(doctorJson()) }
@@ -282,6 +283,11 @@ class ScriptedKernel(
         FakeKernelScenario.HubStartPortOld -> TermuxResult.success("cline=$CLI_VERSION\n")
         else -> TermuxResult.success("release=$release\ntag=v$release\ncline=$CLI_VERSION\n")
     }
+
+    /** The fake daemon's argv: it runs from the installed tree. */
+    private fun hubCmdline(release: String): TermuxResult = TermuxResult.success(
+        "${TermuxPaths.PREFIX}/opt/bun-android-ffi/bun\n${TermuxPaths.PREFIX}/opt/cline-termux/$release/entry.js\n--cwd\n${TermuxPaths.HOME}\n",
+    )
 
     private fun readPortRelease(): TermuxResult = when (val r = release) {
         null -> if (scenario == FakeKernelScenario.PortMissing) {
@@ -657,6 +663,7 @@ class ScriptedKernel(
         override suspend fun hubStop() = fold(ClineCommands.hubStop())
         override suspend fun hubUpgrade() = fold(ClineCommands.hubUpgrade())
         override suspend fun readDiscovery() = fold(ClineCommands.readHubDiscovery())
+        override suspend fun readHubCmdline(pid: Int) = fold(ClineCommands.readHubCmdline(pid))
         override suspend fun tailDaemonLog() = fold(ClineCommands.tailDaemonLog())
         override suspend fun doctorJson() = fold(ClineCommands.doctorJson())
         override suspend fun doctorFix() = fold(ClineCommands.doctorFix())

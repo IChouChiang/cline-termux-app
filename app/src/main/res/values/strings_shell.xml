@@ -19,8 +19,6 @@
 
     <!-- Drawer / list pane header row (sessions.md §2.3) -->
     <string name="shell_drawer_title">Cline Termux</string>
-    <string name="shell_cline_home">Cline Termux home</string>
-    <string name="shell_home_tooltip">Home</string>
     <string name="shell_search_sessions">Search sessions</string>
     <!-- Android adaptation of "Search sessions (Cmd/Ctrl+P)"; shown only with a hardware keyboard -->
     <string name="shell_search_sessions_shortcut">Search sessions (Ctrl+P)</string>

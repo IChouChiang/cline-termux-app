@@ -658,7 +658,7 @@ sessions are a *selection inside that entry* (§1.1), not separate entries; suba
 sessions are pushed entries.
 
 - Entered: app launch (start destination `Chat()`, selection `null`), drawer/rail "New
-  session", header `add` "New session", the logo "Cline Termux home", Delete session (after
+  session", header `add` "New session", Delete session (after
   success). Each of these sets the selection to `null`; if another route is on top
   (Settings, Sessions, Search, Changes, a subagent session), first
   `navController.popBackStack<Chat>(inclusive = false)` back to the start entry.
@@ -981,11 +981,17 @@ are not re-created after a cold start.
 mistake-limit question (the user's "Stop this run", or the stop sent after the question went
 unanswered for `MistakeLimitPrompt.TIMEOUT_MS`), `run.aborted` carries only "aborted", so the
 app adds its own notice row (`StopNotices`, `Role.Status`, id `ms:<capability requestId>`,
-`noticeType = "stop"`, placed by the time the Hub took the stop): `pause_circle` + "Stopped
-after N mistakes in a row" (N = the request context's `consecutiveMistakes`; "Stopped after
-repeated mistakes" without one) with the kernel's detail under it as "Latest: <detail>"
-(`bodySmall`, trimmed and cut like the sheet's line), or "Stopped: the question was not
-answered within 5 minutes". An answer the Hub ignored (`ignored:true`: the request was
+`noticeType = "stop"`): `pause_circle` + "Stopped after repeated mistakes" with the kernel's
+detail under it as "Latest: <detail>" (`bodySmall`, trimmed and cut like the sheet's line), or
+"Stopped: the question was not answered within 5 minutes". The headline names no count: on a
+loop stop the kernel forces `consecutiveMistakes` to the limit, so "6 mistakes" stood over a
+detail about 5 identical calls (trial row 21). The row sits at the end of the run it stopped:
+the model call in flight when the Hub took the stop still lands after the stop, so while that
+run is open the row waits (`StopNotice.endsRun`), and once the run is closed it takes the run's
+end time (`TurnRecord.closedAt`: the terminal event's Hub time, or when the app marked it
+interrupted or found it settled on a reconnect). A stop the Hub took with no open run shows at
+once, at the time the Hub took it; so does a waiting notice whose run the app no longer knows
+after a cold start. An answer the Hub ignored (`ignored:true`: the request was
 already over) or that failed adds none. The stop the app sends when the guidance steer of
 "Try a different approach" fails (`MistakeLimitPrompt.answer`) is outside A17's two cases and
 adds none either (the user chose to continue; that failure has no notice yet). Unlike
@@ -1776,7 +1782,6 @@ Desktop verbatim unless marked *(Android)*. Plurals marked `[p]`.
 | `cred_action_cline` / `cred_action_providers` | Sign in to Cline / Open API providers |
 | `run_interrupted` | This run was interrupted because the Cline Hub restarted. *(Android)* |
 | `run_resend` | Resend *(Android)* |
-| `chat_notice_mistake_stopped` | `[p]` Stopped after %d mistake in a row / Stopped after %d mistakes in a row *(Android, A17)* |
 | `chat_notice_mistake_stopped_repeated` | Stopped after repeated mistakes *(Android, A17)* |
 | `chat_notice_mistake_timed_out` | `[p]` Stopped: the question was not answered within %d minute / Stopped: the question was not answered within %d minutes *(Android, A17)* |
 | `chat_tool_label_interrupted` / `chat_tool_label_interrupted_named` | Interrupted / Interrupted: %1$s *(Android, A21)* |

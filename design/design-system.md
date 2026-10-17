@@ -613,7 +613,7 @@ They live in `res/values/strings.xml` (section 9).
 | **WelcomeSetupNotice** | `webview/.../chat/welcome-setup-notice.tsx` | `Surface(shape = large, color = primaryContainer @ 35 %, border = 1dp primary @ 30 %)` with a 32dp icon tile (`cable`, `primary` on `primary @ 15 %`), title `titleSmall` SemiBold, body `bodyMedium`, `Button` "Connect a model" + `TextButton` "Model settings". Announced as a polite live region | "Connect a model to start building", "Sign in with Cline or add an API key — it takes under a minute." Binding: `cat providers.json` (no configured provider) |
 | **SessionNotice row** | `session.notice` rendering in `chat-messages.tsx` | `Row`: 20dp icon (`info` for status, `autorenew` for recovery / auto_compaction, `pause_circle` for stop) + `bodyMedium` `onSurfaceVariant` message | Binding `session.notice {message, noticeType, reason}`. `api_error` becomes an error message (#5) with a credential action |
 | **ImageLightbox / Carousel** | `webview/.../messages/image-lightbox.tsx`, `image-carousel.tsx`, `ui/components/agent-image-lightbox.tsx` | Full-screen `Dialog(usePlatformDefaultWidth = false)` on a `scrim` @ 95 %, a `HorizontalPager` of zoomable images (`transformable`), a top close `IconButton`. Carousel in the transcript: `LazyRow` of 160dp thumbnails | CD "Expanded attachment", "Close". Predictive back scales the image to 0.9 and fades the scrim with progress |
-| **KernelChip** | sidebar logo HoverCard trigger | `AssistChip` (drawer header) / rail item: `ic_cline_logo` 18dp + 8dp dot + "Hub" *(Android)* | Opens the Kernel status sheet. CD "Cline Termux home" on the logo (desktop: "Cline home") and "Kernel status: <state line 1>" on the chip |
+| **KernelChip** | sidebar logo HoverCard trigger | `AssistChip` (drawer header) / rail item: `ic_cline_logo` 18dp + 8dp dot + "Hub" *(Android)* | Opens the Kernel status sheet. CD "Kernel status: <state line 1>" on the chip. The desktop logo is also its home button ("Cline home"); the drawer header has none (trial row 27), "New session" opens Home |
 | **EmptyState** | `ConversationEmptyState`, `PageEmptyState` | Centered `Column`: 48dp icon `onSurfaceVariant`, `titleMedium`, `bodyMedium` `onSurfaceVariant`, optional `FilledTonalButton` | Defaults "No messages yet" / "Start a conversation to see messages here." |
 | **Loading skeleton** | `ui/skeleton.tsx` | `Box` blocks `surfaceContainerHighest` with alpha shimmer 0.6 → 1 over 1000ms (disabled under reduced motion) | Used for list first loads only. Detail panes use a `LinearProgressIndicator` |
 
@@ -665,8 +665,8 @@ The search, sessions (full) and changes screens are pushed routes, not destinati
 **Compact (phone).** `ModalNavigationDrawer` with `ModalDrawerSheet` (max width 360dp,
 `surfaceContainerLow`). Its content, top to bottom, mirrors `agent-sidebar.tsx`:
 
-1. A header row with `ic_cline_logo` `IconButton` ("Cline Termux home": opens Home), "Cline Termux"
-   in `titleMedium`, the KernelChip, and a search `IconButton` ("Search sessions").
+1. A header row with "Cline Termux" in `titleMedium`, the KernelChip, and a search
+   `IconButton` ("Search sessions"). No logo button (trial row 27, 2026-10-17).
 2. `NavigationDrawerItem`s: "New session" (`add`, tooltip "Start a new session"),
    "Schedules" (`schedule`), "Customize" (`extension`).
 3. The list header: "Sessions" or "Projects" (tap → Sessions screen), a sort toggle
@@ -1180,7 +1180,8 @@ colour follows section 1.7.
 `ic_cline_logo` is the desktop `ClineLogo` (outline mark, `public/icon.svg` path
 verbatim in its native 113-unit viewport). Tint it with `LocalContentColor` via
 `Icon(ImageVector.vectorResource(R.drawable.ic_cline_logo), …)`. It is used in the
-drawer header, the rail, the KernelChip and the welcome hero.
+KernelChip's rail item, the welcome hero, the Kernel status sheet, Settings → Kernel and
+About. The drawer header dropped it on 2026-10-17 (trial row 27).
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>

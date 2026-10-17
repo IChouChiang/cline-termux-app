@@ -1133,13 +1133,15 @@ class SessionStore(
         val now = clock.millis()
         mutate(sessionId) { s ->
             val turn = s.turns.firstOrNull { it.requestId == requestId }
+            val turns = s.turns.map { if (it.requestId == requestId) it.copy(open = false, closedAt = now, outcome = TurnOutcome.Failed) else it }
+            val failed = ChatProjector.appendError(
+                s.projection, sessionId, requestId, requestId, error.hubMessage,
+                turn?.providerId, turn?.providerAuth, now,
+            )
             s.copy(
                 facts = SessionFactsReducer.onSendRejected(s.facts, requestId),
-                projection = ChatProjector.appendError(
-                    s.projection, sessionId, requestId, requestId, error.hubMessage,
-                    turn?.providerId, turn?.providerAuth, now,
-                ),
-                turns = s.turns.map { if (it.requestId == requestId) it.copy(open = false, closedAt = now, outcome = TurnOutcome.Failed) else it },
+                projection = placeStopNotices(sessionId, turns, failed),
+                turns = turns,
             )
         }
         persistTurns()
@@ -1207,13 +1209,15 @@ class SessionStore(
         val provider = turn.providerId ?: s.facts.providerId
         liveSet() -= sessionId
         mutate(sessionId) { st ->
+            val turns = st.turns.map { if (it.requestId == turn.requestId) it.copy(open = false, closedAt = now, outcome = TurnOutcome.Interrupted) else it }
+            val interrupted = ChatProjector.appendInterrupted(
+                st.projection, sessionId, turn.requestId, turn.requestId, "",
+                provider, turn.providerAuth ?: providerAuth.resolve(provider), now,
+            )
             st.copy(
                 facts = SessionFactsReducer.markInterrupted(st.facts),
-                projection = ChatProjector.appendInterrupted(
-                    st.projection, sessionId, turn.requestId, turn.requestId, "",
-                    provider, turn.providerAuth ?: providerAuth.resolve(provider), now,
-                ),
-                turns = st.turns.map { if (it.requestId == turn.requestId) it.copy(open = false, closedAt = now, outcome = TurnOutcome.Interrupted) else it },
+                projection = placeStopNotices(sessionId, turns, interrupted),
+                turns = turns,
                 // A restarted Hub does not have the session live (FX 05).
                 live_ = false,
                 persistedHint = true,
@@ -1357,6 +1361,7 @@ class SessionStore(
             projection = ChatProjector.endQueuedRun(projection)
             turnsChanged = true
         }
+        if (turnsChanged) projection = placeStopNotices(sessionId, turns, projection)
         write(flowFor(sessionId), before.copy(
             facts = facts,
             projection = projection,
@@ -1616,7 +1621,7 @@ class SessionStore(
             val ended = nextFacts.status == SessionStatus.Completed || nextFacts.status == SessionStatus.Cancelled
             st.copy(
                 facts = nextFacts,
-                projection = ChatProjector.endVerifiedRun(st.projection),
+                projection = placeStopNotices(sessionId, turns, ChatProjector.endVerifiedRun(st.projection)),
                 turns = turns,
                 seed = if (record == null) SeedState.Missing else st.seed,
                 live_ = if (record == null) false else st.live_,
@@ -1710,17 +1715,38 @@ class SessionStore(
      * Shows and keeps [notice]: the app stopped a run at the mistake limit ([ClientContributions]).
      * One per mistake-limit request; the row joins the session's live rows, where reconciliation
      * keeps status rows, and every state built later for the session starts with it ([flowFor]).
+     * While the stopped run is still open the row waits for its end ([placeStopNotices]).
      */
     suspend fun addStopNotice(notice: StopNotice) = withContext(dispatcher) {
-        val current = stopNotices[notice.sessionId].orEmpty()
-        if (current.any { it.requestId == notice.requestId }) return@withContext
-        stopNotices[notice.sessionId] = StopNotices.prune(current + notice)
+        val known = stopNotices[notice.sessionId].orEmpty()
+        if (known.any { it.requestId == notice.requestId }) return@withContext
+        val kept = notice.copy(endsRun = current(notice.sessionId).turns.lastOrNull { it.open }?.requestId)
+        stopNotices[notice.sessionId] = StopNotices.prune(known + kept)
         pruneStopNotices()
-        val row = StopNotices.row(notice)
-        mutate(notice.sessionId) { s ->
-            if (s.projection.messages.any { it.id == row.id }) s else s.copy(projection = s.projection.copy(messages = s.projection.messages + row))
+        if (kept.endsRun == null) {
+            val row = StopNotices.row(kept)
+            mutate(notice.sessionId) { s ->
+                if (s.projection.messages.any { it.id == row.id }) s else s.copy(projection = s.projection.copy(messages = s.projection.messages + row))
+            }
         }
         persistStopNotices()
+    }
+
+    /**
+     * Trial row 21: the model call in flight when the Hub took the stop lands after it, so a notice
+     * waiting for its run ([StopNotice.endsRun]) shows only once [turns] has that run closed, at the
+     * run's `closedAt` (a terminal event's Hub time), below every row of the run. Every path that
+     * closes a turn passes its new turns here.
+     */
+    private fun placeStopNotices(sessionId: String, turns: List<TurnRecord>, projection: LiveProjection): LiveProjection {
+        val notices = stopNotices[sessionId] ?: return projection
+        val next = StopNotices.placed(notices, turns)
+        if (next == notices) return projection
+        stopNotices[sessionId] = next
+        persistStopNotices()
+        val rows = next.filter { it !in notices }.map(StopNotices::row)
+        val ids = rows.mapTo(HashSet()) { it.id }
+        return projection.copy(messages = projection.messages.filterNot { it.id in ids } + rows)
     }
 
     /** The session was deleted (F5) or the Hub no longer has it: its stop notices go. */
@@ -1750,16 +1776,21 @@ class SessionStore(
 
     private suspend fun restoreStopNotices() {
         val restored = runCatching { stopNoticeStore.load() }.getOrDefault(emptyList())
+        var placedAny = false
         StopNotices.prune(restored).groupBy { it.sessionId }.forEach { (sessionId, notices) ->
-            val merged = StopNotices.prune(notices + stopNotices[sessionId].orEmpty())
+            val known = StopNotices.prune(notices + stopNotices[sessionId].orEmpty())
+            // The run a notice waited for may have ended before the process died (turns are restored first).
+            val merged = StopNotices.placed(known, flows[sessionId]?.value?.turns.orEmpty())
+            if (merged != known) placedAny = true
             stopNotices[sessionId] = merged
             // A state built before the restore finished gets the rows now.
             flows[sessionId]?.let { flow ->
                 val s = flow.value
-                val missing = merged.map(StopNotices::row).filter { row -> s.projection.messages.none { it.id == row.id } }
+                val missing = merged.filter { it.endsRun == null }.map(StopNotices::row).filter { row -> s.projection.messages.none { it.id == row.id } }
                 if (missing.isNotEmpty()) write(flow, s.copy(projection = s.projection.copy(messages = s.projection.messages + missing)))
             }
         }
+        if (placedAny) persistStopNotices()
     }
 
     private fun persistStopNotices() {
@@ -1863,7 +1894,7 @@ class SessionStore(
 
     private fun flowFor(sessionId: String): MutableStateFlow<SessionState> =
         flows.computeIfAbsent(sessionId) {
-            val notices = stopNotices[sessionId].orEmpty().map(StopNotices::row)
+            val notices = stopNotices[sessionId].orEmpty().filter { it.endsRun == null }.map(StopNotices::row)
             MutableStateFlow(SessionState(sessionId, projection = LiveProjection(messages = notices), touchedAt = clock.millis()))
         }
 

@@ -103,8 +103,6 @@ data class Meta(
     val checkpoint: CheckpointRef? = null,
     /** Live `reasoning.finished` time, for "Thought for Ns". */
     val thoughtEndedAt: Long? = null,
-    /** A17: the app's mistake-limit stop notice row, the request's `consecutiveMistakes` (`StopNotices.row`). */
-    val consecutiveMistakes: Int? = null,
 )
 
 /** One transcript row. [renderKey] is the LazyColumn / saveable-state key and survives reconciliation (§1.3.3). */

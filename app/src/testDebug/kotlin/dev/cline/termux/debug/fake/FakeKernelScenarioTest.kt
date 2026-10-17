@@ -141,6 +141,7 @@ class FakeKernelScenarioTest {
             listOf(
                 ClineCommands.Labels.PROBE_VERSION, ClineCommands.Labels.HUB_START,
                 ClineCommands.Labels.WAKE_LOCK, ClineCommands.Labels.READ_HUB_DISCOVERY,
+                ClineCommands.Labels.READ_HUB_CMDLINE,
             ),
             rig.kernel.trace,
         )

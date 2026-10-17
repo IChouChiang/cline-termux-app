@@ -1,7 +1,7 @@
 # Cline Termux (unofficial)
 
 Cline Termux is an unofficial Android app for the Cline _command-line interface_ (_CLI_) in Termux.
-Version 0.1.0-pre.1 is the first public prerelease, for testers.
+Version 0.1.0-pre.2 is the second public prerelease, for testers.
 
 Cline Termux is not affiliated with or endorsed by Cline Bot Inc. or the Termux project.
 Report problems with this app on the [Issues](https://github.com/IChouChiang/cline-termux-app/issues) page of this repository, not to Cline or Termux.
@@ -19,7 +19,8 @@ In this README, the _kernel_ is the Cline CLI and the Hub together, as in the ap
 
 In the app, you can chat with Cline, approve tool calls, review changes and restore checkpoints.
 You can also manage providers, tools and schedules, and examine the health of the kernel.
-For the full list, see the [release notes](docs/release-notes/v0.1.0-pre.1.md).
+For the full list, see the [release notes of 0.1.0-pre.1](docs/release-notes/v0.1.0-pre.1.md).
+For the changes since then, see the [release notes of 0.1.0-pre.2](docs/release-notes/v0.1.0-pre.2.md).
 
 ## Prepare your phone
 
@@ -216,6 +217,7 @@ The kernel causes these limits:
 - The app cannot show recovery notices, because the kernel does not send recoverable errors to clients (U6).
 - The slash menu does not show plugin commands, because no Hub command lists plugin commands.
 - After you upgrade the port, the old Hub can stay active until you restart the Hub (row 24).
+  **Settings** > **Kernel** then shows **Restart to use** and the new release.
 
 The app causes these limits:
 
@@ -226,9 +228,6 @@ The app causes these limits:
 - While the mistake-limit question waits for an answer, the model calls continue for up to five minutes (A17).
 - Dictation requests offline speech recognition.
   If dictation shows a language error, install the offline speech pack for your phone language (A7).
-- After a force stop and a cold start, a session can show **Unread** for an answer that you saw (row 20).
-- The stop notice after the mistake limit is not always the last row of the turn (row 21).
-- When you open the **Cline battery** item with the status **Done**, the item still shows **Allow** (row 22).
 - The project has not tested **Sign in with Cline** with a real Cline account yet (B8.1).
 - The project has not tested tablet layouts and other wide layouts on a device yet (B8.2).
 

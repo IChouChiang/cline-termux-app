@@ -53,6 +53,7 @@ class FakeKernelSwitch(
         override suspend fun hubStop() = target.hubStop()
         override suspend fun hubUpgrade() = target.hubUpgrade()
         override suspend fun readDiscovery() = target.readDiscovery()
+        override suspend fun readHubCmdline(pid: Int) = target.readHubCmdline(pid)
         override suspend fun tailDaemonLog() = target.tailDaemonLog()
         override suspend fun doctorJson() = target.doctorJson()
         override suspend fun doctorFix() = target.doctorFix()

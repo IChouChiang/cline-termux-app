@@ -341,7 +341,7 @@ private fun NoticeAndSystemPreview() {
         // A17: the app's own stop notices after the mistake-limit question.
         SessionNoticeRow(
             StopNotices.row(
-                StopNotice("preview", "m1", StopNoticeKind.Stopped, mistakes = 3, detail = "Tool no_such_tool does not exist", at = 0L),
+                StopNotice("preview", "m1", StopNoticeKind.Stopped, detail = "Tool no_such_tool does not exist", at = 0L),
             ),
         )
         SessionNoticeRow(StopNotices.row(StopNotice("preview", "m2", StopNoticeKind.TimedOut, at = 0L)))

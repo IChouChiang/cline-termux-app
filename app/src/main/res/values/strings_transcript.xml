@@ -75,11 +75,8 @@
     <string name="run_resend">Resend</string>
 
     <!-- (Android, A17) Stop notice rows: why the app stopped a run at the mistake limit (G2). The
-         detail line under the first reuses mistake_limit_question_latest ("Latest: %1$s"). -->
-    <plurals name="chat_notice_mistake_stopped">
-        <item quantity="one">Stopped after %d mistake in a row</item>
-        <item quantity="other">Stopped after %d mistakes in a row</item>
-    </plurals>
+         detail line under the first reuses mistake_limit_question_latest ("Latest: %1$s"). No
+         count: a loop stop forces the kernel's count to the limit (trial row 21). -->
     <string name="chat_notice_mistake_stopped_repeated">Stopped after repeated mistakes</string>
     <plurals name="chat_notice_mistake_timed_out">
         <item quantity="one">Stopped: the question was not answered within %d minute</item>

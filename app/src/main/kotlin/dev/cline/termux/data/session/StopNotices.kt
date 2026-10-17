@@ -15,9 +15,9 @@ import kotlinx.serialization.json.Json
  * are the app's own (no kernel or Hub event produces them): [ClientContributions] records one
  * when the Hub took the user's "Stop this run" or the app's stop after the unanswered prompt's
  * five minutes, `SessionStore` shows it as a stop notice row (`Role.Status`, placed by time like
- * every notice) and keeps it in the `sessions` DataStore, so it survives leaving the session, its
- * eviction and a cold start. A session the Hub no longer has, or that the app deleted, drops its
- * notices.
+ * every notice) at the end of the run it stopped, and keeps it in the `sessions` DataStore, so it
+ * survives leaving the session, its eviction and a cold start. A session the Hub no longer has, or
+ * that the app deleted, drops its notices.
  */
 
 /** One stop at the mistake limit, as stored. */
@@ -28,12 +28,19 @@ data class StopNotice(
     /** The mistake-limit `capability.requested` id: one notice per prompt. */
     val requestId: String,
     val kind: StopNoticeKind,
-    /** The request context's `consecutiveMistakes`; null when it carried none. */
-    val mistakes: Int? = null,
     /** The kernel's detail, trimmed and cut like the sheet's "Latest:" line ([MistakeLimitPrompt.truncatedDetail]). */
     val detail: String = "",
-    /** When the Hub took the stop (epoch ms): where the row sits in the transcript. */
+    /**
+     * Where the row sits in the transcript (epoch ms): the end of the run it stopped, or when the
+     * Hub took the stop while that end is still to come.
+     */
     val at: Long,
+    /**
+     * The run that was still open when the Hub took the stop. Its model call in flight lands after
+     * the stop (trial row 21), so the row waits for the run's end and takes its time; null once
+     * placed.
+     */
+    val endsRun: String? = null,
 )
 
 @Serializable
@@ -65,12 +72,11 @@ object StopNotices {
         sessionId = sessionId,
         requestId = requestId,
         kind = kind,
-        mistakes = context?.consecutiveMistakes,
         detail = if (kind == StopNoticeKind.Stopped) MistakeLimitPrompt.truncatedDetail(context?.details) else "",
         at = at,
     )
 
-    /** The transcript row: the detail as content, the count in [Meta.consecutiveMistakes]. */
+    /** The transcript row: the detail as content. */
     fun row(notice: StopNotice): ChatMessage = ChatMessage(
         id = idOf(notice.requestId),
         sessionId = notice.sessionId,
@@ -83,9 +89,18 @@ object StopNotices {
                 StopNoticeKind.Stopped -> REASON_STOPPED
                 StopNoticeKind.TimedOut -> REASON_TIMED_OUT
             },
-            consecutiveMistakes = notice.mistakes,
         ),
     )
+
+    /**
+     * [notices] with each one that waits for its run ([StopNotice.endsRun]) placed once [turns] no
+     * longer has that run open: at the run's end, or at its own time when the run is gone.
+     */
+    fun placed(notices: List<StopNotice>, turns: List<TurnRecord>): List<StopNotice> = notices.map { n ->
+        val run = n.endsRun ?: return@map n
+        val turn = turns.lastOrNull { it.requestId == run }
+        if (turn?.open == true) n else n.copy(at = turn?.closedAt ?: n.at, endsRun = null)
+    }
 
     fun isStopNotice(message: ChatMessage): Boolean =
         message.role == Role.Status && (message.meta.reason == REASON_STOPPED || message.meta.reason == REASON_TIMED_OUT)

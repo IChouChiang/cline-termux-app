@@ -86,6 +86,20 @@ data class PortRelease(val major: Int, val minor: Int, val patch: Int, val revis
         /** The basename of `readlink $PREFIX/opt/cline-termux/current` (CR §7.7). */
         fun fromReadlink(stdout: String): String? =
             stdout.trim().trimEnd('/').substringAfterLast('/').takeIf { it.isNotBlank() }
+
+        /**
+         * The release a Hub daemon runs from, out of its argv one argument per line
+         * (`ClineCommands.readHubCmdline`): the tree of the argument that ends in `/entry.js`. On the
+         * Tab S7+ termux-exec puts the Bun path in twice, so its position varies. null when that
+         * tree is not a release (`current/entry.js`) or no argument names one: unknown, never
+         * "the installed one" (trial row 24).
+         */
+        fun fromHubCmdline(stdout: String): String? = stdout.lineSequence()
+            .map { it.trim() }
+            .firstOrNull { it.endsWith("/entry.js") }
+            ?.removeSuffix("/entry.js")
+            ?.substringAfterLast('/')
+            ?.takeIf { parse(it) != null }
     }
 }
 

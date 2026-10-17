@@ -642,6 +642,7 @@ class KernelCoordinator(
                 val draining = health.draining || status?.draining == true
                 val ready = emit(if (draining) KernelState.Draining(hubInfo) else KernelState.Ready(hubInfo, status))
                 reattachSessions()
+                if (!degraded && tokenOverride().isNullOrBlank()) noteRunningRelease(hubInfo.pid)
                 ready
             }
             is HubClient.ConnectOutcome.Unauthorized -> emit(KernelState.AuthFailed(hubInfo))
@@ -772,13 +773,43 @@ class KernelCoordinator(
      * first connected (KS §0.8): written only for a new lifetime (a token read from a
      * `production.json` whose `hubId:pid:startedAt` differs from the last one) or when
      * nothing is stored yet, so a relaunch after a port upgrade keeps the old value and E.5
-     * can offer "Restart to use <release>".
+     * can offer "Restart to use <release>". [noteRunningRelease] then corrects it from the
+     * daemon's argv where it can.
      */
     private suspend fun onReady() {
         sawReady = true
         val release = _portVersion.value?.release
         if (release != null && (freshLifetime || prefs.hubLifetimeRelease() == null)) prefs.setHubLifetimeRelease(release)
         freshLifetime = false
+    }
+
+    /**
+     * Trial row 24: the release the daemon really runs, from its argv (`<bun> <tree>/entry.js …`).
+     * A daemon started outside the app before a port upgrade keeps the old tree, while [onReady]'s
+     * rule takes the installed release for a lifetime it sees first, so E.5 never offered the
+     * restart. Runs after `Ready` is shown; an argv that names no release leaves [onReady]'s value.
+     */
+    private suspend fun noteRunningRelease(pid: Int?) {
+        if (pid == null) return
+        val result = cmd { commands.readHubCmdline(pid) } as? KernelCommandResult.Completed ?: return
+        if (!result.ok) return
+        val running = PortRelease.fromHubCmdline(result.stdout) ?: return
+        if (running != prefs.hubLifetimeRelease()) prefs.setHubLifetimeRelease(running)
+    }
+
+    /**
+     * Trial row 24, when the sheet or the Kernel page opens: re-reads the installed VERSION, which
+     * the fast path of [sequence] skips, so a port upgrade made while the app stayed connected shows
+     * E.5's update row without a reconnect. Needs RUN_COMMAND; changes no state.
+     */
+    suspend fun refreshPortVersion() {
+        mutex.withLock {
+            if (!_commandsAvailable.value || sequenceActive) return
+            val result = cmd { commands.readPortVersion() } as? KernelCommandResult.Completed ?: return
+            if (!result.ok) return
+            val file = PortVersion.parse(result.stdout)
+            if (file.release != null) _portVersion.value = file
+        }
     }
 
     // ---- down classification (KS §0.3 decision table) ---------------------------------------

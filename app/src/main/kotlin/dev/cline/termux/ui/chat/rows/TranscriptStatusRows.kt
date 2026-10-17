@@ -82,21 +82,17 @@ internal data class NoticeLines(val text: String, val detail: String? = null)
 
 /**
  * The kernel's message as it came, or the app's own stop notice (A17) in the app's words: "Stopped
- * after N mistakes in a row" with "Latest: <the kernel's detail>" under it, or "Stopped: the
- * question was not answered within 5 minutes". [quantity] picks the plural forms in the copy's
- * language (`quantityResources`).
+ * after repeated mistakes" with "Latest: <the kernel's detail>" under it, or "Stopped: the
+ * question was not answered within 5 minutes". The stop names no count: on a loop stop the
+ * kernel's `consecutiveMistakes` is forced to the limit, so it read "6" over a detail about 5
+ * identical calls (trial row 21). [quantity] picks the plural forms in the copy's language
+ * (`quantityResources`).
  */
 internal fun noticeLines(message: ChatMessage, resources: Resources, quantity: Resources = quantityResources(resources)): NoticeLines =
     when (message.meta.reason) {
         StopNotices.REASON_STOPPED -> {
-            val mistakes = message.meta.consecutiveMistakes?.takeIf { it > 0 }
-            val text = if (mistakes == null) {
-                resources.getString(R.string.chat_notice_mistake_stopped_repeated)
-            } else {
-                quantity.getQuantityString(R.plurals.chat_notice_mistake_stopped, mistakes, mistakes)
-            }
             val detail = message.content.trim().takeIf { it.isNotEmpty() }?.let { resources.getString(R.string.mistake_limit_question_latest, it) }
-            NoticeLines(text, detail)
+            NoticeLines(resources.getString(R.string.chat_notice_mistake_stopped_repeated), detail)
         }
         StopNotices.REASON_TIMED_OUT -> {
             val minutes = (MistakeLimitPrompt.TIMEOUT_MS / MINUTE_MS).toInt()

@@ -719,7 +719,13 @@ class SessionsRepository(
             // §1.9 item 5: an event for a session the list does not know, carrying no record to insert.
             if (sessionId !in liveRows && p?.obj("session") == null) unknownSession(sessionId)
             dirty = suspectEvidence(sessionId, event) || dirty
-            if (countsAsUnread(event, sessionId)) dirty = markUnread(sessionId) || dirty
+            if (sessionId == visibleId) {
+                // Trial row 20: what the open chat shows is seen at once, so a replay after a force-stop
+                // (no ON_STOP, so the cap is older than this answer) cannot mark it unread.
+                if (seq != null && isUnreadKind(event, sessionId)) noteSeen(sessionId, seq)
+            } else if (countsAsUnread(event, sessionId)) {
+                dirty = markUnread(sessionId) || dirty
+            }
         }
         if (!drained && seq != null && seq >= connectionLastSequence) {
             drained = true
@@ -810,16 +816,18 @@ class SessionsRepository(
 
     // ---- unread (§1.6) -------------------------------------------------------------------------
 
+    /** The events that make a session unread while it is not on screen. */
+    private fun isUnreadKind(event: HubEventEnvelope, sessionId: String): Boolean = when (event.event) {
+        HubEvents.ASSISTANT_FINISHED, HubEvents.RUN_FAILED, HubEvents.RUN_ABORTED, HubEvents.APPROVAL_REQUESTED,
+        HubEvents.CAPABILITY_REQUESTED, HubEvents.SESSION_NOTICE -> true
+        HubEvents.RUN_COMPLETED -> event.payload?.str("reason") == "completed"
+        // createdHere already holds sessions this client created (envelope or record says so).
+        HubEvents.SESSION_CREATED -> sessionId !in createdHere
+        else -> false
+    }
+
     private fun countsAsUnread(event: HubEventEnvelope, sessionId: String): Boolean {
-        val counts = when (event.event) {
-            HubEvents.ASSISTANT_FINISHED, HubEvents.RUN_FAILED, HubEvents.RUN_ABORTED, HubEvents.APPROVAL_REQUESTED,
-            HubEvents.CAPABILITY_REQUESTED, HubEvents.SESSION_NOTICE -> true
-            HubEvents.RUN_COMPLETED -> event.payload?.str("reason") == "completed"
-            // createdHere already holds sessions this client created (envelope or record says so).
-            HubEvents.SESSION_CREATED -> sessionId !in createdHere
-            else -> false
-        }
-        if (!counts || sessionId == visibleId) return false
+        if (!isUnreadKind(event, sessionId) || sessionId == visibleId) return false
         if (sessionId !in liveRows && cacheRows.none { it.id == sessionId }) return false
         val seq = event.sequence
         if (seq != null && seq <= (lastSeen[sessionId] ?: -1L)) return false
@@ -856,14 +864,17 @@ class SessionsRepository(
 
     private fun markSeenLocked(sessionId: String) {
         val removed = unread.remove(sessionId) != null
-        val seq = highestSeq[sessionId]
-        if (seq != null && seq > (lastSeen[sessionId] ?: -1L)) {
-            lastSeen[sessionId] = seq
-            scope.launch { runCatching { persistence.setLastSeen(sessionId, seq) } }
-            trimLastSeen()
-        }
+        highestSeq[sessionId]?.let { noteSeen(sessionId, it) }
         if (removed) persistUnread()
         publish()
+    }
+
+    /** Raises the session's last-seen sequence to [seq] and saves it (the saved value only ever rises). */
+    private fun noteSeen(sessionId: String, seq: Long) {
+        if (seq <= (lastSeen[sessionId] ?: -1L)) return
+        lastSeen[sessionId] = seq
+        scope.launch { runCatching { persistence.setLastSeen(sessionId, seq) } }
+        trimLastSeen()
     }
 
     /** `sessions.lastSeen` keeps at most 500 entries; the oldest (lowest sequence) without unread go first. */

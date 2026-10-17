@@ -77,6 +77,13 @@ class KernelStatusViewModelTest {
             calls += "refreshHubStatus"
             return live
         }
+
+        /** What [refreshPortVersion] reads next; null keeps [portVersion]. */
+        var installedNext: PortVersion? = null
+        override suspend fun refreshPortVersion() {
+            calls += "refreshPortVersion"
+            installedNext?.let { portVersion.value = it }
+        }
         override suspend fun hubAnswers(): Boolean = answers.also { calls += "hubAnswers" }
         override suspend fun beginRestart(): RestartPrecheck = precheck.also { calls += "beginRestart" }
         override fun cancelRestart() {
@@ -387,6 +394,23 @@ class KernelStatusViewModelTest {
         h.vm.onOpened(diagnostics = true)
         advanceUntilIdle()
         assertEquals(1, h.runner.doctorRuns)
+    }
+
+    @Test
+    fun `opening on a ready kernel re-reads the installed release, so an upgrade made while connected shows`() = runTest(main) {
+        // Trial row 24: the port moved on while the app stayed connected to the Hub of the old tree.
+        val h = harness()
+        assertNull(h.vm.ui.value.updateRow)
+        h.kernel.installedNext = PortVersion("3.0.69-termux.1", "3.0.69", "v3.0.69-termux.1")
+        h.vm.onOpened(diagnostics = false)
+        advanceUntilIdle()
+        assertEquals(listOf("refreshPortVersion"), h.kernel.calls)
+        assertEquals(UpdateRowUi("3.0.69-termux.1"), h.vm.ui.value.updateRow)
+
+        val down = harness(KernelState.HubDown(DownReason.Asleep, null, null))
+        down.vm.onOpened(diagnostics = false)
+        advanceUntilIdle()
+        assertTrue("no VERSION read while the Hub is down", down.kernel.calls.isEmpty())
     }
 
     @Test

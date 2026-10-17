@@ -241,6 +241,8 @@ class SessionsRepositoryTest {
         settle()
         e.repo.observe(event(HubEvents.ASSISTANT_FINISHED, 10, "s1"))
         assertFalse(e.repo.row("s1")!!.flags.unread)
+        settle()
+        assertEquals("the answer on screen is saved as seen (trial row 20)", 10L, e.persistence.lastSeenMap["s1"])
         e.repo.setVisibleSession(null)
         settle()
         e.repo.observe(event(HubEvents.RUN_COMPLETED, 11, "s1", """{"reason":"disposed"}"""))
@@ -280,6 +282,7 @@ class SessionsRepositoryTest {
         e.repo.state.test {
             val before = awaitItem()
             val publishes = e.repo.publishCount
+            val seenWrites = e.persistence.lastSeenWrites
             for (seq in 2L..101L) {
                 val delta = event(HubEvents.ASSISTANT_DELTA, seq, "s1", """{"requestId":"r1","iteration":1,"text":"chunk $seq "}""")
                 store.dispatch(delta)
@@ -289,6 +292,7 @@ class SessionsRepositoryTest {
             assertTrue("the deltas reached the transcript", store.state("s1").value.messages.isNotEmpty())
             expectNoEvents()
             assertEquals("no snapshot was rebuilt for a delta", publishes, e.repo.publishCount)
+            assertEquals("no last-seen write for a delta", seenWrites, e.persistence.lastSeenWrites)
             assertEquals(before, e.repo.state.value)
 
             // A fact the row reads still flows through: the store's approval shows on the row.
@@ -322,6 +326,37 @@ class SessionsRepositoryTest {
         assertTrue("live events are not capped", e.repo.row("s1")!!.flags.unread)
         settle()
         assertEquals(mapOf("s1" to 1, "s2" to 1), e.persistence.unread)
+    }
+
+    @Test fun `an answer the open chat showed stays read after a force-stop and cold start`() = runTest {
+        // Trial row 20: a force-stop runs no ON_STOP, so the saved cap is older than the answer.
+        val cap = 5_000L
+        val saved = InMemorySessionsPersistence(lastDisconnect = cap)
+        val before = env(persistence = saved)
+        before.hub.onList = { sessions(record("s1")) }
+        before.hub.connect(lastSequence = 9)
+        settle()
+        before.repo.setVisibleSession("s1")
+        settle()
+        val finished = event(HubEvents.ASSISTANT_FINISHED, 10, "s1", timestamp = cap + 1_000)
+        val completed = event(HubEvents.RUN_COMPLETED, 11, "s1", """{"reason":"completed"}""", timestamp = cap + 1_100)
+        before.repo.observe(finished)
+        before.repo.observe(completed)
+        settle()
+        assertEquals(11L, saved.lastSeenMap["s1"])
+
+        // The cold start: the same saved state, no chat on screen, and the cursor behind the answer, so it is replayed.
+        val after = env(persistence = saved)
+        after.hub.onList = { sessions(record("s1")) }
+        after.hub.connect(lastSequence = 20)
+        settle()
+        after.repo.observe(finished)
+        after.repo.observe(completed)
+        settle()
+        assertFalse(after.repo.row("s1")!!.flags.unread)
+        assertTrue(saved.unread.isEmpty())
+        after.repo.observe(event(HubEvents.ASSISTANT_FINISHED, 21, "s1", timestamp = cap + 2_000))
+        assertTrue("a newer answer still counts", after.repo.row("s1")!!.flags.unread)
     }
 
     @Test fun `a replay that arrives before restore and connect handling never marks unread`() = runTest {

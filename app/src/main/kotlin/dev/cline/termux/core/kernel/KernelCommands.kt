@@ -63,6 +63,9 @@ interface KernelCommands {
     /** `cat ~/.cline/data/locks/hub/production.json` (20 s): the only way to the token. */
     suspend fun readDiscovery(): KernelCommandResult
 
+    /** `tr '\0' '\n' < /proc/<pid>/cmdline` (10 s): the release tree the daemon runs from (trial row 24). */
+    suspend fun readHubCmdline(pid: Int): KernelCommandResult
+
     /** `tail -c 4000 ~/.cline/data/logs/hub-daemon.log` (10 s): matched for `entry.js`, then discarded. */
     suspend fun tailDaemonLog(): KernelCommandResult
 

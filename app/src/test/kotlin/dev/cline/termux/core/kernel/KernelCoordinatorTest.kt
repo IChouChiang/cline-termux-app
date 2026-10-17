@@ -152,7 +152,7 @@ class KernelCoordinatorTest {
         h.coordinator.ensureConnected(); advanceUntilIdle()
 
         val ready = h.assertReady()
-        assertEquals(listOf("readPortVersion", "hubStart", "wakeLock", "readDiscovery"), h.runCommands)
+        assertEquals(listOf("readPortVersion", "hubStart", "wakeLock", "readDiscovery", "readHubCmdline"), h.runCommands)
         assertEquals(listOf(FAKE_HUB_TOKEN), h.hub.openedTokens)
         assertEquals(1, h.tokens.writes)
         assertEquals(4242, ready.info.pid)
@@ -182,7 +182,7 @@ class KernelCoordinatorTest {
         h.coordinator.ensureConnected(); advanceUntilIdle()
         val ready = h.assertReady()
         assertEquals(0, h.tokens.writes)
-        assertEquals(listOf("readPortVersion", "wakeLock"), h.runCommands)
+        assertEquals(listOf("readPortVersion", "wakeLock", "readHubCmdline"), h.runCommands)
         assertEquals("hub_1", ready.info.hubId)
         finish()
     }
@@ -200,9 +200,10 @@ class KernelCoordinatorTest {
         h.assertReady()
         assertEquals("same daemon lifetime: E.5 can offer the restart", "3.0.68-termux.2", h.prefs.hubLifetimeRelease)
 
-        // A new daemon lifetime (started outside the app) records the installed release.
+        // A new daemon lifetime started outside the app after the upgrade runs the installed tree.
         h.coordinator.disconnect(); advanceUntilIdle()
         h.host.restart()
+        h.commands.daemonRelease = "3.0.68-termux.3"
         h.coordinator.ensureConnected(); advanceUntilIdle()
         h.assertReady()
         assertEquals("3.0.68-termux.3", h.prefs.hubLifetimeRelease)
@@ -210,6 +211,62 @@ class KernelCoordinatorTest {
         // Stopping ends the lifetime; nothing stale is kept for the next one.
         h.coordinator.stopKernel(); advanceUntilIdle()
         assertNull(h.prefs.hubLifetimeRelease)
+        finish()
+    }
+
+    @Test
+    fun `a daemon started outside the app before a port upgrade is recorded with the tree it runs`() = runTest {
+        // Trial row 24 (2026-10-09): the Hub ran 3.0.69-termux.1 while VERSION said 3.0.70-termux.1, and the app
+        // had no token for that lifetime, so the first-seen rule took the installed release and hid the restart.
+        val h = Harness(this) {
+            host.running = true
+            commands.daemonRelease = "3.0.69-termux.1"
+            commands.portVersionResult = FakeKernelCommands.ok("release=3.0.70-termux.1\ncline=3.0.70\n")
+        }
+        h.coordinator.ensureConnected(); advanceUntilIdle()
+        h.assertReady()
+        assertEquals("3.0.69-termux.1", h.prefs.hubLifetimeRelease)
+        finish()
+    }
+
+    @Test
+    fun `an argv that names no release keeps the first-seen rule`() = runTest {
+        val h = Harness(this) {
+            host.running = true
+            commands.daemonRelease = null
+            commands.portVersionResult = FakeKernelCommands.ok("release=3.0.70-termux.1\ncline=3.0.70\n")
+        }
+        h.coordinator.ensureConnected(); advanceUntilIdle()
+        h.assertReady()
+        assertEquals("`current/entry.js`: unknown", "3.0.70-termux.1", h.prefs.hubLifetimeRelease)
+
+        h.coordinator.disconnect(); advanceUntilIdle()
+        h.host.restart()
+        h.commands.portVersionResult = FakeKernelCommands.ok("release=3.0.70-termux.2\ncline=3.0.70\n")
+        h.commands.hubCmdlineResult = FakeKernelCommands.fail(1, "tr: /proc/4243/cmdline: No such file or directory")
+        h.coordinator.ensureConnected(); advanceUntilIdle()
+        h.assertReady()
+        assertEquals("an unreadable argv", "3.0.70-termux.2", h.prefs.hubLifetimeRelease)
+        finish()
+    }
+
+    @Test
+    fun `refreshPortVersion re-reads VERSION while connected, without a reconnect`() = runTest {
+        // Trial row 24: the fast path of a re-check never reads VERSION, so an upgrade made while connected went unseen.
+        val h = Harness(this)
+        h.coordinator.ensureConnected(); advanceUntilIdle()
+        h.assertReady()
+        val sockets = h.hub.openedTokens.size
+        h.commands.portVersionResult = FakeKernelCommands.ok("release=3.0.68-termux.3\ncline=3.0.68\n")
+        h.coordinator.refreshPortVersion()
+        assertEquals("3.0.68-termux.3", h.coordinator.portVersion.value!!.release)
+        assertEquals("the daemon still runs the old tree", "3.0.68-termux.2", h.prefs.hubLifetimeRelease)
+        assertEquals(sockets, h.hub.openedTokens.size)
+        h.assertReady()
+
+        h.commands.portVersionResult = FakeKernelCommands.fail(1, "cat: VERSION: No such file or directory")
+        h.coordinator.refreshPortVersion()
+        assertEquals("a failed read keeps the last one", "3.0.68-termux.3", h.coordinator.portVersion.value!!.release)
         finish()
     }
 

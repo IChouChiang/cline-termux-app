@@ -5,6 +5,7 @@ import dev.cline.termux.core.kernel.HubTokenCache
 import dev.cline.termux.core.kernel.KernelClock
 import dev.cline.termux.core.kernel.KernelCommandResult
 import dev.cline.termux.core.kernel.KernelCommands
+import dev.cline.termux.core.kernel.termux.PortVersion
 import dev.cline.termux.core.kernel.termux.TermuxPresence
 import dev.cline.termux.core.kernel.hub.HubDiscoveryRecord
 import dev.cline.termux.core.kernel.hub.HubHealth
@@ -132,6 +133,15 @@ class FakeKernelCommands(val host: FakeHubHost = FakeHubHost()) : KernelCommands
     var wakeLockResult: KernelCommandResult = ok("")
     var wakeUnlockResult: KernelCommandResult = ok("")
 
+    /**
+     * The release tree the daemon runs from, as its argv names it ([readHubCmdline]). `hub start`
+     * and `hub upgrade` set it to the installed release, as a daemon started now runs that tree.
+     */
+    var daemonRelease: String? = "3.0.68-termux.2"
+
+    /** When set, [readHubCmdline] returns this instead of the argv of [daemonRelease]. */
+    var hubCmdlineResult: KernelCommandResult? = null
+
     override fun termuxPresence(): TermuxPresence = presence.also { calls += "termuxPresence" }
     override fun hasRunCommandPermission(): Boolean = permitted.also { calls += "hasRunCommandPermission" }
     override suspend fun readPortVersion(): KernelCommandResult = portVersionResult.also { calls += "readPortVersion" }
@@ -139,6 +149,7 @@ class FakeKernelCommands(val host: FakeHubHost = FakeHubHost()) : KernelCommands
     override suspend fun hubStart(timeoutMs: Long): KernelCommandResult {
         calls += "hubStart"
         hubStartResult?.let { return it }
+        daemonRelease = installedRelease() ?: daemonRelease
         hubStartDetached?.let {
             host.running = true
             return it
@@ -160,8 +171,18 @@ class FakeKernelCommands(val host: FakeHubHost = FakeHubHost()) : KernelCommands
         calls += "hubUpgrade"
         hubUpgradeResult?.let { return it }
         host.restart()
+        daemonRelease = installedRelease() ?: daemonRelease
         return ok("hub upgraded\n")
     }
+
+    override suspend fun readHubCmdline(pid: Int): KernelCommandResult {
+        calls += "readHubCmdline"
+        hubCmdlineResult?.let { return it }
+        val tree = daemonRelease ?: "current"
+        return ok("$PREFIX/opt/bun-android-ffi/1.4.0-canary.1/bun\n$PREFIX/opt/cline-termux/$tree/entry.js\n--cwd\n/data/data/com.termux/files/home\n--port\n${host.port}\n")
+    }
+
+    private fun installedRelease(): String? = (portVersionResult as? KernelCommandResult.Completed)?.let { PortVersion.parse(it.stdout).release }
 
     override suspend fun readDiscovery(): KernelCommandResult {
         calls += "readDiscovery"
@@ -178,6 +199,8 @@ class FakeKernelCommands(val host: FakeHubHost = FakeHubHost()) : KernelCommands
     override suspend fun wakeUnlock(): KernelCommandResult = wakeUnlockResult.also { calls += "wakeUnlock" }
 
     companion object {
+        private const val PREFIX = "/data/data/com.termux/files/usr"
+
         fun ok(stdout: String): KernelCommandResult.Completed = KernelCommandResult.Completed(stdout, "", 0)
         fun fail(exitCode: Int, stderr: String): KernelCommandResult.Completed = KernelCommandResult.Completed("", stderr, exitCode)
         fun internal(errmsg: String, err: Int = 1): KernelCommandResult.Completed = KernelCommandResult.Completed("", "", 1, err, errmsg)

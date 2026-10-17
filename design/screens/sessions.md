@@ -341,8 +341,11 @@ Hub's durable replay makes necessary:
 - The unread set and `lastSeenSequence` per session persist in DataStore
   (`sessions.unread`: `Set<String>`, `sessions.lastSeen`: JSON map `sessionId -> Long`,
   capped at 500 entries, oldest dropped). Opening a session sets its `lastSeenSequence`
-  to the highest sequence seen for it and removes it from the set. Deleting a session
-  removes both.
+  to the highest sequence seen for it and removes it from the set. While the session is
+  on screen, every event of a counting kind raises its `lastSeenSequence` to that event's
+  sequence at once (deltas write nothing), so a force-stop, which skips `ON_STOP` and
+  leaves `lastDisconnectAt` older than the answer on screen, cannot turn the replayed
+  answer unread on the next cold start (trial row 20). Deleting a session removes both.
 - Unread shows only in the idle-ish visual states (DS §1.6 precedence).
 - Rail badge *(Android)*: when any session is unread and the session list is not on
   screen (medium window, or expanded with the list pane collapsed), the rail's "Chats"
@@ -540,6 +543,7 @@ paging, filter and sort controls, menus and the delete dialog (section 0). Trans
 | Beta badge, app-update indicator | Omitted (installer-managed, DS §9) |
 | Hover card on a row (`AgentSessionOverview`) | "Details" menu item -> F6 sheet |
 | Hover card on the logo (Hub status) | KernelChip in the header -> Kernel status sheet (kernel spec) |
+| Logo button "Cline home" | Omitted (trial row 27): "New session" opens Home |
 | Hover-revealed trash button on a row | Removed; "Delete" lives in the long-press menu and the TalkBack actions |
 | Right-click context menu | Long-press `DropdownMenu` at the touch point (voice `SessionRow` mechanics) |
 | Cloud session glyph, "Import" | Omitted (no cloud, no import on Android) |
@@ -551,7 +555,7 @@ paging, filter and sort controls, menus and the delete dialog (section 0). Trans
 
 ```
 +--------------------------------------+------+
-| (bot) Cline     [(o) Hub]      [srch]|      |  header row, 56dp
+| Cline Termux    [(o) Hub]      [srch]|      |  header row, 56dp
 |                                      |      |
 | (+)  New session                     |      |  NavigationDrawerItem, 56dp
 | (cl) Schedules                       |  s   |
@@ -574,13 +578,13 @@ paging, filter and sort controls, menus and the delete dialog (section 0). Trans
 legend: (o) 8dp status dot   ^ push_pin   (cl) schedule   (pz) extension   [fold] sort toggle
 ```
 
-Header row: `IconButton` with `ic_cline_logo` (CD "Cline Termux home", tooltip "Home": opens
-Home and closes the drawer), "Cline Termux" (`titleMedium`), the KernelChip (DS §4.2) and a
-search `IconButton` (`search`, CD "Search sessions", tooltip "Search sessions"; the
-tooltip becomes "Search sessions (Ctrl+P)" *(Android adaptation of "Search sessions
+Header row (16dp start, the text start of the list header's "Sessions"): "Cline Termux"
+(`titleMedium`), the KernelChip (DS §4.2) and a search `IconButton` (`search`, CD "Search
+sessions", tooltip "Search sessions"; the tooltip becomes "Search sessions (Ctrl+P)" *(Android adaptation of "Search sessions
 (Cmd/Ctrl+P)")* only while a hardware keyboard is attached, the same
 `Configuration.keyboard != KEYBOARD_NOKEYS` check as section 4.5, re-read on
-configuration change).
+configuration change). No logo button (trial row 27, the owner's wish on 2026-10-17):
+"New session" already opens Home.
 
 Destination items (`NavigationDrawerItem`, `labelLarge`, 24dp icons): "New session"
 *(Android adaptation of the desktop row label "Session", aria-label "New")* (`add`, the
@@ -646,7 +650,7 @@ docked search bar (S3) replacing the header's search icon:
 
 ```
 +------+--------------------------------+-----------------------------------------+
-| [=]  | (bot) Cline        [(o) Hub]   |  detail pane: chat/{id}, Home, S2       |
+| [=]  | Cline Termux       [(o) Hub]   |  detail pane: chat/{id}, Home, S2       |
 | [/+] | [srch Search all session hist…]|                                         |
 |      |                                |                                         |
 | (ch) | Sessions        [fold][filter] |                                         |
@@ -1480,8 +1484,6 @@ shimmer, instant placement.
 | --- | --- | --- |
 | `sessions_drawer_title` | Cline Termux | DS §5.2 |
 | `sessions_drawer_pane` | Sessions | *(Android)* pane title |
-| `cd_cline_home` | Cline Termux home | *(Android)* |
-| `tooltip_home` | Home | desktop |
 | `cd_search_sessions` | Search sessions | desktop |
 | `tooltip_search_sessions` | Search sessions | desktop (without the shortcut) |
 | `tooltip_search_sessions_kbd` | Search sessions (Ctrl+P) | *(Android adaptation of "Search sessions (Cmd/Ctrl+P)")*, hardware keyboard only |

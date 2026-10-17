@@ -127,28 +127,38 @@ class ReliabilityRulesTest {
     }
 
     @Test
-    fun `notifications once on have nothing to allow and nothing to expand into`() {
-        // Trial row 14: "Allow" did nothing once the permission was granted.
-        val on = ReliabilityRules.items(readings(notifications = true), emptySet()).single { it.id == ReliabilityItemId.Notifications }
-        assertNull(on.actionLabel())
-        assertFalse(on.hasDetails())
-        val off = ReliabilityRules.items(readings(notifications = false), emptySet()).single { it.id == ReliabilityItemId.Notifications }
-        assertEquals(R.string.reliability_allow, off.actionLabel())
-        assertTrue(off.hasDetails())
+    fun `verified done items have nothing to allow and nothing to expand into`() {
+        // Trial rows 14 and 22: "Allow" did nothing once notifications were on or the app was already exempt.
+        assertEquals(
+            listOf(ReliabilityItemId.TermuxBattery, ReliabilityItemId.ClineBattery, ReliabilityItemId.ChildProcess, ReliabilityItemId.Notifications),
+            ids(ReliabilityRules.items(readings(), emptySet()).filter { it.status == ItemStatus.Done }),
+        )
+        for (r in listOf(readings(), readings(canRequest = true), readings(sdk = 32))) {
+            ReliabilityRules.items(r, emptySet()).filter { it.status == ItemStatus.Done }.forEach { item ->
+                assertNull("$item", item.actionLabel())
+                assertEquals("$item", emptyList<Int>(), item.instructionLines())
+                assertFalse("$item", item.showsAdbCommand)
+                assertFalse("$item", item.hasDetails())
+            }
+        }
+        val off = ReliabilityRules.items(readings(cline = false, notifications = false), emptySet())
+        assertEquals(R.string.reliability_allow, off.single { it.id == ReliabilityItemId.ClineBattery }.actionLabel())
+        assertEquals(R.string.reliability_allow, off.single { it.id == ReliabilityItemId.Notifications }.actionLabel())
     }
 
     @Test
-    fun `every other item keeps something to expand into, done or not`() {
+    fun `every item that is not verified done keeps something to expand into`() {
         val cases = listOf(
             readings(),
             readings(termux = false, cline = false, phantom = PhantomSetting.Value(null), developer = false, notifications = false, canRequest = true),
+            readings(termux = false, cline = false),
             readings(sdk = 32, phantom = PhantomSetting.Value(null)),
             readings(phantom = PhantomSetting.Unreadable),
         )
         val selfChecks = setOf(ReliabilityItemId.NeverSleeping, ReliabilityItemId.ChildProcess, ReliabilityItemId.TermuxOverlay)
         for (r in cases) {
             for (confirmed in listOf(emptySet(), selfChecks)) {
-                ReliabilityRules.items(r, confirmed).filterNot { it.id == ReliabilityItemId.Notifications }.forEach { item ->
+                ReliabilityRules.items(r, confirmed).filterNot { it.status == ItemStatus.Done }.forEach { item ->
                     assertTrue("$item", item.hasDetails())
                 }
             }

@@ -936,7 +936,7 @@ class ClientContributionsTest {
     private fun ignoredReply(id: String) = buildJsonObject { put("requestId", id); put("ignored", true) }
 
     @Test
-    fun `a stop the Hub took leaves a notice with the count and the kernel's detail (A17)`() = runTest {
+    fun `a stop the Hub took leaves a notice with the kernel's detail (A17)`() = runTest {
         val r = rig()
         r.deliver(runStarted())
         r.deliver(mistake("m1", 3, details = "  Tool no_such_tool does not exist  "))
@@ -945,7 +945,7 @@ class ClientContributionsTest {
         runCurrent()
         assertFalse(r.contributions.answerMistakeLimit(sid, "m1", MistakeLimitDecision.Stop(MistakeLimitPrompt.STOP_REASON)))
         assertEquals(
-            listOf(StopNotice(sid, "m1", StopNoticeKind.Stopped, mistakes = 6, detail = "Tool no_such_tool does not exist", at = 42_000L)),
+            listOf(StopNotice(sid, "m1", StopNoticeKind.Stopped, detail = "Tool no_such_tool does not exist", at = 42_000L)),
             r.notices,
         )
         assertEquals("the Hub's reply first, then the notice", listOf("respond:m1", "notice:Stopped"), r.log)
@@ -985,7 +985,7 @@ class ClientContributionsTest {
         advanceTimeBy(MistakeLimitPrompt.TIMEOUT_MS)
         runCurrent()
         assertEquals(
-            listOf(StopNotice(sid, "m1", StopNoticeKind.TimedOut, mistakes = 6, detail = "", at = MistakeLimitPrompt.TIMEOUT_MS)),
+            listOf(StopNotice(sid, "m1", StopNoticeKind.TimedOut, detail = "", at = MistakeLimitPrompt.TIMEOUT_MS)),
             r.notices,
         )
 

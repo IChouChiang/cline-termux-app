@@ -66,6 +66,9 @@ interface StatusKernel {
     /** E.7 refresh: `/health`, `/version`, `hub.status {}`. */
     suspend fun refreshHubStatus(): HubLiveStatus?
 
+    /** Re-reads the installed VERSION (a port upgrade while connected, trial row 24). */
+    suspend fun refreshPortVersion()
+
     /** `GET /health` only (no RUN_COMMAND): does a Hub answer right now? */
     suspend fun hubAnswers(): Boolean
 
@@ -94,6 +97,7 @@ interface StatusKernel {
                 coordinator.ensureConnected(startIfDown = startIfDown, userInitiated = userInitiated)
             }
             override suspend fun refreshHubStatus(): HubLiveStatus? = coordinator.refreshHubStatus()
+            override suspend fun refreshPortVersion() = coordinator.refreshPortVersion()
             override suspend fun hubAnswers(): Boolean = coordinator.probeHealth() != null
             override suspend fun beginRestart(): RestartPrecheck = coordinator.beginRestart()
             override fun cancelRestart() = coordinator.cancelRestart()
@@ -228,6 +232,19 @@ class KernelStatusViewModel(
             val state = resolvedKernel().state.value
             val timedOut = state is KernelState.HubDown && state.reason == DownReason.StartTimedOut
             if ((diagnostics || timedOut) && local.value.diagnostics == DiagnosticsUi.Idle) resolvedDiagnostics().run()
+        }
+        viewModelScope.launch {
+            // Trial row 24: a port upgrade made while the app stayed connected shows the update row now.
+            val k = resolvedKernel()
+            if (k.state.value !is KernelState.Ready && k.state.value !is KernelState.Draining) return@launch
+            try {
+                withContext(work) { k.refreshPortVersion() }
+            } catch (e: CancellationException) {
+                throw e
+            } catch (_: Exception) {
+                // The coordinator reports outcomes through its state.
+            }
+            refreshExtras()
         }
     }
 

@@ -11,6 +11,8 @@ class InMemorySessionsPersistence(
 ) : SessionsPersistence {
     val removedKnown = mutableListOf<String>()
     val forgotten = mutableListOf<String>()
+    var lastSeenWrites = 0
+        private set
 
     override suspend fun lastDisconnectAt(): Long? = lastDisconnect
     override suspend fun setLastDisconnectAt(atMs: Long) {
@@ -23,6 +25,7 @@ class InMemorySessionsPersistence(
     }
     override suspend fun lastSeen(): Map<String, Long> = lastSeenMap.toMap()
     override suspend fun setLastSeen(sessionId: String, sequence: Long) {
+        lastSeenWrites++
         if ((lastSeenMap[sessionId] ?: -1L) < sequence) lastSeenMap[sessionId] = sequence
     }
     override suspend fun forget(sessionId: String) {
